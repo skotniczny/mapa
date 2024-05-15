@@ -22,6 +22,14 @@ const handleKeyboard = event => {
   }
 }
 
+const setState = (item) => {
+  if (item) {
+    const [key, value] = item
+    state[key] = value
+  }
+  window.localStorage.setItem('mapState', JSON.stringify(state))
+}
+
 const handleMouseWheel = event => {
   event.preventDefault()
 
@@ -49,11 +57,12 @@ const handleMapClick = event => {
   const color = colorPicker.value
   if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
+    delete state[target.id]
+    setState()
   } else {
-    target.style.fill = colorPicker.value
+    target.style.fill = color
+    setState([target.id, color])
   }
-  state[target.id] = color
-  window.localStorage.setItem('mapState', JSON.stringify(state))
 }
 
 const downloadMap = () => {
@@ -75,7 +84,7 @@ const resetMap = () => {
     if (el) el.style.fill = ''
   }
   state = {}
-  window.localStorage.setItem('mapState', JSON.stringify({}))
+  setState()
 }
 
 const readState = () => {
