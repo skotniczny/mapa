@@ -1,7 +1,9 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
+import { rgb2hex } from './js/utils.js'
 
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
+const colorPicker = document.querySelector('#colorpicker')
 
 const minZoom = 0.25
 const maxZoom = 4
@@ -40,5 +42,15 @@ const handleMouseWheel = event => {
   scale = nextScale
 }
 
+const handleMapClick = event => {
+  const target = event.target
+  if (target.style.fill && rgb2hex(target.style.fill) === colorPicker.value) {
+    target.style.fill = ''
+  } else {
+    target.style.fill = colorPicker.value
+  }
+}
+
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
+map.addEventListener('click', handleMapClick)
