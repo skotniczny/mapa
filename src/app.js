@@ -53,6 +53,7 @@ const handleMapClick = event => {
     target.style.fill = colorPicker.value
   }
   state[target.id] = color
+  window.localStorage.setItem('mapState', JSON.stringify(state))
 }
 
 const downloadMap = () => {
@@ -74,8 +75,18 @@ const resetMap = () => {
     if (el) el.style.fill = ''
   }
   state = {}
+  window.localStorage.setItem('mapState', JSON.stringify({}))
 }
 
+const readState = () => {
+  state = JSON.parse(window.localStorage.getItem('mapState')) || {}
+  for (const item of Object.keys(state)) {
+    const el = document.querySelector(`#${item}`)
+    if (el) el.style.fill = state[item]
+  }
+}
+
+document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
