@@ -7,7 +7,7 @@
     "start": "parcel",
     "build": "parcel build",
     "test": "standard \"src/**/*.js\"",
-    "text-fix": "standard \"src/**/*.js\" --fix"
+    "fix": "standard \"src/**/*.js\" --fix"
   },
   "repository": {
     "type": "git",
