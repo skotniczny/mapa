@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+svg {
+  display: block;
+}
+
 .tools {
   position: fixed;
   top: 16px;
