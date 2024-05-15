@@ -9,6 +9,7 @@ const btnsMenu = document.querySelector('.menu-v')
 const minZoom = 0.25
 const maxZoom = 4
 let scale = 1
+let state = {}
 
 const handleKeyboard = event => {
   if (event.target.tagName.toLowerCase() !== 'input') {
@@ -45,11 +46,13 @@ const handleMouseWheel = event => {
 
 const handleMapClick = event => {
   const target = event.target
-  if (target.style.fill && rgb2hex(target.style.fill) === colorPicker.value) {
+  const color = colorPicker.value
+  if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
   } else {
     target.style.fill = colorPicker.value
   }
+  state[target.id] = color
 }
 
 const downloadMap = () => {
@@ -65,15 +68,26 @@ const downloadMap = () => {
   document.body.removeChild(downloadLink)
 }
 
+const resetMap = () => {
+  for (const item of Object.keys(state)) {
+    const el = document.querySelector(`#${item}`)
+    if (el) el.style.fill = ''
+  }
+  state = {}
+}
+
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
-  if (targetId === 'menuBtn' || targetId === 'resetBtn') {
+  if (targetId === 'menuBtn') {
     window.alert('Kliknięcie przycisku')
   }
   if (targetId === 'downloadBtn') {
     downloadMap()
+  }
+  if (targetId === 'resetBtn') {
+    resetMap()
   }
 })
