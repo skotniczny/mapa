@@ -1,7 +1,11 @@
-import { svgPositionGet, svgPositionSet } from './js/svg-utils.js'
+import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
+
+const minZoom = 0.25
+const maxZoom = 4
+let scale = 1
 
 const handleKeyboard = event => {
   if (event.target.tagName.toLowerCase() !== 'input') {
@@ -14,4 +18,27 @@ const handleKeyboard = event => {
   }
 }
 
+const handleMouseWheel = event => {
+  event.preventDefault()
+
+  // calc nextScale
+  const delta = event.deltaY || event.deltaX
+  const scaleStep = Math.abs(delta) < 50
+    ? 0.05 // touchpad pitch
+    : 0.25 // mouse wheel
+
+  const scaleDelta = delta < 0 ? scaleStep : -scaleStep
+  const nextScale = scale + scaleDelta // 'scale' is prev scale
+
+  // calc fixedPoint
+  const fixedPoint = { x: event.clientX, y: event.clientY }
+
+  // scale
+  // 'svgEl' is element to scale
+  if (nextScale < minZoom || nextScale > maxZoom) return
+  svgScale(canvas, fixedPoint, scale, nextScale)
+  scale = nextScale
+}
+
 document.addEventListener('keydown', handleKeyboard)
+map.addEventListener('wheel', handleMouseWheel)
