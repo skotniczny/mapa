@@ -1,0 +1,19 @@
+{
+  "name": "mapa",
+  "version": "1.0.0",
+  "description": "World Map",
+  "source": "src/index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skotniczny/mapa.git"
+  },
+  "author": "skotniczny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skotniczny/mapa/issues"
+  },
+  "homepage": "https://github.com/skotniczny/mapa#readme"
+}
