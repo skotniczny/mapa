@@ -4,6 +4,7 @@ import { rgb2hex } from './js/utils.js'
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
 const colorPicker = document.querySelector('#colorpicker')
+const btnsMenu = document.querySelector('.menu-v')
 
 const minZoom = 0.25
 const maxZoom = 4
@@ -54,3 +55,9 @@ const handleMapClick = event => {
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
+btnsMenu.addEventListener('click', event => {
+  const targetId = event.target.id
+  if (targetId === 'menuBtn' || targetId === 'downloadBtn' || targetId === 'resetBtn') {
+    window.alert('Kliknięcie przycisku')
+  }
+})
