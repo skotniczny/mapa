@@ -52,12 +52,28 @@ const handleMapClick = event => {
   }
 }
 
+const downloadMap = () => {
+  /* global XMLSerializer */
+  const source = new XMLSerializer().serializeToString(map)
+  // convert svg source to URI data scheme.
+  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<?xml version="1.0" standalone="no"?>\r\n${source}`)
+  const downloadLink = document.createElement('a')
+  downloadLink.href = url
+  downloadLink.download = 'map.svg'
+  document.body.appendChild(downloadLink)
+  downloadLink.click()
+  document.body.removeChild(downloadLink)
+}
+
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
-  if (targetId === 'menuBtn' || targetId === 'downloadBtn' || targetId === 'resetBtn') {
+  if (targetId === 'menuBtn' || targetId === 'resetBtn') {
     window.alert('Kliknięcie przycisku')
+  }
+  if (targetId === 'downloadBtn') {
+    downloadMap()
   }
 })
