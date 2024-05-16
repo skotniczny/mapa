@@ -24,3 +24,41 @@ svg {
   flex-direction: column;
   gap: 8px;
 }
+
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.modal-active {
+  display: flex;
+}
+
+.modal_body {
+  position: relative;
+  background: #fff;
+  border-radius: 15px;
+  flex-grow: 1;
+  max-width: 90%;
+}
+
+.modal_close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+}
+
+.modal_content {
+  padding: 8px;
+  overflow: auto;
+  scrollbar-width: thin;
+  max-height: 80vh;
+}

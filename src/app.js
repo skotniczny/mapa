@@ -1,10 +1,12 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 import { rgb2hex } from './js/utils.js'
+import { createModal, openModal } from './js/modal.js'
 
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
 const colorPicker = document.querySelector('#colorpicker')
 const btnsMenu = document.querySelector('.menu-v')
+const modal = document.querySelector('.modal')
 
 const minZoom = 0.25
 const maxZoom = 4
@@ -95,19 +97,21 @@ const readState = () => {
   }
 }
 
+const modalContent = () => {
+  const el = document.createElement('div')
+  el.innerHTML = '<p>Lorem ipsum</p><p>Lorem ipsum</p><p>Lorem ipsum</p>'
+  return [el]
+}
+
+createModal(modal, modalContent)
+
 document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
-  if (targetId === 'menuBtn') {
-    window.alert('Kliknięcie przycisku')
-  }
-  if (targetId === 'downloadBtn') {
-    downloadMap()
-  }
-  if (targetId === 'resetBtn') {
-    resetMap()
-  }
+  if (targetId === 'menuBtn') openModal(modal)
+  if (targetId === 'downloadBtn') downloadMap()
+  if (targetId === 'resetBtn') resetMap()
 })
