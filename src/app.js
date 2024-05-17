@@ -1,6 +1,7 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 import { rgb2hex } from './js/utils.js'
 import { createModal, openModal } from './js/modal.js'
+import { FLAGS } from './js/data.js'
 
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
@@ -97,10 +98,26 @@ const readState = () => {
   }
 }
 
+const sortedFlags = FLAGS.sort((a, b) => a.name.localeCompare(b.name))
+
 const modalContent = () => {
-  const el = document.createElement('div')
-  el.innerHTML = '<p>Lorem ipsum</p><p>Lorem ipsum</p><p>Lorem ipsum</p>'
-  return [el]
+  const elements = []
+  for (const item of sortedFlags) {
+    const a = document.createElement('a')
+    a.className = 'flag'
+    a.title = item.description
+    a.tabIndex = 1
+    const flag = document.createElement('span')
+    flag.textContent = item.emoji
+    flag.className = 'flag_emoji'
+    const desc = document.createElement('span')
+    desc.textContent = item.name
+    desc.className = 'flag_description'
+    a.appendChild(flag)
+    a.appendChild(desc)
+    elements.push(a)
+  }
+  return elements
 }
 
 createModal(modal, modalContent)

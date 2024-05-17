@@ -57,8 +57,33 @@ svg {
 }
 
 .modal_content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(112px, 1fr));
+  gap: 4px;
   padding: 8px;
   overflow: auto;
   scrollbar-width: thin;
   max-height: 80vh;
+}
+
+.flag {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-grow: 1;
+  flex-basis: 100px;
+}
+
+.flag_emoji {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.flag_description {
+  font-size: 10px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
 }
