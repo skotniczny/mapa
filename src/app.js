@@ -1,6 +1,6 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 import { rgb2hex } from './js/utils.js'
-import { createModal, openModal } from './js/modal.js'
+import { createModal, openModal, closeModal } from './js/modal.js'
 import { FLAGS } from './js/data.js'
 
 const map = document.querySelector('svg')
@@ -98,6 +98,16 @@ const readState = () => {
   }
 }
 
+const pickFlag = event => {
+  const target = event.target
+  if (target.className === 'flag') {
+    const picked = document.querySelector('#pickedFlag')
+    picked.textContent = event.target.firstChild.textContent
+    picked.title = event.target.title
+    closeModal(modal)
+  }
+}
+
 const sortedFlags = FLAGS.sort((a, b) => a.name.localeCompare(b.name))
 
 const modalContent = () => {
@@ -126,6 +136,7 @@ document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
+modal.addEventListener('click', pickFlag)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
   if (targetId === 'menuBtn') openModal(modal)
