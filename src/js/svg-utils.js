@@ -1,3 +1,9 @@
+/*
+ * Credit: AlexeyBoiko / DgrmJS
+ * https://itnext.io/javascript-zoom-like-in-maps-for-svg-html-89c0df016d8d
+ * https://github.com/AlexeyBoiko/DgrmJS/blob/e6d6a13c6294e79058f605ff1609c3f08ee5cf27/src/diagram-extensions/scale-feature.js
+ */
+
 /* global SVGTransform */
 
 function first (iterable, filter) {
