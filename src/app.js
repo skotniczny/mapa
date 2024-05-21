@@ -58,6 +58,7 @@ const handleMouseWheel = event => {
 const handleMapClick = event => {
   const target = event.target
   const color = colorPicker.value
+  if (target.id === 'ocean') return
   if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
     delete state[target.id]
