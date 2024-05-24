@@ -27,8 +27,15 @@ const handleKeyboard = event => {
 
 const setState = (item) => {
   if (item) {
-    const [key, value] = item
-    state[key] = value
+    if (item.some(element => Array.isArray(element))) {
+      for (const element of item) {
+        const [key, value] = element
+        state[key] = value
+      }
+    } else {
+      const [key, value] = item
+      state[key] = value
+    }
   }
   window.localStorage.setItem('mapState', JSON.stringify(state))
 }
@@ -66,6 +73,30 @@ const handleMapClick = event => {
   } else {
     target.style.fill = color
     setState([target.id, color])
+  }
+}
+
+const handleMapContextmenu = event => {
+  event.preventDefault()
+  const target = event.target
+  if (target.id === 'ocean' || target.tagName !== 'path') return
+
+  const siblings = Array.from(target.parentNode.childNodes)
+                        .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
+  if (target.style.fill) {
+    for (const item of siblings) {
+      item.style.fill = ''
+      delete state[item.id]
+    }
+    setState()
+  } else {
+    const color = colorPicker.value
+    const paths = []
+    for (const item of siblings) {
+      item.style.fill = color
+      paths.push([item.id, color])
+    }
+    setState(paths)
   }
 }
 
@@ -137,6 +168,7 @@ document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
+map.addEventListener('contextmenu', handleMapContextmenu)
 modal.addEventListener('click', pickFlag)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
