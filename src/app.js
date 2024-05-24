@@ -62,10 +62,12 @@ const handleMouseWheel = event => {
   scale = nextScale
 }
 
+const isInvalidElement = target => target.id === 'ocean' || target.tagName !== 'path'
+
 const handleMapClick = event => {
   const target = event.target
   const color = colorPicker.value
-  if (target.id === 'ocean') return
+  if (isInvalidElement(target)) return
   if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
     delete state[target.id]
@@ -79,7 +81,7 @@ const handleMapClick = event => {
 const handleMapContextmenu = event => {
   event.preventDefault()
   const target = event.target
-  if (target.id === 'ocean' || target.tagName !== 'path') return
+  if (isInvalidElement(target)) return
 
   const siblings = Array.from(target.parentNode.childNodes)
                         .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
