@@ -27,14 +27,8 @@ const handleKeyboard = event => {
 
 const setState = (item) => {
   if (item) {
-    if (item.some(element => Array.isArray(element))) {
-      for (const element of item) {
-        const [key, value] = element
-        state[key] = value
-      }
-    } else {
-      const [key, value] = item
-      state[key] = value
+    for (const element of item) {
+      state[element.pathId] = element.color
     }
   }
   window.localStorage.setItem('mapState', JSON.stringify(state))
@@ -74,7 +68,7 @@ const handleMapClick = event => {
     setState()
   } else {
     target.style.fill = color
-    setState([target.id, color])
+    setState([{ pathId: target.id, color }])
   }
 }
 
@@ -84,7 +78,7 @@ const handleMapContextmenu = event => {
   if (isInvalidElement(target)) return
 
   const siblings = Array.from(target.parentNode.childNodes)
-                        .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
+    .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
   if (target.style.fill) {
     for (const item of siblings) {
       item.style.fill = ''
@@ -96,7 +90,7 @@ const handleMapContextmenu = event => {
     const paths = []
     for (const item of siblings) {
       item.style.fill = color
-      paths.push([item.id, color])
+      paths.push({ pathId: item.id, color })
     }
     setState(paths)
   }
