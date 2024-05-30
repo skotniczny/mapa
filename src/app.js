@@ -2,6 +2,7 @@ import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 import { rgb2hex } from './js/utils.js'
 import { createModal, openModal, closeModal } from './js/modal.js'
 import { FLAGS } from './js/data.js'
+import { MapState } from './js/map-state.js'
 
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
@@ -12,7 +13,7 @@ const modal = document.querySelector('.modal')
 const minZoom = 0.25
 const maxZoom = 4
 let scale = 1
-let state = {}
+const mapState = new MapState('mapState')
 
 const handleKeyboard = event => {
   if (event.target.tagName.toLowerCase() !== 'input') {
@@ -23,15 +24,6 @@ const handleKeyboard = event => {
     if (key === 'arrowup' || key === 'w') { svgPositionSet(canvas, { x: position.x, y: position.y + 50 }) }
     if (key === 'arrowdown' || key === 's') { svgPositionSet(canvas, { x: position.x, y: position.y - 50 }) }
   }
-}
-
-const setState = (item) => {
-  if (item) {
-    for (const element of item) {
-      state[element.pathId] = element.color
-    }
-  }
-  window.localStorage.setItem('mapState', JSON.stringify(state))
 }
 
 const handleMouseWheel = event => {
@@ -64,11 +56,12 @@ const handleMapClick = event => {
   if (isInvalidElement(target)) return
   if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
-    delete state[target.id]
-    setState()
+    mapState.remove([target.id])
+    mapState.save()
   } else {
     target.style.fill = color
-    setState([{ pathId: target.id, color }])
+    mapState.set([{ pathId: target.id, color }])
+    mapState.save()
   }
 }
 
@@ -82,9 +75,9 @@ const handleMapContextmenu = event => {
   if (target.style.fill) {
     for (const item of siblings) {
       item.style.fill = ''
-      delete state[item.id]
+      mapState.remove([item.id])
     }
-    setState()
+    mapState.save()
   } else {
     const color = colorPicker.value
     const paths = []
@@ -92,7 +85,8 @@ const handleMapContextmenu = event => {
       item.style.fill = color
       paths.push({ pathId: item.id, color })
     }
-    setState(paths)
+    mapState.set(paths)
+    mapState.save()
   }
 }
 
@@ -110,19 +104,19 @@ const downloadMap = () => {
 }
 
 const resetMap = () => {
-  for (const item of Object.keys(state)) {
+  for (const item of mapState.keys) {
     const el = document.querySelector(`#${item}`)
     if (el) el.style.fill = ''
   }
-  state = {}
-  setState()
+  mapState.reset()
+  mapState.save()
 }
 
 const readState = () => {
-  state = JSON.parse(window.localStorage.getItem('mapState')) || {}
-  for (const item of Object.keys(state)) {
+  mapState.load()
+  for (const item of mapState.keys) {
     const el = document.querySelector(`#${item}`)
-    if (el) el.style.fill = state[item]
+    if (el) el.style.fill = mapState.get(item)
   }
 }
 
