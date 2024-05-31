@@ -105,8 +105,12 @@ const downloadMap = () => {
 
 const resetMap = () => {
   for (const item of mapState.keys) {
-    const el = document.querySelector(`#${item}`)
-    if (el) el.style.fill = ''
+    try {
+      const el = document.querySelector(`#${item}`)
+      if (el) el.style.fill = ''
+    } catch (e) {
+      console.error('Błąd:', e.message)
+    }
   }
   mapState.reset()
   mapState.save()
@@ -115,8 +119,12 @@ const resetMap = () => {
 const readState = () => {
   mapState.load()
   for (const item of mapState.keys) {
-    const el = document.querySelector(`#${item}`)
-    if (el) el.style.fill = mapState.get(item)
+    try {
+      const el = document.querySelector(`#${item}`)
+      if (el) el.style.fill = mapState.get(item)
+    } catch (e) {
+      console.error('Błąd:', e.message)
+    }
   }
 }
 
