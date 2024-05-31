@@ -138,6 +138,29 @@ const pickFlag = event => {
   }
 }
 
+const colorMap = () => {
+  const colors = ['#cfe7c6', '#eed2c8', '#f8f09b', '#f2bb94', '#a3b7da', '#eca2ca', '#99b6dd', '#db82c0', '#f3c271', '#decfaa', '#93c9c0', '#f0e7b5']
+  const groups = Array.from(canvas.children)
+    .filter(element => element.tagName === 'g')
+    .map(element => element.querySelectorAll('path'))
+  let index = Math.floor(Math.random() * colors.length)
+  const paths = []
+  mapState.reset()
+  for (const group of groups) {
+    if (index > colors.length - 1) index = 0
+    if (group.length <= 1) continue
+    const color = colors[index]
+    for (const path of group) {
+      if (path.classList.contains('landxx')) continue
+      path.style.fill = color
+      paths.push({ pathId: path.id, color })
+    }
+    index += 1
+  }
+  mapState.set(paths)
+  mapState.save()
+}
+
 const sortedFlags = FLAGS.sort((a, b) => a.name.localeCompare(b.name))
 
 const modalContent = () => {
@@ -173,4 +196,5 @@ btnsMenu.addEventListener('click', event => {
   if (targetId === 'menuBtn') openModal(modal)
   if (targetId === 'downloadBtn') downloadMap()
   if (targetId === 'resetBtn') resetMap()
+  if (targetId === 'colorBtn') colorMap()
 })
