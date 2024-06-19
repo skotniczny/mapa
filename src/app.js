@@ -145,13 +145,12 @@ const colorMap = () => {
     .map(element => element.querySelectorAll('path'))
   let index = Math.floor(Math.random() * colors.length)
   const paths = []
-  mapState.reset()
   for (const group of groups) {
     if (index > colors.length - 1) index = 0
     if (group.length <= 1) continue
     const color = colors[index]
     for (const path of group) {
-      if (path.classList.contains('landxx')) continue
+      if (path.classList.contains('landxx') || path.style.fill) continue
       path.style.fill = color
       paths.push({ pathId: path.id, color })
     }
