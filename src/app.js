@@ -15,6 +15,27 @@ const maxZoom = 4
 let scale = 1
 const mapState = new MapState('mapState')
 
+const undoRecent = () => {
+  for (const item of mapState.keys) {
+    try {
+      const el = document.querySelector(`#${item}`)
+      if (el) el.style.fill = ''
+    } catch (e) {
+      console.error('Błąd:', e.message)
+    }
+  }
+  mapState.undo()
+  for (const item of mapState.keys) {
+    try {
+      const el = document.querySelector(`#${item}`)
+      if (el) el.style.fill = mapState.get(item)
+    } catch (e) {
+      console.error('Błąd:', e.message)
+    }
+  }
+  mapState.save()
+}
+
 const handleKeyboard = event => {
   if (event.target.tagName.toLowerCase() !== 'input') {
     const position = svgPositionGet(canvas)
@@ -23,6 +44,7 @@ const handleKeyboard = event => {
     if (key === 'arrowleft' || key === 'a') { svgPositionSet(canvas, { x: position.x + 50, y: position.y }) }
     if (key === 'arrowup' || key === 'w') { svgPositionSet(canvas, { x: position.x, y: position.y + 50 }) }
     if (key === 'arrowdown' || key === 's') { svgPositionSet(canvas, { x: position.x, y: position.y - 50 }) }
+    if (key === 'z' && event.ctrlKey) { undoRecent() }
   }
 }
 
