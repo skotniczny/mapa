@@ -73,10 +73,12 @@ const handleMapContextmenu = event => {
   const siblings = Array.from(target.parentNode.childNodes)
     .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
   if (target.style.fill) {
+    const paths = []
     for (const item of siblings) {
       item.style.fill = ''
-      mapState.remove([item.id])
+      paths.push(item.id)
     }
+    mapState.remove(paths)
     mapState.save()
   } else {
     const color = colorPicker.value
