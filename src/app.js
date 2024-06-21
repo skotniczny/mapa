@@ -1,5 +1,5 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
-import { rgb2hex } from './js/utils.js'
+import { rgb2hex, fillElements, clearElements } from './js/utils.js'
 import { createModal, openModal, closeModal } from './js/modal.js'
 import { FLAGS } from './js/data.js'
 import { MapState } from './js/map-state.js'
@@ -16,23 +16,9 @@ let scale = 1
 const mapState = new MapState('mapState')
 
 const undoRecent = () => {
-  for (const item of mapState.keys) {
-    try {
-      const el = document.querySelector(`#${item}`)
-      if (el) el.style.fill = ''
-    } catch (e) {
-      console.error('Błąd:', e.message)
-    }
-  }
+  clearElements(mapState)
   mapState.undo()
-  for (const item of mapState.keys) {
-    try {
-      const el = document.querySelector(`#${item}`)
-      if (el) el.style.fill = mapState.get(item)
-    } catch (e) {
-      console.error('Błąd:', e.message)
-    }
-  }
+  fillElements(mapState)
   mapState.save()
 }
 
@@ -128,28 +114,14 @@ const downloadMap = () => {
 }
 
 const resetMap = () => {
-  for (const item of mapState.keys) {
-    try {
-      const el = document.querySelector(`#${item}`)
-      if (el) el.style.fill = ''
-    } catch (e) {
-      console.error('Błąd:', e.message)
-    }
-  }
+  clearElements(mapState)
   mapState.reset()
   mapState.save()
 }
 
 const readState = () => {
   mapState.load()
-  for (const item of mapState.keys) {
-    try {
-      const el = document.querySelector(`#${item}`)
-      if (el) el.style.fill = mapState.get(item)
-    } catch (e) {
-      console.error('Błąd:', e.message)
-    }
-  }
+  fillElements(mapState)
 }
 
 const pickFlag = event => {
