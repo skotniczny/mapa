@@ -79,7 +79,7 @@ const handleMapContextmenu = event => {
   if (isInvalidElement(target)) return
 
   const siblings = Array.from(target.parentNode.childNodes)
-    .filter(element => element.tagName === 'path' && !element.classList.contains('landxx'))
+    .filter(element => !isInvalidElement(element) && !element.classList.contains('landxx'))
   if (target.style.fill) {
     const paths = []
     for (const item of siblings) {
