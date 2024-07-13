@@ -65,12 +65,11 @@ const handleMapClick = event => {
   if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
     mapState.remove([target.id])
-    mapState.save()
   } else {
     target.style.fill = color
     mapState.set([{ pathId: target.id, color }])
-    mapState.save()
   }
+  mapState.save()
 }
 
 const handleMapContextmenu = event => {
@@ -87,7 +86,6 @@ const handleMapContextmenu = event => {
       paths.push(item.id)
     }
     mapState.remove(paths)
-    mapState.save()
   } else {
     const color = colorPicker.value
     const paths = []
@@ -96,8 +94,8 @@ const handleMapContextmenu = event => {
       paths.push({ pathId: item.id, color })
     }
     mapState.set(paths)
-    mapState.save()
   }
+  mapState.save()
 }
 
 const downloadMap = () => {
