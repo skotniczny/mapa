@@ -1,6 +1,6 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './js/svg-utils.js'
 import { rgb2hex, fillElements, clearElements } from './js/utils.js'
-import { createModal, openModal, closeModal } from './js/modal.js'
+import { createModalWithSearch, openModal, closeModal } from './js/modal.js'
 import { FLAGS } from './js/data.js'
 import { MapState } from './js/map-state.js'
 
@@ -176,7 +176,20 @@ const modalContent = () => {
   return elements
 }
 
-createModal(modal, modalContent)
+const handleSearch = event => {
+  const searchValue = event.target.value.toLowerCase()
+  const modalItems = modal.querySelectorAll('.modal_items .flag')
+  modalItems.forEach(item => {
+    const itemText = item.querySelector('.flag_description').textContent.toLowerCase()
+    if (itemText.includes(searchValue)) {
+      item.style.display = 'flex'
+    } else {
+      item.style.display = 'none'
+    }
+  })
+}
+
+createModalWithSearch(modal, modalContent, handleSearch)
 
 document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
