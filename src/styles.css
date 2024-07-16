@@ -138,6 +138,11 @@ svg {
   line-height: 1;
 }
 
+.flag_file {
+  border-radius: 8px;
+  width: 130px;
+}
+
 .flag_description {
   pointer-events: none;
   font-size: 10px;
@@ -153,4 +158,8 @@ svg {
   line-height: 1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 -1px 0px rgba(0, 0, 0, 0.02);
   cursor: default;
+}
+
+.hide {
+  display: none;
 }

@@ -9,6 +9,7 @@ const canvas = map.querySelector('#canvas')
 const colorPicker = document.querySelector('#colorpicker')
 const btnsMenu = document.querySelector('.menu-v')
 const modal = document.querySelector('.modal')
+const filePicker = document.querySelector('#filePicker')
 
 const minZoom = 0.25
 const maxZoom = 4
@@ -189,6 +190,16 @@ const handleSearch = event => {
   })
 }
 
+const pickCustomFlag = event => {
+  const file = event.target.files[0]
+  const container = document.querySelector('#pickedFlag')
+  container.innerHTML = ''
+  const img = document.createElement('img')
+  img.classList.add('flag_file')
+  img.src = URL.createObjectURL(file)
+  container.appendChild(img)
+}
+
 createModalWithSearch(modal, modalContent, handleSearch)
 
 document.addEventListener('DOMContentLoaded', readState)
@@ -197,6 +208,7 @@ map.addEventListener('wheel', handleMouseWheel)
 map.addEventListener('click', handleMapClick)
 map.addEventListener('contextmenu', handleMapContextmenu)
 modal.addEventListener('click', pickFlag)
+filePicker.addEventListener('change', pickCustomFlag)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
   if (targetId === 'menuBtn') openModal(modal)
