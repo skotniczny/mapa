@@ -43,6 +43,7 @@ svg {
 
 .control-field {
   padding: 0.25rem 0.5rem;
+  min-width: 12rem;
 }
 
 .control-search {
@@ -52,7 +53,7 @@ svg {
   background-position: right 0.5rem center;
   background-size: 16px 16px;
   width: 100%;
-  max-width: 280px;
+  max-width: 18rem;
   margin: 0 0 0.5rem;
 }
 
