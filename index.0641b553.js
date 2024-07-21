@@ -769,8 +769,7 @@ const modalContent = ()=>{
         a.title = item.description;
         a.tabIndex = 1;
         const flag = document.createElement("span");
-        if (item.emoji) flag.textContent = item.emoji;
-        else flag.style.backgroundImage = `url(${item.svg})`;
+        flag.textContent = item.emoji;
         flag.className = "flag_emoji";
         const desc = document.createElement("span");
         desc.textContent = item.name;
