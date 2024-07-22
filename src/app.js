@@ -10,6 +10,7 @@ const colorPicker = document.querySelector('#colorpicker')
 const btnsMenu = document.querySelector('.menu-v')
 const modal = document.querySelector('.modal')
 const filePicker = document.querySelector('#filePicker')
+const presets = document.querySelector('#presets')
 
 const minZoom = 0.25
 const maxZoom = 4
@@ -200,6 +201,24 @@ const pickCustomFlag = event => {
   container.appendChild(img)
 }
 
+const handlePresetChange = async event => {
+  let data = {}
+  if (event.target.value === '0') {
+    data = await import('./json/map-zones.json')
+  }
+  if (event.target.value === '1') {
+    data = await import('./json/map-1939.json')
+  }
+  if (event.target.value === '2') {
+    data = await import('./json/map-2024.json')
+  }
+  document.activeElement.blur()
+  mapState.reset()
+  mapState.set(data)
+  fillElements(mapState)
+  mapState.save()
+}
+
 createModalWithSearch(modal, modalContent, handleSearch)
 
 document.addEventListener('DOMContentLoaded', readState)
@@ -209,6 +228,7 @@ map.addEventListener('click', handleMapClick)
 map.addEventListener('contextmenu', handleMapContextmenu)
 modal.addEventListener('click', pickFlag)
 filePicker.addEventListener('change', pickCustomFlag)
+presets.addEventListener('change', handlePresetChange)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
   if (targetId === 'menuBtn') openModal(modal)
