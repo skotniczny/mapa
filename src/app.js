@@ -207,18 +207,21 @@ const handlePresetChange = async event => {
     data = await import('./json/map-zones.json')
   }
   if (event.target.value === '1') {
-    data = await import('./json/map-1444.json')
+    data = await import('./json/map-spqr.json')
   }
   if (event.target.value === '2') {
-    data = await import('./json/map-1619.json')
+    data = await import('./json/map-1444.json')
   }
   if (event.target.value === '3') {
-    data = await import('./json/map-1806.json')
+    data = await import('./json/map-1619.json')
   }
   if (event.target.value === '4') {
-    data = await import('./json/map-1939.json')
+    data = await import('./json/map-1806.json')
   }
   if (event.target.value === '5') {
+    data = await import('./json/map-1939.json')
+  }
+  if (event.target.value === '6') {
     data = await import('./json/map-2024.json')
   }
   document.activeElement.blur()
