@@ -210,7 +210,7 @@ const handlePresetChange = async event => {
     data = await import('./json/map-1444.json')
   }
   if (event.target.value === '2') {
-    data = await import('./json/map-germany.json')
+    data = await import('./json/map-1619.json')
   }
   if (event.target.value === '3') {
     data = await import('./json/map-1806.json')
