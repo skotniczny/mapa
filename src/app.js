@@ -219,11 +219,15 @@ const handlePresetChange = async event => {
     data = await import('./json/map-1806.json')
   }
   if (event.target.value === '5') {
-    data = await import('./json/map-1939.json')
+    data = await import('./json/map-1912.json')
   }
   if (event.target.value === '6') {
+    data = await import('./json/map-1939.json')
+  }
+  if (event.target.value === '7') {
     data = await import('./json/map-2024.json')
   }
+
   document.activeElement.blur()
   mapState.reset()
   mapState.set(data)
