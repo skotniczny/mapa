@@ -213,6 +213,7 @@ const pickCustomFlag = event => {
 
 const handlePresetChange = async event => {
   let data = []
+  if (event.target.value === '') return
   if (event.target.value === '0') {
     data = await import('./json/map-zones.json')
   }
