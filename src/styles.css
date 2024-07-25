@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -43,7 +47,7 @@ svg {
 
 .control-field {
   padding: 0.25rem 0.5rem;
-  min-width: 12rem;
+  min-width: 14rem;
 }
 
 .control-search {
@@ -60,6 +64,11 @@ svg {
 .control-field:focus-visible {
   border-color: #3c6bc2;
   outline: 1px solid #3c6bc2;
+}
+
+.control-select {
+  padding: .25rem .5rem;
+  min-width: 14rem;
 }
 
 .tools {
