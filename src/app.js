@@ -108,9 +108,19 @@ const downloadMap = () => {
   const downloadLink = document.createElement('a')
   downloadLink.href = url
   downloadLink.download = 'map.svg'
-  document.body.appendChild(downloadLink)
   downloadLink.click()
-  document.body.removeChild(downloadLink)
+}
+
+const saveToJsonFile = () => {
+  const content = []
+  for (const item of mapState.keys) {
+    content.push({ pathId: item, color: mapState.get(item) })
+  }
+  const a = document.createElement('a')
+  const file = new Blob([JSON.stringify(content)], { type: 'application/json' })
+  a.href = URL.createObjectURL(file)
+  a.download = 'map.json'
+  a.click()
 }
 
 const resetMap = () => {
@@ -251,4 +261,5 @@ btnsMenu.addEventListener('click', event => {
   if (targetId === 'downloadBtn') downloadMap()
   if (targetId === 'resetBtn') resetMap()
   if (targetId === 'colorBtn') colorMap()
+  if (targetId === 'saveBtn') saveToJsonFile()
 })
