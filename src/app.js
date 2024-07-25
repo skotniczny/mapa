@@ -239,7 +239,7 @@ const handlePresetChange = async event => {
   }
 
   document.activeElement.blur()
-  mapState.reset()
+  resetMap()
   mapState.set(data)
   fillElements(mapState)
   mapState.save()
