@@ -74,6 +74,29 @@ const handleMapClick = event => {
   mapState.save()
 }
 
+let handleMapDrag
+
+const handleMapMousedown = event => {
+  const position = svgPositionGet(canvas)
+  handleMapDrag = (() => {
+    return (e) => {
+      canvas.style.pointerEvents = 'none'
+      const x = position.x + (e.clientX - event.x)
+      const y = position.y + (e.clientY - event.y)
+      svgPositionSet(canvas, { x, y })
+    }
+  })()
+
+  map.addEventListener('mousemove', handleMapDrag)
+  map.addEventListener('mouseup', endMove)
+}
+
+const endMove = () => {
+  map.removeEventListener('mousemove', handleMapDrag)
+  map.removeEventListener('mousup', endMove)
+  canvas.style.pointerEvents = ''
+}
+
 const handleMapContextmenu = event => {
   event.preventDefault()
   const target = event.target
@@ -251,6 +274,7 @@ createModalWithSearch(modal, modalContent, handleSearch)
 document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
 map.addEventListener('wheel', handleMouseWheel)
+map.addEventListener('mousedown', handleMapMousedown)
 map.addEventListener('click', handleMapClick)
 map.addEventListener('contextmenu', handleMapContextmenu)
 modal.addEventListener('click', pickFlag)
