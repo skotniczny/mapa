@@ -87,13 +87,13 @@ const handleMapMousedown = event => {
     }
   })()
 
-  map.addEventListener('mousemove', handleMapDrag)
-  map.addEventListener('mouseup', endMove)
+  window.addEventListener('mousemove', handleMapDrag)
+  window.addEventListener('mouseup', endMove)
 }
 
 const endMove = () => {
-  map.removeEventListener('mousemove', handleMapDrag)
-  map.removeEventListener('mousup', endMove)
+  window.removeEventListener('mousemove', handleMapDrag)
+  window.removeEventListener('mouseup', endMove)
   canvas.style.pointerEvents = ''
 }
 
