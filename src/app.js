@@ -86,6 +86,7 @@ const handleMapMousedown = event => {
   handleMapDrag = (() => {
     return (e) => {
       canvas.style.pointerEvents = 'none'
+      map.style.cursor = 'move'
       const x = position.x + (e.clientX - event.x)
       const y = position.y + (e.clientY - event.y)
       svgPositionSet(canvas, { x, y })
@@ -100,6 +101,7 @@ const endMove = () => {
   window.removeEventListener('mousemove', handleMapDrag)
   window.removeEventListener('mouseup', endMove)
   canvas.style.pointerEvents = ''
+  map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
 }
 
 const handleMapContextmenu = event => {
