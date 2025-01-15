@@ -7,7 +7,9 @@ import { MapState } from './js/map-state.js'
 const map = document.querySelector('svg')
 const canvas = map.querySelector('#canvas')
 const colorPicker = document.querySelector('#colorpicker')
+const colorPickMode = document.querySelector('#colorpickerMode')
 const btnsMenu = document.querySelector('.menu-v')
+const toolsMenu = document.querySelector('.menu-tools')
 const modal = document.querySelector('.modal')
 const filePicker = document.querySelector('#filePicker')
 const presets = document.querySelector('#presets')
@@ -64,7 +66,10 @@ const handleMapClick = event => {
   const target = event.target
   const color = colorPicker.value
   if (isInvalidElement(target)) return
-  if (target.style.fill && rgb2hex(target.style.fill) === color) {
+  if (colorPickMode.checked && target.tagName === 'path') {
+    colorPicker.value = rgb2hex(target.style.fill)
+    colorPickMode.click()
+  } else if (target.style.fill && rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
     mapState.remove([target.id])
   } else {
@@ -100,7 +105,7 @@ const endMove = () => {
 const handleMapContextmenu = event => {
   event.preventDefault()
   const target = event.target
-  if (isInvalidElement(target)) return
+  if (isInvalidElement(target) || colorPickMode.checked) return
 
   const siblings = Array.from(target.parentNode.childNodes)
     .filter(element => !isInvalidElement(element) && !element.classList.contains('landxx'))
@@ -269,7 +274,13 @@ const handlePresetChange = async event => {
   mapState.save()
 }
 
+const handleColorPickModeChange = () => {
+  map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
+  colorPickMode.checked ? colorPickMode.classList.add('active') : colorPickMode.classList.remove('active')
+}
+
 createModalWithSearch(modal, modalContent, handleSearch)
+map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
 
 document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
@@ -280,6 +291,7 @@ map.addEventListener('contextmenu', handleMapContextmenu)
 modal.addEventListener('click', pickFlag)
 filePicker.addEventListener('change', pickCustomFlag)
 presets.addEventListener('change', handlePresetChange)
+colorPickMode.addEventListener('change', handleColorPickModeChange)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
   if (targetId === 'menuBtn') openModal(modal)
@@ -287,4 +299,8 @@ btnsMenu.addEventListener('click', event => {
   if (targetId === 'resetBtn') resetMap()
   if (targetId === 'colorBtn') colorMap()
   if (targetId === 'saveBtn') saveToJsonFile()
+})
+toolsMenu.addEventListener('click', event => {
+  const targetId = event.target.id
+  if (targetId === 'colorpicker') colorPickMode.click()
 })

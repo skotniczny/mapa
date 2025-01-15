@@ -37,8 +37,15 @@ svg {
   color: #999;
 }
 
-.control-btn:hover {
+.control-btn:hover,
+.control[type=checkbox]:checked + .control-btn {
   background-color: #f9fafb;
+}
+
+.control-btn-check {
+  position: absolute;
+  clip: rect(0,0,0,0);
+  pointer-events: none;
 }
 
 .control-btn-alt:hover {
@@ -71,7 +78,7 @@ svg {
   min-width: 14rem;
 }
 
-.tools {
+.menu {
   position: fixed;
   top: 16px;
   left: 16px;
