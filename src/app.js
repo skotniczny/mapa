@@ -281,11 +281,10 @@ const handlePresetChange = async event => {
 
 const handleColorPickModeChange = () => {
   map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
-  colorPickMode.checked ? colorPickMode.classList.add('active') : colorPickMode.classList.remove('active')
 }
 
+handleColorPickModeChange()
 createModalWithSearch(modal, modalContent, handleSearch)
-map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
 
 document.addEventListener('DOMContentLoaded', readState)
 document.addEventListener('keydown', handleKeyboard)
