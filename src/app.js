@@ -81,8 +81,18 @@ const handleMapClick = event => {
 
 let handleMapDrag
 
+const endMove = (event, cursor) => {
+  if (event.button !== 0) return
+  window.removeEventListener('mousemove', handleMapDrag)
+  window.removeEventListener('mouseup', endMove)
+  canvas.style.pointerEvents = ''
+  map.style.cursor = cursor
+}
+
 const handleMapMousedown = event => {
+  if (event.button !== 0) return
   const position = svgPositionGet(canvas)
+  const currentCursor = map.style.cursor
   handleMapDrag = (() => {
     return (e) => {
       canvas.style.pointerEvents = 'none'
@@ -94,14 +104,7 @@ const handleMapMousedown = event => {
   })()
 
   window.addEventListener('mousemove', handleMapDrag)
-  window.addEventListener('mouseup', endMove)
-}
-
-const endMove = () => {
-  window.removeEventListener('mousemove', handleMapDrag)
-  window.removeEventListener('mouseup', endMove)
-  canvas.style.pointerEvents = ''
-  map.style.cursor = colorPickMode.checked ? 'crosshair' : 'auto'
+  window.addEventListener('mouseup', event => endMove(event, currentCursor))
 }
 
 const handleMapContextmenu = event => {
