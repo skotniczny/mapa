@@ -1,4 +1,4 @@
-import { createModalWithSearch, closeModal } from './modal.js'
+import { createModalWithSearch, closeModal, openModal } from './modal.js'
 import { FLAGS } from './data.js'
 
 let modal = null
@@ -54,8 +54,13 @@ const create = el => {
   modal.addEventListener('click', pickFlag)
 }
 
+const open = () => {
+  openModal(modal)
+}
+
 const modalSearch = {
-  create
+  create,
+  open
 }
 
 export default modalSearch

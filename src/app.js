@@ -1,9 +1,7 @@
-import { openModal } from './js/modal.js'
 import modalSearch from './js/modal-search.js'
 import svgMap from './js/svg-map.js'
 
 const btnsMenu = document.querySelector('.menu-v')
-const modal = document.querySelector('.modal')
 const filePicker = document.querySelector('#filePicker')
 const presets = document.querySelector('#presets')
 
@@ -12,7 +10,7 @@ svgMap.init({
   elToolsMenu: document.querySelector('.menu-tools'),
   localStorageKey: 'mapState'
 })
-modalSearch.create(modal)
+modalSearch.create(document.querySelector('.modal'))
 
 const handleKeyboard = event => {
   if (event.target.tagName.toLowerCase() !== 'input') {
@@ -72,7 +70,7 @@ filePicker.addEventListener('change', pickCustomFlag)
 presets.addEventListener('change', handlePresetChange)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
-  if (targetId === 'menuBtn') openModal(modal)
+  if (targetId === 'menuBtn') modalSearch.open()
   if (targetId === 'downloadBtn') svgMap.saveToSvgFile()
   if (targetId === 'resetBtn') {
     svgMap.resetMap()
