@@ -1,0 +1,591 @@
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+(function (modules, entry, mainEntry, parcelRequireName, globalName) {
+  /* eslint-disable no-undef */
+  var globalObject =
+    typeof globalThis !== 'undefined'
+      ? globalThis
+      : typeof self !== 'undefined'
+      ? self
+      : typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : {};
+  /* eslint-enable no-undef */
+
+  // Save the require from previous bundle to this closure if any
+  var previousRequire =
+    typeof globalObject[parcelRequireName] === 'function' &&
+    globalObject[parcelRequireName];
+
+  var cache = previousRequire.cache || {};
+  // Do not use `require` to prevent Webpack from trying to bundle this call
+  var nodeRequire =
+    typeof module !== 'undefined' &&
+    typeof module.require === 'function' &&
+    module.require.bind(module);
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire =
+          typeof globalObject[parcelRequireName] === 'function' &&
+          globalObject[parcelRequireName];
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error("Cannot find module '" + name + "'");
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = (cache[name] = new newRequire.Module(name));
+
+      modules[name][0].call(
+        module.exports,
+        localRequire,
+        module,
+        module.exports,
+        this
+      );
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x) {
+      var res = localRequire.resolve(x);
+      return res === false ? {} : newRequire(res);
+    }
+
+    function resolve(x) {
+      var id = modules[name][1][x];
+      return id != null ? id : x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [
+      function (require, module) {
+        module.exports = exports;
+      },
+      {},
+    ];
+  };
+
+  Object.defineProperty(newRequire, 'root', {
+    get: function () {
+      return globalObject[parcelRequireName];
+    },
+  });
+
+  globalObject[parcelRequireName] = newRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (mainEntry) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(mainEntry);
+
+    // CommonJS
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
+      module.exports = mainExports;
+
+      // RequireJS
+    } else if (typeof define === 'function' && define.amd) {
+      define(function () {
+        return mainExports;
+      });
+
+      // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+})({"8HyUT":[function(require,module,exports) {
+var global = arguments[3];
+var HMR_HOST = null;
+var HMR_PORT = null;
+var HMR_SECURE = false;
+var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_USE_SSE = false;
+module.bundle.HMR_BUNDLE_ID = "6901a2e5a7046a25";
+"use strict";
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+import type {
+  HMRAsset,
+  HMRMessage,
+} from '@parcel/reporter-dev-server/src/HMRServer.js';
+interface ParcelRequire {
+  (string): mixed;
+  cache: {|[string]: ParcelModule|};
+  hotData: {|[string]: mixed|};
+  Module: any;
+  parent: ?ParcelRequire;
+  isParcelRequire: true;
+  modules: {|[string]: [Function, {|[string]: string|}]|};
+  HMR_BUNDLE_ID: string;
+  root: ParcelRequire;
+}
+interface ParcelModule {
+  hot: {|
+    data: mixed,
+    accept(cb: (Function) => void): void,
+    dispose(cb: (mixed) => void): void,
+    // accept(deps: Array<string> | string, cb: (Function) => void): void,
+    // decline(): void,
+    _acceptCallbacks: Array<(Function) => void>,
+    _disposeCallbacks: Array<(mixed) => void>,
+  |};
+}
+interface ExtensionContext {
+  runtime: {|
+    reload(): void,
+    getURL(url: string): string;
+    getManifest(): {manifest_version: number, ...};
+  |};
+}
+declare var module: {bundle: ParcelRequire, ...};
+declare var HMR_HOST: string;
+declare var HMR_PORT: string;
+declare var HMR_ENV_HASH: string;
+declare var HMR_SECURE: boolean;
+declare var HMR_USE_SSE: boolean;
+declare var chrome: ExtensionContext;
+declare var browser: ExtensionContext;
+declare var __parcel__import__: (string) => Promise<void>;
+declare var __parcel__importScripts__: (string) => Promise<void>;
+declare var globalThis: typeof self;
+declare var ServiceWorkerGlobalScope: Object;
+*/ var OVERLAY_ID = "__parcel__error__overlay__";
+var OldModule = module.bundle.Module;
+function Module(moduleName) {
+    OldModule.call(this, moduleName);
+    this.hot = {
+        data: module.bundle.hotData[moduleName],
+        _acceptCallbacks: [],
+        _disposeCallbacks: [],
+        accept: function(fn) {
+            this._acceptCallbacks.push(fn || function() {});
+        },
+        dispose: function(fn) {
+            this._disposeCallbacks.push(fn);
+        }
+    };
+    module.bundle.hotData[moduleName] = undefined;
+}
+module.bundle.Module = Module;
+module.bundle.hotData = {};
+var checkedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
+function getHostname() {
+    return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
+}
+function getPort() {
+    return HMR_PORT || location.port;
+}
+// eslint-disable-next-line no-redeclare
+var parent = module.bundle.parent;
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
+    var hostname = getHostname();
+    var port = getPort();
+    var protocol = HMR_SECURE || location.protocol == "https:" && ![
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0"
+    ].includes(hostname) ? "wss" : "ws";
+    var ws;
+    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    else try {
+        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    } catch (err) {
+        if (err.message) console.error(err.message);
+        ws = {};
+    }
+    // Web extension context
+    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
+    // Safari doesn't support sourceURL in error stacks.
+    // eval may also be disabled via CSP, so do a quick check.
+    var supportsSourceURL = false;
+    try {
+        (0, eval)('throw new Error("test"); //# sourceURL=test.js');
+    } catch (err) {
+        supportsSourceURL = err.stack.includes("test.js");
+    }
+    // $FlowFixMe
+    ws.onmessage = async function(event /*: {data: string, ...} */ ) {
+        checkedAssets = {} /*: {|[string]: boolean|} */ ;
+        assetsToAccept = [];
+        assetsToDispose = [];
+        var data /*: HMRMessage */  = JSON.parse(event.data);
+        if (data.type === "update") {
+            // Remove error overlay if there is one
+            if (typeof document !== "undefined") removeErrorOverlay();
+            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH);
+            // Handle HMR Update
+            let handled = assets.every((asset)=>{
+                return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+            });
+            if (handled) {
+                console.clear();
+                // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
+                if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
+                await hmrApplyUpdates(assets);
+                // Dispose all old assets.
+                let processedAssets = {} /*: {|[string]: boolean|} */ ;
+                for(let i = 0; i < assetsToDispose.length; i++){
+                    let id = assetsToDispose[i][1];
+                    if (!processedAssets[id]) {
+                        hmrDispose(assetsToDispose[i][0], id);
+                        processedAssets[id] = true;
+                    }
+                }
+                // Run accept callbacks. This will also re-execute other disposed assets in topological order.
+                processedAssets = {};
+                for(let i = 0; i < assetsToAccept.length; i++){
+                    let id = assetsToAccept[i][1];
+                    if (!processedAssets[id]) {
+                        hmrAccept(assetsToAccept[i][0], id);
+                        processedAssets[id] = true;
+                    }
+                }
+            } else fullReload();
+        }
+        if (data.type === "error") {
+            // Log parcel errors to console
+            for (let ansiDiagnostic of data.diagnostics.ansi){
+                let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + "\n" + stack + "\n\n" + ansiDiagnostic.hints.join("\n"));
+            }
+            if (typeof document !== "undefined") {
+                // Render the fancy html overlay
+                removeErrorOverlay();
+                var overlay = createErrorOverlay(data.diagnostics.html);
+                // $FlowFixMe
+                document.body.appendChild(overlay);
+            }
+        }
+    };
+    if (ws instanceof WebSocket) {
+        ws.onerror = function(e) {
+            if (e.message) console.error(e.message);
+        };
+        ws.onclose = function() {
+            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+        };
+    }
+}
+function removeErrorOverlay() {
+    var overlay = document.getElementById(OVERLAY_ID);
+    if (overlay) {
+        overlay.remove();
+        console.log("[parcel] \u2728 Error resolved");
+    }
+}
+function createErrorOverlay(diagnostics) {
+    var overlay = document.createElement("div");
+    overlay.id = OVERLAY_ID;
+    let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
+    for (let diagnostic of diagnostics){
+        let stack = diagnostic.frames.length ? diagnostic.frames.reduce((p, frame)=>{
+            return `${p}
+<a href="/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
+${frame.code}`;
+        }, "") : diagnostic.stack;
+        errorHTML += `
+      <div>
+        <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+          \u{1F6A8} ${diagnostic.message}
+        </div>
+        <pre>${stack}</pre>
+        <div>
+          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
+        </div>
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+      </div>
+    `;
+    }
+    errorHTML += "</div>";
+    overlay.innerHTML = errorHTML;
+    return overlay;
+}
+function fullReload() {
+    if ("reload" in location) location.reload();
+    else if (extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
+}
+function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
+    var modules = bundle.modules;
+    if (!modules) return [];
+    var parents = [];
+    var k, d, dep;
+    for(k in modules)for(d in modules[k][1]){
+        dep = modules[k][1][d];
+        if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) parents.push([
+            bundle,
+            k
+        ]);
+    }
+    if (bundle.parent) parents = parents.concat(getParents(bundle.parent, id));
+    return parents;
+}
+function updateLink(link) {
+    var href = link.getAttribute("href");
+    if (!href) return;
+    var newLink = link.cloneNode();
+    newLink.onload = function() {
+        if (link.parentNode !== null) // $FlowFixMe
+        link.parentNode.removeChild(link);
+    };
+    newLink.setAttribute("href", // $FlowFixMe
+    href.split("?")[0] + "?" + Date.now());
+    // $FlowFixMe
+    link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+    if (cssTimeout) return;
+    cssTimeout = setTimeout(function() {
+        var links = document.querySelectorAll('link[rel="stylesheet"]');
+        for(var i = 0; i < links.length; i++){
+            // $FlowFixMe[incompatible-type]
+            var href /*: string */  = links[i].getAttribute("href");
+            var hostname = getHostname();
+            var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
+            var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
+            if (!absolute) updateLink(links[i]);
+        }
+        cssTimeout = null;
+    }, 50);
+}
+function hmrDownload(asset) {
+    if (asset.type === "js") {
+        if (typeof document !== "undefined") {
+            let script = document.createElement("script");
+            script.src = asset.url + "?t=" + Date.now();
+            if (asset.outputFormat === "esmodule") script.type = "module";
+            return new Promise((resolve, reject)=>{
+                var _document$head;
+                script.onload = ()=>resolve(script);
+                script.onerror = reject;
+                (_document$head = document.head) === null || _document$head === void 0 || _document$head.appendChild(script);
+            });
+        } else if (typeof importScripts === "function") {
+            // Worker scripts
+            if (asset.outputFormat === "esmodule") return import(asset.url + "?t=" + Date.now());
+            else return new Promise((resolve, reject)=>{
+                try {
+                    importScripts(asset.url + "?t=" + Date.now());
+                    resolve();
+                } catch (err) {
+                    reject(err);
+                }
+            });
+        }
+    }
+}
+async function hmrApplyUpdates(assets) {
+    global.parcelHotUpdate = Object.create(null);
+    let scriptsToRemove;
+    try {
+        // If sourceURL comments aren't supported in eval, we need to load
+        // the update from the dev server over HTTP so that stack traces
+        // are correct in errors/logs. This is much slower than eval, so
+        // we only do it if needed (currently just Safari).
+        // https://bugs.webkit.org/show_bug.cgi?id=137297
+        // This path is also taken if a CSP disallows eval.
+        if (!supportsSourceURL) {
+            let promises = assets.map((asset)=>{
+                var _hmrDownload;
+                return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
+                    // Web extension fix
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                        extCtx.runtime.reload();
+                        return;
+                    }
+                    throw err;
+                });
+            });
+            scriptsToRemove = await Promise.all(promises);
+        }
+        assets.forEach(function(asset) {
+            hmrApply(module.bundle.root, asset);
+        });
+    } finally{
+        delete global.parcelHotUpdate;
+        if (scriptsToRemove) scriptsToRemove.forEach((script)=>{
+            if (script) {
+                var _document$head2;
+                (_document$head2 = document.head) === null || _document$head2 === void 0 || _document$head2.removeChild(script);
+            }
+        });
+    }
+}
+function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
+    var modules = bundle.modules;
+    if (!modules) return;
+    if (asset.type === "css") reloadCSS();
+    else if (asset.type === "js") {
+        let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
+        if (deps) {
+            if (modules[asset.id]) {
+                // Remove dependencies that are removed and will become orphaned.
+                // This is necessary so that if the asset is added back again, the cache is gone, and we prevent a full page reload.
+                let oldDeps = modules[asset.id][1];
+                for(let dep in oldDeps)if (!deps[dep] || deps[dep] !== oldDeps[dep]) {
+                    let id = oldDeps[dep];
+                    let parents = getParents(module.bundle.root, id);
+                    if (parents.length === 1) hmrDelete(module.bundle.root, id);
+                }
+            }
+            if (supportsSourceURL) // Global eval. We would use `new Function` here but browser
+            // support for source maps is better with eval.
+            (0, eval)(asset.output);
+            // $FlowFixMe
+            let fn = global.parcelHotUpdate[asset.id];
+            modules[asset.id] = [
+                fn,
+                deps
+            ];
+        } else if (bundle.parent) hmrApply(bundle.parent, asset);
+    }
+}
+function hmrDelete(bundle, id) {
+    let modules = bundle.modules;
+    if (!modules) return;
+    if (modules[id]) {
+        // Collect dependencies that will become orphaned when this module is deleted.
+        let deps = modules[id][1];
+        let orphans = [];
+        for(let dep in deps){
+            let parents = getParents(module.bundle.root, deps[dep]);
+            if (parents.length === 1) orphans.push(deps[dep]);
+        }
+        // Delete the module. This must be done before deleting dependencies in case of circular dependencies.
+        delete modules[id];
+        delete bundle.cache[id];
+        // Now delete the orphans.
+        orphans.forEach((id)=>{
+            hmrDelete(module.bundle.root, id);
+        });
+    } else if (bundle.parent) hmrDelete(bundle.parent, id);
+}
+function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+    if (hmrAcceptCheckOne(bundle, id, depsByBundle)) return true;
+    // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
+    let parents = getParents(module.bundle.root, id);
+    let accepted = false;
+    while(parents.length > 0){
+        let v = parents.shift();
+        let a = hmrAcceptCheckOne(v[0], v[1], null);
+        if (a) // If this parent accepts, stop traversing upward, but still consider siblings.
+        accepted = true;
+        else {
+            // Otherwise, queue the parents in the next level upward.
+            let p = getParents(module.bundle.root, v[1]);
+            if (p.length === 0) {
+                // If there are no parents, then we've reached an entry without accepting. Reload.
+                accepted = false;
+                break;
+            }
+            parents.push(...p);
+        }
+    }
+    return accepted;
+}
+function hmrAcceptCheckOne(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+    var modules = bundle.modules;
+    if (!modules) return;
+    if (depsByBundle && !depsByBundle[bundle.HMR_BUNDLE_ID]) {
+        // If we reached the root bundle without finding where the asset should go,
+        // there's nothing to do. Mark as "accepted" so we don't reload the page.
+        if (!bundle.parent) return true;
+        return hmrAcceptCheck(bundle.parent, id, depsByBundle);
+    }
+    if (checkedAssets[id]) return true;
+    checkedAssets[id] = true;
+    var cached = bundle.cache[id];
+    assetsToDispose.push([
+        bundle,
+        id
+    ]);
+    if (!cached || cached.hot && cached.hot._acceptCallbacks.length) {
+        assetsToAccept.push([
+            bundle,
+            id
+        ]);
+        return true;
+    }
+}
+function hmrDispose(bundle /*: ParcelRequire */ , id /*: string */ ) {
+    var cached = bundle.cache[id];
+    bundle.hotData[id] = {};
+    if (cached && cached.hot) cached.hot.data = bundle.hotData[id];
+    if (cached && cached.hot && cached.hot._disposeCallbacks.length) cached.hot._disposeCallbacks.forEach(function(cb) {
+        cb(bundle.hotData[id]);
+    });
+    delete bundle.cache[id];
+}
+function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
+    // Execute the module.
+    bundle(id);
+    // Run the accept callbacks in the new version of the module.
+    var cached = bundle.cache[id];
+    if (cached && cached.hot && cached.hot._acceptCallbacks.length) cached.hot._acceptCallbacks.forEach(function(cb) {
+        var assetsToAlsoAccept = cb(function() {
+            return getParents(module.bundle.root, id);
+        });
+        if (assetsToAlsoAccept && assetsToAccept.length) {
+            assetsToAlsoAccept.forEach(function(a) {
+                hmrDispose(a[0], a[1]);
+            });
+            // $FlowFixMe[method-unbinding]
+            assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+        }
+    });
+}
+
+},{}],"1QHka":[function(require,module,exports) {
+module.exports = JSON.parse('[{"pathId":"path14693","color":"rgb(128, 64, 0)"},{"pathId":"path9655","color":"rgb(128, 64, 0)"},{"pathId":"path9653","color":"rgb(128, 64, 0)"},{"pathId":"path9650","color":"rgb(128, 64, 0)"},{"pathId":"path9648","color":"rgb(128, 64, 0)"},{"pathId":"path9642","color":"rgb(128, 64, 0)"},{"pathId":"path9628","color":"rgb(128, 64, 0)"},{"pathId":"path9620","color":"rgb(128, 64, 0)"},{"pathId":"path8842","color":"rgb(128, 64, 0)"},{"pathId":"path15465","color":"rgb(128, 64, 0)"},{"pathId":"path14695","color":"rgb(128, 64, 0)"},{"pathId":"path8841","color":"rgb(128, 64, 0)"},{"pathId":"path9624","color":"rgb(128, 64, 0)"},{"pathId":"path9619","color":"rgb(128, 64, 0)"},{"pathId":"path9616","color":"rgb(128, 64, 0)"},{"pathId":"path8843","color":"rgb(128, 64, 0)"},{"pathId":"ZA-EC","color":"rgb(0, 128, 255)"},{"pathId":"ZA-WC","color":"rgb(0, 128, 255)"},{"pathId":"ZA-NL","color":"rgb(0, 128, 255)"},{"pathId":"ZA-FS","color":"rgb(0, 128, 255)"},{"pathId":"ZA-NC","color":"rgb(0, 128, 255)"},{"pathId":"ZA-MP","color":"rgb(0, 128, 255)"},{"pathId":"ZA-GT","color":"rgb(0, 128, 255)"},{"pathId":"ZA-NW","color":"rgb(0, 128, 255)"},{"pathId":"ZA-LP","color":"rgb(0, 128, 255)"},{"pathId":"CA-MB","color":"rgb(0, 128, 255)"},{"pathId":"CA-NT","color":"rgb(0, 128, 255)"},{"pathId":"CA-NL","color":"rgb(0, 128, 255)"},{"pathId":"CA-NU","color":"rgb(0, 128, 255)"},{"pathId":"CA-QC","color":"rgb(0, 128, 255)"},{"pathId":"CA-BC","color":"rgb(0, 128, 255)"},{"pathId":"CA-SK","color":"rgb(0, 128, 255)"},{"pathId":"CA-AB","color":"rgb(0, 128, 255)"},{"pathId":"CA-ON","color":"rgb(0, 128, 255)"},{"pathId":"CA-NB","color":"rgb(0, 128, 255)"},{"pathId":"CA-NS","color":"rgb(0, 128, 255)"},{"pathId":"CA-PE","color":"rgb(0, 128, 255)"},{"pathId":"CA-YT","color":"rgb(0, 128, 255)"},{"pathId":"path8718","color":"rgb(0, 64, 128)"},{"pathId":"path8728","color":"rgb(0, 64, 128)"},{"pathId":"path8723","color":"rgb(0, 64, 128)"},{"pathId":"path8742","color":"rgb(0, 64, 128)"},{"pathId":"path8740","color":"rgb(0, 64, 128)"},{"pathId":"path8733","color":"rgb(0, 64, 128)"},{"pathId":"path8752","color":"rgb(0, 64, 128)"},{"pathId":"path8747","color":"rgb(0, 64, 128)"},{"pathId":"path8757","color":"rgb(0, 64, 128)"},{"pathId":"path8762","color":"rgb(0, 64, 128)"},{"pathId":"path8772","color":"rgb(0, 64, 128)"},{"pathId":"path8777","color":"rgb(0, 64, 128)"},{"pathId":"path8767","color":"rgb(0, 64, 128)"},{"pathId":"path3898-0","color":"rgb(0, 64, 128)"},{"pathId":"IN-AN","color":"rgb(0, 128, 255)"},{"pathId":"IN-KL","color":"rgb(0, 128, 255)"},{"pathId":"IN-TN","color":"rgb(0, 128, 255)"},{"pathId":"IN-GA","color":"rgb(0, 128, 255)"},{"pathId":"IN-KA","color":"rgb(0, 128, 255)"},{"pathId":"IN-AP","color":"rgb(0, 128, 255)"},{"pathId":"IN-TG","color":"rgb(0, 128, 255)"},{"pathId":"IN-MH","color":"rgb(0, 128, 255)"},{"pathId":"IN-GJ","color":"rgb(0, 128, 255)"},{"pathId":"IN-MP","color":"rgb(0, 128, 255)"},{"pathId":"IN-CT","color":"rgb(0, 128, 255)"},{"pathId":"IN-OR","color":"rgb(0, 128, 255)"},{"pathId":"IN-JH","color":"rgb(0, 128, 255)"},{"pathId":"IN-SK","color":"rgb(0, 128, 255)"},{"pathId":"IN-ML","color":"rgb(0, 128, 255)"},{"pathId":"IN-WB","color":"rgb(0, 128, 255)"},{"pathId":"IN-AS","color":"rgb(0, 128, 255)"},{"pathId":"IN-TR","color":"rgb(0, 128, 255)"},{"pathId":"IN-MZ","color":"rgb(0, 128, 255)"},{"pathId":"IN-MN","color":"rgb(0, 128, 255)"},{"pathId":"IN-NL","color":"rgb(0, 128, 255)"},{"pathId":"IN-AR","color":"rgb(0, 128, 255)"},{"pathId":"IN-RJ","color":"rgb(0, 128, 255)"},{"pathId":"IN-BR","color":"rgb(0, 128, 255)"},{"pathId":"IN-UT","color":"rgb(0, 128, 255)"},{"pathId":"IN-HP","color":"rgb(0, 128, 255)"},{"pathId":"IN-UP","color":"rgb(0, 128, 255)"},{"pathId":"IN-DL","color":"rgb(0, 128, 255)"},{"pathId":"IN-HR","color":"rgb(0, 128, 255)"},{"pathId":"IN-PB","color":"rgb(0, 128, 255)"},{"pathId":"IN-JK","color":"rgb(0, 128, 255)"},{"pathId":"IN-LA","color":"rgb(0, 128, 255)"},{"pathId":"path9377","color":"rgb(0, 64, 128)"},{"pathId":"path9398","color":"rgb(0, 64, 128)"},{"pathId":"path9396","color":"rgb(0, 64, 128)"},{"pathId":"path9394","color":"rgb(0, 64, 128)"},{"pathId":"path9408","color":"rgb(0, 64, 128)"},{"pathId":"path9413","color":"rgb(0, 64, 128)"},{"pathId":"path9403","color":"rgb(0, 64, 128)"},{"pathId":"path9382","color":"rgb(0, 64, 128)"},{"pathId":"path9431","color":"rgb(0, 64, 128)"},{"pathId":"path9436","color":"rgb(0, 64, 128)"},{"pathId":"path9441","color":"rgb(0, 64, 128)"},{"pathId":"path9418","color":"rgb(0, 64, 128)"},{"pathId":"path9425","color":"rgb(0, 64, 128)"},{"pathId":"path9423","color":"rgb(0, 64, 128)"},{"pathId":"path9368","color":"rgb(0, 64, 128)"},{"pathId":"path9640","color":"rgb(0, 64, 128)"},{"pathId":"path9635","color":"rgb(0, 64, 128)"},{"pathId":"path9630","color":"rgb(0, 64, 128)"},{"pathId":"path9560","color":"rgb(0, 64, 128)"},{"pathId":"path9583","color":"rgb(0, 64, 128)"},{"pathId":"path9597","color":"rgb(0, 64, 128)"},{"pathId":"path9589","color":"rgb(0, 64, 128)"},{"pathId":"path9602","color":"rgb(0, 64, 128)"},{"pathId":"path9581","color":"rgb(0, 64, 128)"},{"pathId":"path10262","color":"rgb(0, 64, 128)"},{"pathId":"path10257","color":"rgb(0, 64, 128)"},{"pathId":"path10267","color":"rgb(0, 64, 128)"},{"pathId":"path10252","color":"rgb(0, 64, 128)"},{"pathId":"path10242","color":"rgb(0, 64, 128)"},{"pathId":"path10247","color":"rgb(0, 64, 128)"},{"pathId":"path10235","color":"rgb(0, 64, 128)"},{"pathId":"path10344","color":"rgb(0, 128, 255)"},{"pathId":"path10349","color":"rgb(0, 128, 255)"},{"pathId":"path10354","color":"rgb(0, 128, 255)"},{"pathId":"path10364","color":"rgb(0, 128, 255)"},{"pathId":"path10374","color":"rgb(0, 128, 255)"},{"pathId":"path10369","color":"rgb(0, 128, 255)"},{"pathId":"path10337","color":"rgb(0, 128, 255)"},{"pathId":"AU-WA","color":"rgb(0, 128, 255)"},{"pathId":"AU-VIC","color":"rgb(0, 128, 255)"},{"pathId":"AU-NSW","color":"rgb(0, 128, 255)"},{"pathId":"AU-ACT","color":"rgb(0, 128, 255)"},{"pathId":"AU-mainland","color":"rgb(0, 128, 255)"},{"pathId":"path32934","color":"rgb(0, 128, 255)"},{"pathId":"path32963","color":"rgb(0, 128, 255)"},{"pathId":"path32961","color":"rgb(0, 128, 255)"},{"pathId":"path32955","color":"rgb(0, 128, 255)"},{"pathId":"path32951","color":"rgb(0, 128, 255)"},{"pathId":"path32926","color":"rgb(0, 128, 255)"},{"pathId":"path32969","color":"rgb(0, 128, 255)"},{"pathId":"path32976","color":"rgb(0, 128, 255)"},{"pathId":"path32974","color":"rgb(0, 128, 255)"},{"pathId":"path32938","color":"rgb(0, 128, 255)"},{"pathId":"SR-PM","color":"rgb(0, 128, 255)"},{"pathId":"SR-BR","color":"rgb(0, 128, 255)"},{"pathId":"SR-SI","color":"rgb(0, 128, 255)"},{"pathId":"SR-MA","color":"rgb(0, 128, 255)"},{"pathId":"SR-CR","color":"rgb(0, 128, 255)"},{"pathId":"SR-NI","color":"rgb(0, 128, 255)"},{"pathId":"SR-PR","color":"rgb(0, 128, 255)"},{"pathId":"SR-SA","color":"rgb(0, 128, 255)"},{"pathId":"SR-WA","color":"rgb(0, 128, 255)"},{"pathId":"SR-CM","color":"rgb(0, 128, 255)"},{"pathId":"path33994","color":"rgb(0, 128, 255)"},{"pathId":"path34015","color":"rgb(0, 128, 255)"},{"pathId":"path34006","color":"rgb(0, 128, 255)"},{"pathId":"path33990","color":"rgb(0, 128, 255)"},{"pathId":"path34001","color":"rgb(0, 128, 255)"},{"pathId":"path33999","color":"rgb(0, 128, 255)"},{"pathId":"path33944","color":"rgb(0, 128, 255)"},{"pathId":"path36643","color":"rgb(0, 64, 128)"},{"pathId":"path36660","color":"rgb(0, 64, 128)"},{"pathId":"path36658","color":"rgb(0, 64, 128)"},{"pathId":"path36646","color":"rgb(0, 64, 128)"},{"pathId":"path36667","color":"rgb(0, 64, 128)"},{"pathId":"path36665","color":"rgb(0, 64, 128)"},{"pathId":"path36676","color":"rgb(0, 64, 128)"},{"pathId":"path36674","color":"rgb(0, 64, 128)"},{"pathId":"path36672","color":"rgb(0, 64, 128)"},{"pathId":"path36653","color":"rgb(0, 64, 128)"},{"pathId":"path36636","color":"rgb(0, 64, 128)"},{"pathId":"path36838","color":"rgb(0, 64, 128)"},{"pathId":"path36836","color":"rgb(0, 64, 128)"},{"pathId":"path36799","color":"rgb(0, 64, 128)"},{"pathId":"path36843","color":"rgb(0, 64, 128)"},{"pathId":"path36826","color":"rgb(0, 64, 128)"},{"pathId":"path36805","color":"rgb(0, 64, 128)"},{"pathId":"path36823","color":"rgb(0, 64, 128)"},{"pathId":"path36790","color":"rgb(0, 64, 128)"},{"pathId":"path36802","color":"rgb(0, 64, 128)"},{"pathId":"path36831","color":"rgb(0, 64, 128)"},{"pathId":"path36783","color":"rgb(0, 64, 128)"},{"pathId":"path36986","color":"rgb(0, 64, 128)"},{"pathId":"path36996","color":"rgb(0, 64, 128)"},{"pathId":"path36991","color":"rgb(0, 64, 128)"},{"pathId":"path36984","color":"rgb(0, 64, 128)"},{"pathId":"path36967","color":"rgb(0, 64, 128)"},{"pathId":"path36979","color":"rgb(0, 64, 128)"},{"pathId":"path36977","color":"rgb(0, 64, 128)"},{"pathId":"path36972","color":"rgb(0, 64, 128)"},{"pathId":"path36946","color":"rgb(0, 64, 128)"},{"pathId":"path36948","color":"rgb(0, 64, 128)"},{"pathId":"path6488","color":"rgb(0, 64, 128)"},{"pathId":"path6637","color":"rgb(0, 64, 128)"},{"pathId":"path6633","color":"rgb(0, 64, 128)"},{"pathId":"path6627","color":"rgb(0, 64, 128)"},{"pathId":"path6595","color":"rgb(0, 64, 128)"},{"pathId":"path6557","color":"rgb(0, 64, 128)"},{"pathId":"path6779","color":"rgb(0, 64, 128)"},{"pathId":"path6791","color":"rgb(0, 64, 128)"},{"pathId":"path11358","color":"rgb(198, 0, 0)"},{"pathId":"path6639","color":"rgb(0, 64, 128)"},{"pathId":"path6635","color":"rgb(0, 64, 128)"},{"pathId":"path6647","color":"rgb(0, 64, 128)"},{"pathId":"path6621","color":"rgb(0, 64, 128)"},{"pathId":"path6486","color":"rgb(0, 64, 128)"},{"pathId":"path6533","color":"rgb(0, 64, 128)"},{"pathId":"path6583","color":"rgb(0, 64, 128)"},{"pathId":"path6565","color":"rgb(0, 64, 128)"},{"pathId":"path6571","color":"rgb(0, 64, 128)"},{"pathId":"path6471","color":"rgb(0, 64, 128)"},{"pathId":"path6777","color":"rgb(0, 64, 128)"},{"pathId":"path6785","color":"rgb(0, 64, 128)"},{"pathId":"path6865","color":"rgb(198, 0, 0)"},{"pathId":"RU-SPE","color":"rgb(0, 64, 128)"},{"pathId":"path6900","color":"rgb(0, 64, 128)"},{"pathId":"path6501","color":"rgb(0, 64, 128)"},{"pathId":"path6547","color":"rgb(0, 64, 128)"},{"pathId":"path6655","color":"rgb(0, 64, 128)"},{"pathId":"path6759","color":"rgb(198, 0, 0)"},{"pathId":"path6765","color":"rgb(198, 0, 0)"},{"pathId":"path6741","color":"rgb(0, 64, 128)"},{"pathId":"path6645","color":"rgb(0, 64, 128)"},{"pathId":"path6619","color":"rgb(0, 64, 128)"},{"pathId":"path6613","color":"rgb(0, 64, 128)"},{"pathId":"path6527","color":"rgb(0, 64, 128)"},{"pathId":"path6579","color":"rgb(0, 64, 128)"},{"pathId":"path6589","color":"rgb(0, 64, 128)"},{"pathId":"path6601","color":"rgb(0, 64, 128)"},{"pathId":"path6511","color":"rgb(0, 64, 128)"},{"pathId":"path6519","color":"rgb(0, 64, 128)"},{"pathId":"path6516","color":"rgb(0, 64, 128)"},{"pathId":"path6463","color":"rgb(0, 64, 128)"},{"pathId":"path6469","color":"rgb(0, 64, 128)"},{"pathId":"path6771","color":"rgb(0, 64, 128)"},{"pathId":"path6735","color":"rgb(0, 64, 128)"},{"pathId":"path6871","color":"rgb(0, 64, 128)"},{"pathId":"path6889","color":"rgb(0, 64, 128)"},{"pathId":"path6895","color":"rgb(0, 64, 128)"},{"pathId":"path11356","color":"rgb(0, 64, 128)"},{"pathId":"path6327","color":"rgb(0, 64, 128)"},{"pathId":"path6321","color":"rgb(0, 64, 128)"},{"pathId":"path6313","color":"rgb(0, 64, 128)"},{"pathId":"path11360","color":"rgb(0, 64, 128)"},{"pathId":"path11466","color":"rgb(0, 64, 128)"},{"pathId":"path11464","color":"rgb(0, 64, 128)"},{"pathId":"path11318","color":"rgb(0, 64, 128)"},{"pathId":"path11372","color":"rgb(0, 64, 128)"},{"pathId":"path11377","color":"rgb(0, 64, 128)"},{"pathId":"path11245","color":"rgb(0, 64, 128)"},{"pathId":"path11253","color":"rgb(0, 64, 128)"},{"pathId":"path11261","color":"rgb(0, 64, 128)"},{"pathId":"path18178","color":"rgb(0, 64, 128)"},{"pathId":"path6213","color":"rgb(0, 64, 128)"},{"pathId":"path6219","color":"rgb(0, 64, 128)"},{"pathId":"path6229","color":"rgb(0, 64, 128)"},{"pathId":"path6227","color":"rgb(0, 64, 128)"},{"pathId":"path18146","color":"rgb(0, 64, 128)"},{"pathId":"path6267","color":"rgb(0, 64, 128)"},{"pathId":"path6283","color":"rgb(0, 64, 128)"},{"pathId":"path6281","color":"rgb(0, 64, 128)"},{"pathId":"path6265","color":"rgb(0, 64, 128)"},{"pathId":"path6253","color":"rgb(0, 64, 128)"},{"pathId":"path6235","color":"rgb(0, 64, 128)"},{"pathId":"path6255","color":"rgb(0, 64, 128)"},{"pathId":"path6311","color":"rgb(0, 64, 128)"},{"pathId":"path6309","color":"rgb(0, 64, 128)"},{"pathId":"path6451","color":"rgb(0, 64, 128)"},{"pathId":"path6361","color":"rgb(0, 64, 128)"},{"pathId":"path6475","color":"rgb(0, 64, 128)"},{"pathId":"path6506","color":"rgb(0, 64, 128)"},{"pathId":"path6490","color":"rgb(198, 0, 0)"},{"pathId":"path6753","color":"rgb(0, 64, 128)"},{"pathId":"path6747","color":"rgb(0, 64, 128)"},{"pathId":"path6725","color":"rgb(198, 0, 0)"},{"pathId":"RU-MOS","color":"rgb(0, 64, 128)"},{"pathId":"path37133","color":"rgb(128, 64, 0)"},{"pathId":"path37154","color":"rgb(128, 64, 0)"},{"pathId":"path37107","color":"rgb(198, 0, 0)"},{"pathId":"path37112","color":"rgb(198, 0, 0)"},{"pathId":"path37121","color":"rgb(198, 0, 0)"},{"pathId":"path37119","color":"rgb(198, 0, 0)"},{"pathId":"path37117","color":"rgb(198, 0, 0)"},{"pathId":"path37102","color":"rgb(198, 0, 0)"},{"pathId":"path37162","color":"rgb(100, 119, 9)"},{"pathId":"path37160","color":"rgb(128, 64, 0)"},{"pathId":"path37156","color":"rgb(100, 119, 9)"},{"pathId":"path37195","color":"rgb(198, 0, 0)"},{"pathId":"path37245","color":"rgb(198, 0, 0)"},{"pathId":"path37236","color":"rgb(198, 0, 0)"},{"pathId":"path37234","color":"rgb(198, 0, 0)"},{"pathId":"path37232","color":"rgb(198, 0, 0)"},{"pathId":"path37227","color":"rgb(198, 0, 0)"},{"pathId":"path37182","color":"rgb(198, 0, 0)"},{"pathId":"path37188","color":"rgb(198, 0, 0)"},{"pathId":"path37205","color":"rgb(128, 64, 0)"},{"pathId":"path37212","color":"rgb(100, 119, 9)"},{"pathId":"path37217","color":"rgb(100, 119, 9)"},{"pathId":"path37210","color":"rgb(198, 0, 0)"},{"pathId":"path37198","color":"rgb(128, 64, 0)"},{"pathId":"path37222","color":"rgb(198, 0, 0)"},{"pathId":"path37095","color":"rgb(198, 0, 0)"},{"pathId":"path37177","color":"rgb(100, 119, 9)"},{"pathId":"path37146","color":"rgb(128, 64, 0)"},{"pathId":"path10774","color":"rgb(128, 64, 0)"},{"pathId":"path10291","color":"rgb(128, 64, 0)"},{"pathId":"path10611","color":"rgb(128, 64, 0)"},{"pathId":"path10451","color":"rgb(128, 64, 0)"},{"pathId":"path10449","color":"rgb(128, 64, 0)"},{"pathId":"path10289","color":"rgb(128, 64, 0)"},{"pathId":"path10287","color":"rgb(128, 64, 0)"},{"pathId":"path10134","color":"rgb(128, 64, 0)"},{"pathId":"path9977","color":"rgb(128, 64, 0)"},{"pathId":"path9979","color":"rgb(128, 64, 0)"},{"pathId":"path8616","color":"rgb(128, 64, 0)"},{"pathId":"path9832","color":"rgb(128, 64, 0)"},{"pathId":"path9680","color":"rgb(128, 64, 0)"},{"pathId":"path9693","color":"rgb(128, 64, 0)"},{"pathId":"path9691","color":"rgb(128, 64, 0)"},{"pathId":"path9689","color":"rgb(128, 64, 0)"},{"pathId":"path9687","color":"rgb(128, 64, 0)"},{"pathId":"path9138","color":"rgb(128, 64, 0)"},{"pathId":"path9136","color":"rgb(128, 64, 0)"},{"pathId":"path9134","color":"rgb(128, 64, 0)"},{"pathId":"path9132","color":"rgb(128, 64, 0)"},{"pathId":"path7542","color":"rgb(128, 64, 0)"},{"pathId":"path8996","color":"rgb(128, 64, 0)"},{"pathId":"path8621","color":"rgb(128, 64, 0)"},{"pathId":"path8867","color":"rgb(128, 64, 0)"},{"pathId":"path8864","color":"rgb(128, 64, 0)"},{"pathId":"path8630","color":"rgb(128, 64, 0)"},{"pathId":"path8748","color":"rgb(128, 64, 0)"},{"pathId":"path8746","color":"rgb(128, 64, 0)"},{"pathId":"path8623","color":"rgb(128, 64, 0)"},{"pathId":"path8637","color":"rgb(128, 64, 0)"},{"pathId":"path8635","color":"rgb(128, 64, 0)"},{"pathId":"path8625","color":"rgb(128, 64, 0)"},{"pathId":"path8441","color":"rgb(128, 64, 0)"},{"pathId":"path8341","color":"rgb(128, 64, 0)"},{"pathId":"path8455","color":"rgb(128, 64, 0)"},{"pathId":"path8243","color":"rgb(128, 64, 0)"},{"pathId":"path8343","color":"rgb(128, 64, 0)"},{"pathId":"path8248","color":"rgb(128, 64, 0)"},{"pathId":"path7978","color":"rgb(128, 64, 0)"},{"pathId":"path8154","color":"rgb(128, 64, 0)"},{"pathId":"path7983","color":"rgb(128, 64, 0)"},{"pathId":"path8069","color":"rgb(128, 64, 0)"},{"pathId":"path8067","color":"rgb(128, 64, 0)"},{"pathId":"path7987","color":"rgb(128, 64, 0)"},{"pathId":"path7985","color":"rgb(128, 64, 0)"},{"pathId":"path7782","color":"rgb(128, 64, 0)"},{"pathId":"path7864","color":"rgb(128, 64, 0)"},{"pathId":"path7862","color":"rgb(128, 64, 0)"},{"pathId":"path7860","color":"rgb(128, 64, 0)"},{"pathId":"path7857","color":"rgb(128, 64, 0)"},{"pathId":"path7855","color":"rgb(128, 64, 0)"},{"pathId":"path7853","color":"rgb(128, 64, 0)"},{"pathId":"path7851","color":"rgb(128, 64, 0)"},{"pathId":"path7849","color":"rgb(128, 64, 0)"},{"pathId":"path7664","color":"rgb(128, 64, 0)"},{"pathId":"path7789","color":"rgb(128, 64, 0)"},{"pathId":"path7787","color":"rgb(128, 64, 0)"},{"pathId":"path7726","color":"rgb(128, 64, 0)"},{"pathId":"path7609","color":"rgb(128, 64, 0)"},{"pathId":"path7601","color":"rgb(128, 64, 0)"},{"pathId":"path7620","color":"rgb(128, 64, 0)"},{"pathId":"path7618","color":"rgb(128, 64, 0)"},{"pathId":"path7613","color":"rgb(128, 64, 0)"},{"pathId":"path7675","color":"rgb(128, 64, 0)"},{"pathId":"path7673","color":"rgb(128, 64, 0)"},{"pathId":"path7671","color":"rgb(128, 64, 0)"},{"pathId":"path7669","color":"rgb(128, 64, 0)"},{"pathId":"path7698","color":"rgb(128, 64, 0)"},{"pathId":"path7696","color":"rgb(128, 64, 0)"},{"pathId":"path7635","color":"rgb(128, 64, 0)"},{"pathId":"path7558","color":"rgb(128, 64, 0)"},{"pathId":"path7556","color":"rgb(128, 64, 0)"},{"pathId":"path7554","color":"rgb(128, 64, 0)"},{"pathId":"path7552","color":"rgb(128, 64, 0)"},{"pathId":"path7545","color":"rgb(128, 64, 0)"},{"pathId":"path7579","color":"rgb(128, 64, 0)"},{"pathId":"path7577","color":"rgb(128, 64, 0)"},{"pathId":"path7572","color":"rgb(128, 64, 0)"},{"pathId":"path7633","color":"rgb(128, 64, 0)"},{"pathId":"path6751","color":"rgb(128, 64, 0)"},{"pathId":"path11908","color":"rgb(128, 64, 0)"},{"pathId":"path11906","color":"rgb(128, 64, 0)"},{"pathId":"path11904","color":"rgb(128, 64, 0)"},{"pathId":"path11902","color":"rgb(128, 64, 0)"},{"pathId":"path11814","color":"rgb(128, 64, 0)"},{"pathId":"path11882","color":"rgb(128, 64, 0)"},{"pathId":"path11850","color":"rgb(128, 64, 0)"},{"pathId":"path11855","color":"rgb(128, 64, 0)"},{"pathId":"path11822","color":"rgb(128, 64, 0)"},{"pathId":"path11840","color":"rgb(128, 64, 0)"},{"pathId":"path11838","color":"rgb(128, 64, 0)"},{"pathId":"path11809","color":"rgb(128, 64, 0)"},{"pathId":"path12138","color":"rgb(128, 64, 0)"},{"pathId":"path12136","color":"rgb(128, 64, 0)"},{"pathId":"path12080","color":"rgb(128, 64, 0)"},{"pathId":"path12111","color":"rgb(128, 64, 0)"},{"pathId":"path12109","color":"rgb(128, 64, 0)"},{"pathId":"path12107","color":"rgb(128, 64, 0)"},{"pathId":"path12066","color":"rgb(128, 64, 0)"},{"pathId":"path12078","color":"rgb(128, 64, 0)"},{"pathId":"path12049","color":"rgb(128, 64, 0)"},{"pathId":"path12063","color":"rgb(128, 64, 0)"},{"pathId":"path12061","color":"rgb(128, 64, 0)"},{"pathId":"path12054","color":"rgb(128, 64, 0)"},{"pathId":"path12042","color":"rgb(128, 64, 0)"},{"pathId":"path12085","color":"rgb(128, 64, 0)"},{"pathId":"path12302","color":"rgb(128, 64, 0)"},{"pathId":"path12308","color":"rgb(128, 64, 0)"},{"pathId":"path12317","color":"rgb(128, 64, 0)"},{"pathId":"path12315","color":"rgb(128, 64, 0)"},{"pathId":"path12313","color":"rgb(128, 64, 0)"},{"pathId":"path12295","color":"rgb(128, 64, 0)"},{"pathId":"path12404","color":"rgb(128, 64, 0)"},{"pathId":"path12391","color":"rgb(128, 64, 0)"},{"pathId":"path12393","color":"rgb(128, 64, 0)"},{"pathId":"path12389","color":"rgb(128, 64, 0)"},{"pathId":"path12387","color":"rgb(128, 64, 0)"},{"pathId":"path12382","color":"rgb(128, 64, 0)"},{"pathId":"path12533","color":"rgb(128, 64, 0)"},{"pathId":"path12528","color":"rgb(128, 64, 0)"},{"pathId":"path12542","color":"rgb(128, 64, 0)"},{"pathId":"path12540","color":"rgb(128, 64, 0)"},{"pathId":"path12538","color":"rgb(128, 64, 0)"},{"pathId":"path12505","color":"rgb(128, 64, 0)"},{"pathId":"xc-","color":"rgb(128, 64, 0)"},{"pathId":"path13106","color":"rgb(128, 64, 0)"},{"pathId":"path13104","color":"rgb(128, 64, 0)"},{"pathId":"path13102","color":"rgb(128, 64, 0)"},{"pathId":"path13013","color":"rgb(128, 64, 0)"},{"pathId":"path13079","color":"rgb(128, 64, 0)"},{"pathId":"path13057","color":"rgb(128, 64, 0)"},{"pathId":"path12980","color":"rgb(128, 64, 0)"},{"pathId":"path13568","color":"rgb(128, 64, 0)"},{"pathId":"path13448","color":"rgb(128, 64, 0)"},{"pathId":"path13518","color":"rgb(128, 64, 0)"},{"pathId":"path13362","color":"rgb(128, 64, 0)"},{"pathId":"path13306","color":"rgb(128, 64, 0)"},{"pathId":"path13393","color":"rgb(128, 64, 0)"},{"pathId":"path13369","color":"rgb(128, 64, 0)"},{"pathId":"path13336","color":"rgb(128, 64, 0)"},{"pathId":"path13293","color":"rgb(128, 64, 0)"},{"pathId":"path13288","color":"rgb(128, 64, 0)"},{"pathId":"path81638","color":"rgb(0, 128, 255)"},{"pathId":"path81571","color":"rgb(0, 128, 255)"},{"pathId":"path81608","color":"rgb(0, 128, 255)"},{"pathId":"path81606","color":"rgb(0, 128, 255)"},{"pathId":"path81604","color":"rgb(0, 128, 255)"},{"pathId":"path81546","color":"rgb(0, 128, 255)"},{"pathId":"path81561","color":"rgb(0, 128, 255)"},{"pathId":"path81566","color":"rgb(0, 128, 255)"},{"pathId":"path81578","color":"rgb(0, 128, 255)"},{"pathId":"path81576","color":"rgb(0, 128, 255)"},{"pathId":"path81556","color":"rgb(0, 128, 255)"},{"pathId":"path81551","color":"rgb(0, 128, 255)"},{"pathId":"path81539","color":"rgb(0, 128, 255)"},{"pathId":"path81514","color":"rgb(0, 128, 255)"},{"pathId":"path8577","color":"rgb(0, 128, 255)"},{"pathId":"path8483","color":"rgb(0, 128, 255)"},{"pathId":"path8550","color":"rgb(0, 128, 255)"},{"pathId":"path8548","color":"rgb(0, 128, 255)"},{"pathId":"path8525","color":"rgb(0, 128, 255)"},{"pathId":"path8523","color":"rgb(0, 128, 255)"},{"pathId":"path8506","color":"rgb(0, 128, 255)"},{"pathId":"path8500","color":"rgb(0, 128, 255)"},{"pathId":"path8494","color":"rgb(0, 128, 255)"},{"pathId":"path8488","color":"rgb(0, 128, 255)"},{"pathId":"path7704","color":"rgb(0, 128, 255)"},{"pathId":"path7706","color":"rgb(0, 128, 255)"},{"pathId":"path7699","color":"rgb(0, 128, 255)"},{"pathId":"path8857","color":"rgb(0, 128, 255)"},{"pathId":"path8797","color":"rgb(0, 128, 255)"},{"pathId":"path8819","color":"rgb(0, 128, 255)"},{"pathId":"path8799","color":"rgb(0, 128, 255)"},{"pathId":"path8801","color":"rgb(0, 128, 255)"},{"pathId":"path8810","color":"rgb(0, 128, 255)"},{"pathId":"path8808","color":"rgb(0, 128, 255)"},{"pathId":"path8795","color":"rgb(0, 128, 255)"},{"pathId":"path8838","color":"rgb(0, 128, 255)"},{"pathId":"path8778","color":"rgb(0, 128, 255)"},{"pathId":"path9218","color":"rgb(0, 128, 255)"},{"pathId":"path8617","color":"rgb(0, 128, 255)"},{"pathId":"path9129","color":"rgb(0, 128, 255)"},{"pathId":"path8734","color":"rgb(0, 128, 255)"},{"pathId":"path9076","color":"rgb(0, 128, 255)"},{"pathId":"path9074","color":"rgb(0, 128, 255)"},{"pathId":"path8761","color":"rgb(0, 128, 255)"},{"pathId":"path9028","color":"rgb(0, 128, 255)"},{"pathId":"path8959","color":"rgb(0, 128, 255)"},{"pathId":"path8921","color":"rgb(0, 128, 255)"},{"pathId":"path8796","color":"rgb(0, 128, 255)"},{"pathId":"path8873","color":"rgb(0, 128, 255)"},{"pathId":"path8826","color":"rgb(0, 128, 255)"},{"pathId":"path8756","color":"rgb(0, 128, 255)"},{"pathId":"path8798","color":"rgb(0, 128, 255)"},{"pathId":"path8770","color":"rgb(0, 128, 255)"},{"pathId":"path8743","color":"rgb(0, 128, 255)"},{"pathId":"path8687","color":"rgb(0, 128, 255)"},{"pathId":"path8624","color":"rgb(0, 128, 255)"},{"pathId":"path8670","color":"rgb(0, 128, 255)"},{"pathId":"path8668","color":"rgb(0, 128, 255)"},{"pathId":"path8654","color":"rgb(0, 128, 255)"},{"pathId":"path8642","color":"rgb(0, 128, 255)"},{"pathId":"path8632","color":"rgb(0, 128, 255)"},{"pathId":"path7831","color":"rgb(0, 128, 255)"},{"pathId":"path8837","color":"rgb(0, 128, 255)"},{"pathId":"path10195","color":"rgb(0, 128, 255)"},{"pathId":"path9670","color":"rgb(0, 128, 255)"},{"pathId":"path9947","color":"rgb(0, 128, 255)"},{"pathId":"path8729","color":"rgb(0, 128, 255)"},{"pathId":"path9665","color":"rgb(0, 128, 255)"},{"pathId":"path9570","color":"rgb(0, 128, 255)"},{"pathId":"path9577","color":"rgb(0, 128, 255)"},{"pathId":"path9575","color":"rgb(0, 128, 255)"},{"pathId":"path9397","color":"rgb(0, 128, 255)"},{"pathId":"path9487","color":"rgb(0, 128, 255)"},{"pathId":"path9482","color":"rgb(0, 128, 255)"},{"pathId":"path9402","color":"rgb(0, 128, 255)"},{"pathId":"path8643","color":"rgb(0, 128, 255)"},{"pathId":"path9323","color":"rgb(0, 128, 255)"},{"pathId":"path9321","color":"rgb(0, 128, 255)"},{"pathId":"path9319","color":"rgb(0, 128, 255)"},{"pathId":"path9109","color":"rgb(0, 128, 255)"},{"pathId":"path9251","color":"rgb(0, 128, 255)"},{"pathId":"path9187","color":"rgb(0, 128, 255)"},{"pathId":"path9120","color":"rgb(0, 128, 255)"},{"pathId":"path9115","color":"rgb(0, 128, 255)"},{"pathId":"path9049","color":"rgb(0, 128, 255)"},{"pathId":"path9046","color":"rgb(0, 128, 255)"},{"pathId":"path9044","color":"rgb(0, 128, 255)"},{"pathId":"path9040","color":"rgb(0, 128, 255)"},{"pathId":"path8845","color":"rgb(0, 128, 255)"},{"pathId":"path8990","color":"rgb(0, 128, 255)"},{"pathId":"path8943","color":"rgb(0, 128, 255)"},{"pathId":"path8851","color":"rgb(0, 128, 255)"},{"pathId":"path8897","color":"rgb(0, 128, 255)"},{"pathId":"path8853","color":"rgb(0, 128, 255)"},{"pathId":"path8855","color":"rgb(0, 128, 255)"},{"pathId":"path8839","color":"rgb(0, 128, 255)"},{"pathId":"path8804","color":"rgb(0, 128, 255)"},{"pathId":"path8802","color":"rgb(0, 128, 255)"},{"pathId":"path8763","color":"rgb(0, 128, 255)"},{"pathId":"path8765","color":"rgb(0, 128, 255)"},{"pathId":"path8736","color":"rgb(0, 128, 255)"},{"pathId":"path8706","color":"rgb(0, 128, 255)"},{"pathId":"path8704","color":"rgb(0, 128, 255)"},{"pathId":"path8683","color":"rgb(0, 128, 255)"},{"pathId":"path8674","color":"rgb(0, 128, 255)"},{"pathId":"path8633","color":"rgb(0, 128, 255)"},{"pathId":"path8628","color":"rgb(0, 128, 255)"},{"pathId":"path8659","color":"rgb(0, 128, 255)"},{"pathId":"path8652","color":"rgb(0, 128, 255)"},{"pathId":"path7846","color":"rgb(0, 128, 255)"},{"pathId":"path9233","color":"rgb(0, 128, 255)"},{"pathId":"path9156","color":"rgb(0, 128, 255)"},{"pathId":"path9193","color":"rgb(0, 128, 255)"},{"pathId":"path8944","color":"rgb(0, 128, 255)"},{"pathId":"path9113","color":"rgb(0, 128, 255)"},{"pathId":"path9123","color":"rgb(0, 128, 255)"},{"pathId":"path9084","color":"rgb(0, 128, 255)"},{"pathId":"path9032","color":"rgb(0, 128, 255)"},{"pathId":"path9030","color":"rgb(0, 128, 255)"},{"pathId":"path9006","color":"rgb(0, 128, 255)"},{"pathId":"path8987","color":"rgb(0, 128, 255)"},{"pathId":"path8985","color":"rgb(0, 128, 255)"},{"pathId":"path8953","color":"rgb(0, 128, 255)"},{"pathId":"path8968","color":"rgb(0, 128, 255)"},{"pathId":"path8965","color":"rgb(0, 128, 255)"},{"pathId":"path7912","color":"rgb(0, 128, 255)"},{"pathId":"path8941","color":"rgb(0, 128, 255)"},{"pathId":"path11020","color":"rgb(0, 128, 255)"},{"pathId":"path9289","color":"rgb(128, 64, 0)"},{"pathId":"path9279","color":"rgb(128, 64, 0)"},{"pathId":"path9284","color":"rgb(128, 64, 0)"},{"pathId":"path9277","color":"rgb(128, 64, 0)"},{"pathId":"path9219","color":"rgb(128, 64, 0)"},{"pathId":"path9229","color":"rgb(128, 64, 0)"},{"pathId":"path9227","color":"rgb(128, 64, 0)"},{"pathId":"path9225","color":"rgb(128, 64, 0)"},{"pathId":"path9118","color":"rgb(128, 64, 0)"},{"pathId":"path9180","color":"rgb(128, 64, 0)"},{"pathId":"path9178","color":"rgb(128, 64, 0)"},{"pathId":"path9142","color":"rgb(128, 64, 0)"},{"pathId":"path9146","color":"rgb(128, 64, 0)"},{"pathId":"path9144","color":"rgb(128, 64, 0)"},{"pathId":"path8173","color":"rgb(128, 64, 0)"},{"pathId":"path9081","color":"rgb(128, 64, 0)"},{"pathId":"path9052","color":"rgb(128, 64, 0)"},{"pathId":"path9054","color":"rgb(128, 64, 0)"},{"pathId":"path9038","color":"rgb(128, 64, 0)"},{"pathId":"path8975","color":"rgb(128, 64, 0)"},{"pathId":"path8973","color":"rgb(128, 64, 0)"},{"pathId":"path8966","color":"rgb(128, 64, 0)"},{"pathId":"path8961","color":"rgb(128, 64, 0)"},{"pathId":"path8951","color":"rgb(128, 64, 0)"},{"pathId":"path8175","color":"rgb(128, 64, 0)"},{"pathId":"path9012","color":"rgb(128, 64, 0)"},{"pathId":"path9614","color":"rgb(128, 64, 0)"},{"pathId":"path9612","color":"rgb(128, 64, 0)"},{"pathId":"path9556","color":"rgb(128, 64, 0)"},{"pathId":"path9585","color":"rgb(128, 64, 0)"},{"pathId":"path9546","color":"rgb(128, 64, 0)"},{"pathId":"path9497","color":"rgb(128, 64, 0)"},{"pathId":"path9526","color":"rgb(128, 64, 0)"},{"pathId":"path9524","color":"rgb(128, 64, 0)"},{"pathId":"path9522","color":"rgb(128, 64, 0)"},{"pathId":"path9500","color":"rgb(128, 64, 0)"},{"pathId":"path9502","color":"rgb(128, 64, 0)"},{"pathId":"path9508","color":"rgb(128, 64, 0)"},{"pathId":"path8717","color":"rgb(128, 64, 0)"},{"pathId":"path10625","color":"rgb(128, 64, 0)"},{"pathId":"path10623","color":"rgb(128, 64, 0)"},{"pathId":"path10163","color":"rgb(128, 64, 0)"},{"pathId":"path10559","color":"rgb(128, 64, 0)"},{"pathId":"path10177","color":"rgb(128, 64, 0)"},{"pathId":"path10306","color":"rgb(128, 64, 0)"},{"pathId":"path10086","color":"rgb(128, 64, 0)"},{"pathId":"path10259","color":"rgb(128, 64, 0)"},{"pathId":"path10059","color":"rgb(128, 64, 0)"},{"pathId":"path10057","color":"rgb(128, 64, 0)"},{"pathId":"path10055","color":"rgb(128, 64, 0)"},{"pathId":"path9958","color":"rgb(128, 64, 0)"},{"pathId":"path10033","color":"rgb(128, 64, 0)"},{"pathId":"path9975","color":"rgb(128, 64, 0)"},{"pathId":"path9973","color":"rgb(128, 64, 0)"},{"pathId":"path9968","color":"rgb(128, 64, 0)"},{"pathId":"path9963","color":"rgb(128, 64, 0)"},{"pathId":"path9998","color":"rgb(128, 64, 0)"},{"pathId":"path10014","color":"rgb(128, 64, 0)"},{"pathId":"path9953","color":"rgb(128, 64, 0)"},{"pathId":"path10090","color":"rgb(128, 64, 0)"},{"pathId":"path10088","color":"rgb(128, 64, 0)"},{"pathId":"path10125","color":"rgb(128, 64, 0)"},{"pathId":"path10123","color":"rgb(128, 64, 0)"},{"pathId":"path10217","color":"rgb(128, 64, 0)"},{"pathId":"path10215","color":"rgb(128, 64, 0)"},{"pathId":"path9946","color":"rgb(128, 64, 0)"},{"pathId":"path11068","color":"rgb(128, 64, 0)"},{"pathId":"path12177","color":"rgb(128, 64, 0)"},{"pathId":"path11736","color":"rgb(128, 64, 0)"},{"pathId":"path12082","color":"rgb(128, 64, 0)"},{"pathId":"path11140","color":"rgb(128, 64, 0)"},{"pathId":"path11990","color":"rgb(128, 64, 0)"},{"pathId":"path11657","color":"rgb(128, 64, 0)"},{"pathId":"path11901","color":"rgb(128, 64, 0)"},{"pathId":"path11817","color":"rgb(128, 64, 0)"},{"pathId":"path11815","color":"rgb(128, 64, 0)"},{"pathId":"path11066","color":"rgb(128, 64, 0)"},{"pathId":"path11734","color":"rgb(128, 64, 0)"},{"pathId":"path11655","color":"rgb(128, 64, 0)"},{"pathId":"path11659","color":"rgb(128, 64, 0)"},{"pathId":"path11064","color":"rgb(128, 64, 0)"},{"pathId":"path11584","color":"rgb(128, 64, 0)"},{"pathId":"path11058","color":"rgb(128, 64, 0)"},{"pathId":"path11517","color":"rgb(128, 64, 0)"},{"pathId":"path11060","color":"rgb(128, 64, 0)"},{"pathId":"path11441","color":"rgb(128, 64, 0)"},{"pathId":"path11455","color":"rgb(128, 64, 0)"},{"pathId":"path11326","color":"rgb(128, 64, 0)"},{"pathId":"path11379","color":"rgb(128, 64, 0)"},{"pathId":"path11228","color":"rgb(128, 64, 0)"},{"pathId":"path11226","color":"rgb(128, 64, 0)"},{"pathId":"path11182","color":"rgb(128, 64, 0)"},{"pathId":"path11180","color":"rgb(128, 64, 0)"},{"pathId":"path11062","color":"rgb(128, 64, 0)"},{"pathId":"path11138","color":"rgb(128, 64, 0)"},{"pathId":"path11056","color":"rgb(128, 64, 0)"},{"pathId":"path11054","color":"rgb(128, 64, 0)"},{"pathId":"path10919","color":"rgb(128, 64, 0)"},{"pathId":"path8546","color":"rgb(114, 97, 14)"},{"pathId":"path8364","color":"rgb(114, 97, 14)"},{"pathId":"path8508","color":"rgb(114, 97, 14)"},{"pathId":"path8504","color":"rgb(114, 97, 14)"},{"pathId":"path8362","color":"rgb(114, 97, 14)"},{"pathId":"path8468","color":"rgb(114, 97, 14)"},{"pathId":"path8463","color":"rgb(114, 97, 14)"},{"pathId":"path8433","color":"rgb(114, 97, 14)"},{"pathId":"path8366","color":"rgb(114, 97, 14)"},{"pathId":"path8409","color":"rgb(114, 97, 14)"},{"pathId":"path8407","color":"rgb(114, 97, 14)"},{"pathId":"path8368","color":"rgb(114, 97, 14)"},{"pathId":"path8388","color":"rgb(114, 97, 14)"},{"pathId":"path8370","color":"rgb(114, 97, 14)"},{"pathId":"path8376","color":"rgb(114, 97, 14)"},{"pathId":"path8374","color":"rgb(114, 97, 14)"},{"pathId":"path8372","color":"rgb(114, 97, 14)"},{"pathId":"path8360","color":"rgb(114, 97, 14)"},{"pathId":"path13137","color":"rgb(114, 97, 14)"},{"pathId":"ES-CA","color":"rgb(114, 97, 14)"},{"pathId":"ES-AS","color":"rgb(114, 97, 14)"},{"pathId":"ES-GA","color":"rgb(114, 97, 14)"},{"pathId":"ES-RI","color":"rgb(114, 97, 14)"},{"pathId":"ES-NC","color":"rgb(114, 97, 14)"},{"pathId":"ES-MD","color":"rgb(114, 97, 14)"},{"pathId":"ES-AR","color":"rgb(114, 97, 14)"},{"pathId":"ES-EX","color":"rgb(114, 97, 14)"},{"pathId":"ES-CM","color":"rgb(114, 97, 14)"},{"pathId":"ES-AN","color":"rgb(114, 97, 14)"},{"pathId":"ES-MC-mainland","color":"rgb(114, 97, 14)"},{"pathId":"ES-VC","color":"rgb(114, 97, 14)"},{"pathId":"ES-CT","color":"rgb(114, 97, 14)"},{"pathId":"ES-IB-ibiza","color":"rgb(114, 97, 14)"},{"pathId":"ES-IB-formentera","color":"rgb(114, 97, 14)"},{"pathId":"ES-IB-majorca","color":"rgb(114, 97, 14)"},{"pathId":"ES-IB-menorca","color":"rgb(114, 97, 14)"},{"pathId":"ES-VA","color":"rgb(114, 97, 14)"},{"pathId":"ES-CL","color":"rgb(114, 97, 14)"},{"pathId":"ES-CE","color":"rgb(114, 97, 14)"},{"pathId":"ES-ML","color":"rgb(114, 97, 14)"},{"pathId":"path8847","color":"rgb(0, 128, 255)"},{"pathId":"path8669","color":"rgb(0, 128, 255)"},{"pathId":"path8788","color":"rgb(0, 128, 255)"},{"pathId":"path8786","color":"rgb(0, 128, 255)"},{"pathId":"path8775","color":"rgb(0, 128, 255)"},{"pathId":"path8666","color":"rgb(0, 128, 255)"},{"pathId":"path8716","color":"rgb(0, 128, 255)"},{"pathId":"path8714","color":"rgb(0, 128, 255)"},{"pathId":"path8711","color":"rgb(0, 128, 255)"},{"pathId":"path8709","color":"rgb(0, 128, 255)"},{"pathId":"path8671","color":"rgb(0, 128, 255)"},{"pathId":"path8501","color":"rgb(0, 128, 255)"},{"pathId":"path8622","color":"rgb(0, 128, 255)"},{"pathId":"path8634","color":"rgb(0, 128, 255)"},{"pathId":"path8585","color":"rgb(0, 128, 255)"},{"pathId":"path8592","color":"rgb(0, 128, 255)"},{"pathId":"path8590","color":"rgb(0, 128, 255)"},{"pathId":"path8478","color":"rgb(0, 128, 255)"},{"pathId":"path8535","color":"rgb(0, 128, 255)"},{"pathId":"path8532","color":"rgb(0, 128, 255)"},{"pathId":"path8551","color":"rgb(0, 128, 255)"},{"pathId":"path8543","color":"rgb(0, 128, 255)"},{"pathId":"path8530","color":"rgb(0, 128, 255)"},{"pathId":"path8503","color":"rgb(0, 128, 255)"},{"pathId":"path8564","color":"rgb(0, 128, 255)"},{"pathId":"path8470","color":"rgb(0, 128, 255)"},{"pathId":"GB-BFS","color":"rgb(0, 128, 255)"},{"pathId":"GB-antrim","color":"rgb(0, 128, 255)"},{"pathId":"path10186","color":"rgb(0, 128, 255)"},{"pathId":"path10172","color":"rgb(0, 128, 255)"},{"pathId":"path10085","color":"rgb(0, 128, 255)"},{"pathId":"path10091","color":"rgb(0, 128, 255)"},{"pathId":"path10083","color":"rgb(0, 128, 255)"},{"pathId":"path10221","color":"rgb(0, 128, 255)"},{"pathId":"path9976","color":"rgb(0, 128, 255)"},{"pathId":"path12152","color":"rgb(0, 128, 255)"},{"pathId":"path12077","color":"rgb(0, 128, 255)"},{"pathId":"path12079","color":"rgb(0, 128, 255)"},{"pathId":"path12075","color":"rgb(0, 128, 255)"},{"pathId":"path12073","color":"rgb(0, 128, 255)"},{"pathId":"path12071","color":"rgb(0, 128, 255)"},{"pathId":"path11862","color":"rgb(0, 128, 255)"},{"pathId":"path12012","color":"rgb(0, 128, 255)"},{"pathId":"path12010","color":"rgb(0, 128, 255)"},{"pathId":"path12008","color":"rgb(0, 128, 255)"},{"pathId":"path11846","color":"rgb(0, 128, 255)"},{"pathId":"path11958","color":"rgb(0, 128, 255)"},{"pathId":"path11956","color":"rgb(0, 128, 255)"},{"pathId":"path11954","color":"rgb(0, 128, 255)"},{"pathId":"path11952","color":"rgb(0, 128, 255)"},{"pathId":"path11839","color":"rgb(0, 128, 255)"},{"pathId":"path11628","color":"rgb(0, 128, 255)"},{"pathId":"path11864","color":"rgb(0, 128, 255)"},{"pathId":"path11713","color":"rgb(0, 128, 255)"},{"pathId":"path11719","color":"rgb(0, 128, 255)"},{"pathId":"path11717","color":"rgb(0, 128, 255)"},{"pathId":"path11715","color":"rgb(0, 128, 255)"},{"pathId":"path11618","color":"rgb(0, 128, 255)"},{"pathId":"path11687","color":"rgb(0, 128, 255)"},{"pathId":"path11685","color":"rgb(0, 128, 255)"},{"pathId":"path11683","color":"rgb(0, 128, 255)"},{"pathId":"path11681","color":"rgb(0, 128, 255)"},{"pathId":"path11620","color":"rgb(0, 128, 255)"},{"pathId":"path11496","color":"rgb(0, 128, 255)"},{"pathId":"path11488","color":"rgb(0, 128, 255)"},{"pathId":"path11475","color":"rgb(0, 128, 255)"},{"pathId":"path11632","color":"rgb(0, 128, 255)"},{"pathId":"path11630","color":"rgb(0, 128, 255)"},{"pathId":"path11625","color":"rgb(0, 128, 255)"},{"pathId":"path11470","color":"rgb(0, 128, 255)"},{"pathId":"GB-GLG","color":"rgb(0, 128, 255)"},{"pathId":"path10490","color":"rgb(0, 128, 255)"},{"pathId":"path10488","color":"rgb(0, 128, 255)"},{"pathId":"path10459","color":"rgb(0, 128, 255)"},{"pathId":"path10473","color":"rgb(0, 128, 255)"},{"pathId":"GB-south-glamorgan","color":"rgb(0, 128, 255)"},{"pathId":"path10468","color":"rgb(0, 128, 255)"},{"pathId":"path10466","color":"rgb(0, 128, 255)"},{"pathId":"GB-dyfed","color":"rgb(0, 128, 255)"},{"pathId":"GB-gwynedd","color":"rgb(0, 128, 255)"},{"pathId":"GB-AGY","color":"rgb(0, 128, 255)"},{"pathId":"path11262","color":"rgb(0, 128, 255)"},{"pathId":"path11063","color":"rgb(0, 128, 255)"},{"pathId":"path11167","color":"rgb(0, 128, 255)"},{"pathId":"path11069","color":"rgb(0, 128, 255)"},{"pathId":"path11067","color":"rgb(0, 128, 255)"},{"pathId":"GB-NFK","color":"rgb(0, 128, 255)"},{"pathId":"path11061","color":"rgb(0, 128, 255)"},{"pathId":"path11059","color":"rgb(0, 128, 255)"},{"pathId":"GB-MAN","color":"rgb(0, 128, 255)"},{"pathId":"path10970","color":"rgb(0, 128, 255)"},{"pathId":"path10968","color":"rgb(0, 128, 255)"},{"pathId":"GB-NYK","color":"rgb(0, 128, 255)"},{"pathId":"path10824","color":"rgb(0, 128, 255)"},{"pathId":"path10822","color":"rgb(0, 128, 255)"},{"pathId":"path10536","color":"rgb(0, 128, 255)"},{"pathId":"path10756","color":"rgb(0, 128, 255)"},{"pathId":"path10754","color":"rgb(0, 128, 255)"},{"pathId":"path10683","color":"rgb(0, 128, 255)"},{"pathId":"path10687","color":"rgb(0, 128, 255)"},{"pathId":"GB-CAM","color":"rgb(0, 128, 255)"},{"pathId":"path10681","color":"rgb(0, 128, 255)"},{"pathId":"path10679","color":"rgb(0, 128, 255)"},{"pathId":"path10676","color":"rgb(0, 128, 255)"},{"pathId":"path10674","color":"rgb(0, 128, 255)"},{"pathId":"path10529","color":"rgb(0, 128, 255)"},{"pathId":"path10632","color":"rgb(0, 128, 255)"},{"pathId":"GB-OXF","color":"rgb(0, 128, 255)"},{"pathId":"path10628","color":"rgb(0, 128, 255)"},{"pathId":"GB-ESS","color":"rgb(0, 128, 255)"},{"pathId":"GB-london","color":"rgb(0, 128, 255)"},{"pathId":"path10622","color":"rgb(0, 128, 255)"},{"pathId":"path10526","color":"rgb(0, 128, 255)"},{"pathId":"path10582","color":"rgb(0, 128, 255)"},{"pathId":"GB-KEN","color":"rgb(0, 128, 255)"},{"pathId":"path10578","color":"rgb(0, 128, 255)"},{"pathId":"GB-WBK","color":"rgb(0, 128, 255)"},{"pathId":"GB-WIL","color":"rgb(0, 128, 255)"},{"pathId":"path10524","color":"rgb(0, 128, 255)"},{"pathId":"path10556","color":"rgb(0, 128, 255)"},{"pathId":"path10554","color":"rgb(0, 128, 255)"},{"pathId":"path10551","color":"rgb(0, 128, 255)"},{"pathId":"GB-DORandIOW","color":"rgb(0, 128, 255)"},{"pathId":"GB-SOM","color":"rgb(0, 128, 255)"},{"pathId":"path10539","color":"rgb(0, 128, 255)"},{"pathId":"GB-CON","color":"rgb(0, 128, 255)"},{"pathId":"GB-DEV","color":"rgb(0, 128, 255)"},{"pathId":"BE-VBR","color":"rgb(52, 26, 102)"},{"pathId":"BE-VLI","color":"rgb(52, 26, 102)"},{"pathId":"BE-WLG","color":"rgb(52, 26, 102)"},{"pathId":"BE-WHT","color":"rgb(52, 26, 102)"},{"pathId":"BE-WLX","color":"rgb(52, 26, 102)"},{"pathId":"BE-WNA","color":"rgb(52, 26, 102)"},{"pathId":"BE-WBR","color":"rgb(52, 26, 102)"},{"pathId":"BE-VWV","color":"rgb(52, 26, 102)"},{"pathId":"BE-VOV","color":"rgb(52, 26, 102)"},{"pathId":"BE-VAN","color":"rgb(52, 26, 102)"},{"pathId":"BE-BRU","color":"rgb(52, 26, 102)"},{"pathId":"LU-L","color":"rgb(78, 78, 78)"},{"pathId":"LU-G","color":"rgb(18, 109, 38)"},{"pathId":"LU-D","color":"rgb(18, 109, 38)"},{"pathId":"path13244","color":"rgb(18, 109, 38)"},{"pathId":"path13433","color":"rgb(18, 109, 38)"},{"pathId":"path13344","color":"rgb(18, 109, 38)"},{"pathId":"path13319","color":"rgb(78, 78, 78)"},{"pathId":"path13317","color":"rgb(18, 109, 38)"},{"pathId":"path13310","color":"rgb(18, 109, 38)"},{"pathId":"path13351","color":"rgb(18, 109, 38)"},{"pathId":"NL-NH","color":"rgb(18, 109, 38)"},{"pathId":"path13366","color":"rgb(18, 109, 38)"},{"pathId":"path13240","color":"rgb(18, 109, 38)"},{"pathId":"path13409","color":"rgb(18, 109, 38)"},{"pathId":"path13407","color":"rgb(18, 109, 38)"},{"pathId":"path13621","color":"rgb(198, 0, 0)"},{"pathId":"path13567","color":"rgb(198, 0, 0)"},{"pathId":"path13598","color":"rgb(198, 0, 0)"},{"pathId":"path13596","color":"rgb(198, 0, 0)"},{"pathId":"path13594","color":"rgb(198, 0, 0)"},{"pathId":"path13576","color":"rgb(198, 0, 0)"},{"pathId":"path13637","color":"rgb(198, 0, 0)"},{"pathId":"path13909","color":"rgb(198, 0, 0)"},{"pathId":"path13751","color":"rgb(198, 0, 0)"},{"pathId":"path13893","color":"rgb(198, 0, 0)"},{"pathId":"path13891","color":"rgb(198, 0, 0)"},{"pathId":"path13753","color":"rgb(198, 0, 0)"},{"pathId":"path13749","color":"rgb(198, 0, 0)"},{"pathId":"path13762","color":"rgb(198, 0, 0)"},{"pathId":"path13760","color":"rgb(198, 0, 0)"},{"pathId":"path13758","color":"rgb(198, 0, 0)"},{"pathId":"path13742","color":"rgb(198, 0, 0)"},{"pathId":"path14020","color":"rgb(198, 0, 0)"},{"pathId":"path14029","color":"rgb(198, 0, 0)"},{"pathId":"path14027","color":"rgb(198, 0, 0)"},{"pathId":"path14025","color":"rgb(198, 0, 0)"},{"pathId":"path14011","color":"rgb(198, 0, 0)"},{"pathId":"path14199","color":"rgb(198, 0, 0)"},{"pathId":"path14197","color":"rgb(198, 0, 0)"},{"pathId":"path14195","color":"rgb(128, 128, 192)"},{"pathId":"path14140","color":"rgb(128, 128, 192)"},{"pathId":"path14118","color":"rgb(198, 0, 0)"},{"pathId":"path14120","color":"rgb(128, 128, 192)"},{"pathId":"path14124","color":"rgb(128, 128, 192)"},{"pathId":"path14149","color":"rgb(198, 0, 0)"},{"pathId":"path14138","color":"rgb(128, 128, 192)"},{"pathId":"path14171","color":"rgb(128, 128, 192)"},{"pathId":"path14169","color":"rgb(198, 0, 0)"},{"pathId":"path14167","color":"rgb(198, 0, 0)"},{"pathId":"path14165","color":"rgb(198, 0, 0)"},{"pathId":"path14163","color":"rgb(128, 128, 192)"},{"pathId":"path14126","color":"rgb(128, 128, 192)"},{"pathId":"path14884","color":"rgb(128, 128, 192)"},{"pathId":"path14878","color":"rgb(128, 128, 192)"},{"pathId":"FI-uusimaa","color":"rgb(128, 128, 192)"},{"pathId":"path14630","color":"rgb(128, 128, 192)"},{"pathId":"path14673","color":"rgb(128, 128, 192)"},{"pathId":"path14671","color":"rgb(128, 128, 192)"},{"pathId":"path14632","color":"rgb(128, 128, 192)"},{"pathId":"path14643","color":"rgb(128, 128, 192)"},{"pathId":"path14638","color":"rgb(128, 128, 192)"},{"pathId":"path14578","color":"rgb(128, 128, 192)"},{"pathId":"path14553","color":"rgb(128, 128, 192)"},{"pathId":"path14531","color":"rgb(128, 128, 192)"},{"pathId":"path14529","color":"rgb(128, 128, 192)"},{"pathId":"path14515","color":"rgb(128, 128, 192)"},{"pathId":"path14497","color":"rgb(128, 128, 192)"},{"pathId":"path14475","color":"rgb(128, 128, 192)"},{"pathId":"path14446","color":"rgb(128, 128, 192)"},{"pathId":"path14332","color":"rgb(128, 128, 192)"},{"pathId":"path9252","color":"rgb(128, 128, 192)"},{"pathId":"path9247","color":"rgb(128, 128, 192)"},{"pathId":"path10275","color":"rgb(128, 128, 192)"},{"pathId":"path9191","color":"rgb(128, 128, 192)"},{"pathId":"SE-AB","color":"rgb(128, 128, 192)"},{"pathId":"path9209","color":"rgb(128, 128, 192)"},{"pathId":"path9207","color":"rgb(128, 128, 192)"},{"pathId":"path9205","color":"rgb(128, 128, 192)"},{"pathId":"path9029","color":"rgb(128, 128, 255)"},{"pathId":"path9150","color":"rgb(128, 128, 192)"},{"pathId":"path9148","color":"rgb(128, 128, 192)"},{"pathId":"path9025","color":"rgb(128, 128, 192)"},{"pathId":"path9093","color":"rgb(128, 128, 192)"},{"pathId":"path9079","color":"rgb(128, 128, 192)"},{"pathId":"path9039","color":"rgb(128, 128, 192)"},{"pathId":"path9008","color":"rgb(128, 128, 192)"},{"pathId":"path8991","color":"rgb(128, 128, 192)"},{"pathId":"path8974","color":"rgb(128, 128, 255)"},{"pathId":"path8978","color":"rgb(128, 128, 255)"},{"pathId":"path8936","color":"rgb(128, 128, 192)"},{"pathId":"SE-BD","color":"rgb(128, 128, 192)"},{"pathId":"path28416","color":"rgb(128, 128, 255)"},{"pathId":"path22550","color":"rgb(128, 128, 255)"},{"pathId":"path22572","color":"rgb(128, 128, 255)"},{"pathId":"NO-hordaland","color":"rgb(128, 128, 255)"},{"pathId":"path28615","color":"rgb(128, 128, 255)"},{"pathId":"path28613","color":"rgb(128, 128, 255)"},{"pathId":"path28611","color":"rgb(128, 128, 255)"},{"pathId":"path28609","color":"rgb(128, 128, 255)"},{"pathId":"path28485","color":"rgb(128, 128, 255)"},{"pathId":"path28576","color":"rgb(128, 128, 255)"},{"pathId":"NO-oslo","color":"rgb(128, 128, 255)"},{"pathId":"path28516","color":"rgb(128, 128, 255)"},{"pathId":"path28490","color":"rgb(128, 128, 255)"},{"pathId":"path22562","color":"rgb(128, 128, 255)"},{"pathId":"path22546","color":"rgb(128, 128, 255)"},{"pathId":"path28461","color":"rgb(128, 128, 255)"},{"pathId":"path10783","color":"rgb(128, 128, 255)"},{"pathId":"path22538","color":"rgb(128, 128, 255)"},{"pathId":"path28410","color":"rgb(128, 128, 255)"},{"pathId":"path22496","color":"rgb(128, 128, 255)"},{"pathId":"path10963","color":"rgb(128, 128, 255)"},{"pathId":"DK-hovedstaden","color":"rgb(128, 128, 192)"},{"pathId":"DK-sjaelland","color":"rgb(128, 128, 192)"},{"pathId":"path34819","color":"rgb(128, 128, 192)"},{"pathId":"path34817","color":"rgb(128, 128, 192)"},{"pathId":"path34800","color":"rgb(128, 128, 192)"},{"pathId":"DE-BB","color":"rgb(78, 78, 78)"},{"pathId":"DE-TH","color":"rgb(78, 78, 78)"},{"pathId":"DE-SN","color":"rgb(78, 78, 78)"},{"pathId":"DE-SH","color":"rgb(78, 78, 78)"},{"pathId":"DE-ST","color":"rgb(78, 78, 78)"},{"pathId":"DE-HH","color":"rgb(78, 78, 78)"},{"pathId":"DE-MV","color":"rgb(78, 78, 78)"},{"pathId":"DE-BY","color":"rgb(78, 78, 78)"},{"pathId":"DE-HE","color":"rgb(78, 78, 78)"},{"pathId":"DE-NI","color":"rgb(78, 78, 78)"},{"pathId":"DE-BW","color":"rgb(78, 78, 78)"},{"pathId":"DE-RP","color":"rgb(78, 78, 78)"},{"pathId":"DE-NW","color":"rgb(78, 78, 78)"},{"pathId":"DE-SL","color":"rgb(78, 78, 78)"},{"pathId":"DE-HB","color":"rgb(78, 78, 78)"},{"pathId":"DE-BE","color":"rgb(78, 78, 78)"},{"pathId":"path10476","color":"rgb(78, 78, 78)"},{"pathId":"path10383","color":"rgb(78, 78, 78)"},{"pathId":"path10184","color":"rgb(78, 78, 78)"},{"pathId":"CH-VD","color":"rgb(78, 78, 78)"},{"pathId":"path9853","color":"rgb(78, 78, 78)"},{"pathId":"path10187","color":"rgb(78, 78, 78)"},{"pathId":"path10070","color":"rgb(78, 78, 78)"},{"pathId":"CH-BE","color":"rgb(78, 78, 78)"},{"pathId":"path10124","color":"rgb(78, 78, 78)"},{"pathId":"path10141","color":"rgb(78, 78, 78)"},{"pathId":"path10121","color":"rgb(78, 78, 78)"},{"pathId":"path10075","color":"rgb(78, 78, 78)"},{"pathId":"path10080","color":"rgb(78, 78, 78)"},{"pathId":"path9929","color":"rgb(78, 78, 78)"},{"pathId":"path9955","color":"rgb(78, 78, 78)"},{"pathId":"path9867","color":"rgb(78, 78, 78)"},{"pathId":"path9839","color":"rgb(78, 78, 78)"},{"pathId":"path9830","color":"rgb(78, 78, 78)"},{"pathId":"path9819","color":"rgb(78, 78, 78)"},{"pathId":"CH-GE","color":"rgb(78, 78, 78)"},{"pathId":"path9922","color":"rgb(78, 78, 78)"},{"pathId":"path9934","color":"rgb(78, 78, 78)"},{"pathId":"path9918","color":"rgb(78, 78, 78)"},{"pathId":"path10023","color":"rgb(78, 78, 78)"},{"pathId":"path9986","color":"rgb(78, 78, 78)"},{"pathId":"path10399","color":"rgb(78, 78, 78)"},{"pathId":"AT-carinthia","color":"rgb(128, 128, 0)"},{"pathId":"AT-styria","color":"rgb(128, 128, 0)"},{"pathId":"AT-lower-austria","color":"rgb(128, 128, 0)"},{"pathId":"AT-burgenland","color":"rgb(128, 128, 0)"},{"pathId":"AT-vorarlberg","color":"rgb(78, 78, 78)"},{"pathId":"AT-tyrol-north","color":"rgb(128, 128, 0)"},{"pathId":"AT-tyrol-east","color":"rgb(128, 128, 0)"},{"pathId":"AT-salzburg","color":"rgb(128, 128, 0)"},{"pathId":"AT-upper-austria","color":"rgb(128, 128, 0)"},{"pathId":"AT-vienna","color":"rgb(128, 128, 0)"},{"pathId":"path9778","color":"rgb(128, 64, 0)"},{"pathId":"path9776","color":"rgb(128, 64, 0)"},{"pathId":"path9774","color":"rgb(128, 64, 0)"},{"pathId":"path9590","color":"rgb(128, 64, 0)"},{"pathId":"path9724","color":"rgb(128, 64, 0)"},{"pathId":"path9722","color":"rgb(128, 64, 0)"},{"pathId":"path9719","color":"rgb(128, 64, 0)"},{"pathId":"path9717","color":"rgb(128, 64, 0)"},{"pathId":"path9715","color":"rgb(128, 64, 0)"},{"pathId":"path9713","color":"rgb(128, 64, 0)"},{"pathId":"path9638","color":"rgb(128, 64, 0)"},{"pathId":"path9633","color":"rgb(128, 64, 0)"},{"pathId":"path9629","color":"rgb(128, 64, 0)"},{"pathId":"path9627","color":"rgb(128, 64, 0)"},{"pathId":"path9625","color":"rgb(128, 64, 0)"},{"pathId":"path9623","color":"rgb(128, 64, 0)"},{"pathId":"path9621","color":"rgb(128, 64, 0)"},{"pathId":"path9586","color":"rgb(128, 64, 0)"},{"pathId":"path9592","color":"rgb(128, 64, 0)"},{"pathId":"path9606","color":"rgb(128, 64, 0)"},{"pathId":"path9604","color":"rgb(128, 64, 0)"},{"pathId":"path9600","color":"rgb(128, 64, 0)"},{"pathId":"path9598","color":"rgb(128, 64, 0)"},{"pathId":"path9588","color":"rgb(128, 64, 0)"},{"pathId":"path9579","color":"rgb(128, 64, 0)"},{"pathId":"path9673","color":"rgb(128, 64, 0)"},{"pathId":"path9671","color":"rgb(128, 64, 0)"},{"pathId":"path9571","color":"rgb(128, 64, 0)"},{"pathId":"CZ-B","color":"rgb(128, 128, 0)"},{"pathId":"path10034","color":"rgb(128, 128, 0)"},{"pathId":"path9942","color":"rgb(128, 128, 0)"},{"pathId":"path10008","color":"rgb(128, 128, 0)"},{"pathId":"path10005","color":"rgb(128, 128, 0)"},{"pathId":"path10003","color":"rgb(128, 128, 0)"},{"pathId":"path9940","color":"rgb(128, 128, 0)"},{"pathId":"path9962","color":"rgb(128, 128, 0)"},{"pathId":"path9964","color":"rgb(128, 128, 0)"},{"pathId":"path9938","color":"rgb(128, 128, 0)"},{"pathId":"path9950","color":"rgb(128, 128, 0)"},{"pathId":"path9948","color":"rgb(128, 128, 0)"},{"pathId":"path9931","color":"rgb(128, 128, 0)"},{"pathId":"CZ-A","color":"rgb(128, 128, 0)"},{"pathId":"path10180","color":"rgb(128, 128, 0)"},{"pathId":"path10249","color":"rgb(128, 128, 0)"},{"pathId":"path10149","color":"rgb(128, 128, 0)"},{"pathId":"path10161","color":"rgb(128, 128, 0)"},{"pathId":"path10159","color":"rgb(128, 128, 0)"},{"pathId":"path10138","color":"rgb(128, 128, 0)"},{"pathId":"path10140","color":"rgb(128, 128, 0)"},{"pathId":"path10147","color":"rgb(128, 128, 0)"},{"pathId":"path10185","color":"rgb(198, 0, 0)"},{"pathId":"path10182","color":"rgb(128, 128, 0)"},{"pathId":"path10178","color":"rgb(128, 128, 0)"},{"pathId":"path10176","color":"rgb(128, 128, 0)"},{"pathId":"path10145","color":"rgb(128, 128, 0)"},{"pathId":"path10216","color":"rgb(128, 128, 0)"},{"pathId":"path10213","color":"rgb(128, 128, 0)"},{"pathId":"path10211","color":"rgb(128, 128, 0)"},{"pathId":"path10209","color":"rgb(128, 128, 0)"},{"pathId":"path10207","color":"rgb(128, 128, 0)"},{"pathId":"path10131","color":"rgb(198, 0, 0)"},{"pathId":"HU-BU","color":"rgb(128, 128, 0)"},{"pathId":"path10695","color":"rgb(100, 119, 9)"},{"pathId":"path10693","color":"rgb(100, 119, 9)"},{"pathId":"path10614","color":"rgb(100, 119, 9)"},{"pathId":"path10629","color":"rgb(100, 119, 9)"},{"pathId":"path10627","color":"rgb(100, 119, 9)"},{"pathId":"path10620","color":"rgb(100, 119, 9)"},{"pathId":"path10612","color":"rgb(100, 119, 9)"},{"pathId":"path10610","color":"rgb(198, 0, 0)"},{"pathId":"path10608","color":"rgb(198, 0, 0)"},{"pathId":"path10495","color":"rgb(198, 0, 0)"},{"pathId":"path10575","color":"rgb(198, 0, 0)"},{"pathId":"path10535","color":"rgb(198, 0, 0)"},{"pathId":"path10502","color":"rgb(100, 119, 9)"},{"pathId":"path10493","color":"rgb(100, 119, 9)"},{"pathId":"path10552","color":"rgb(100, 119, 9)"},{"pathId":"path10550","color":"rgb(100, 119, 9)"},{"pathId":"path10546","color":"rgb(100, 119, 9)"},{"pathId":"path10544","color":"rgb(100, 119, 9)"},{"pathId":"path10542","color":"rgb(100, 119, 9)"},{"pathId":"path10540","color":"rgb(100, 119, 9)"},{"pathId":"path10537","color":"rgb(100, 119, 9)"},{"pathId":"path10532","color":"rgb(198, 0, 0)"},{"pathId":"path10530","color":"rgb(198, 0, 0)"},{"pathId":"path10514","color":"rgb(198, 0, 0)"},{"pathId":"path10512","color":"rgb(100, 119, 9)"},{"pathId":"path10724","color":"rgb(100, 119, 9)"},{"pathId":"path10800","color":"rgb(100, 119, 9)"},{"pathId":"path10798","color":"rgb(100, 119, 9)"},{"pathId":"path10796","color":"rgb(100, 119, 9)"},{"pathId":"path10794","color":"rgb(100, 119, 9)"},{"pathId":"path10792","color":"rgb(100, 119, 9)"},{"pathId":"path10790","color":"rgb(198, 0, 0)"},{"pathId":"path10788","color":"rgb(198, 0, 0)"},{"pathId":"path10450","color":"rgb(198, 0, 0)"},{"pathId":"path16064","color":"rgb(100, 119, 9)"},{"pathId":"path16062","color":"rgb(100, 119, 9)"},{"pathId":"path16060","color":"rgb(100, 119, 9)"},{"pathId":"path16054","color":"rgb(100, 119, 9)"},{"pathId":"path16040","color":"rgb(100, 119, 9)"},{"pathId":"path16038","color":"rgb(198, 0, 0)"},{"pathId":"path11137","color":"rgb(198, 0, 0)"},{"pathId":"path11039","color":"rgb(198, 0, 0)"},{"pathId":"path11052","color":"rgb(198, 0, 0)"},{"pathId":"path11050","color":"rgb(198, 0, 0)"},{"pathId":"path11048","color":"rgb(198, 0, 0)"},{"pathId":"path11046","color":"rgb(78, 78, 78)"},{"pathId":"path11037","color":"rgb(78, 78, 78)"},{"pathId":"PL-PK","color":"rgb(198, 0, 0)"},{"pathId":"path11077","color":"rgb(198, 0, 0)"},{"pathId":"path11075","color":"rgb(198, 0, 0)"},{"pathId":"path11073","color":"rgb(198, 0, 0)"},{"pathId":"path11035","color":"rgb(78, 78, 78)"},{"pathId":"path11106","color":"rgb(198, 0, 0)"},{"pathId":"PL-MZ","color":"rgb(198, 0, 0)"},{"pathId":"path11101","color":"rgb(198, 0, 0)"},{"pathId":"path11030","color":"rgb(198, 0, 0)"},{"pathId":"path11967","color":"rgb(100, 119, 9)"},{"pathId":"path11965","color":"rgb(100, 119, 9)"},{"pathId":"path11877","color":"rgb(198, 0, 0)"},{"pathId":"path11885","color":"rgb(100, 119, 9)"},{"pathId":"path11883","color":"rgb(100, 119, 9)"},{"pathId":"path11241","color":"rgb(198, 0, 0)"},{"pathId":"path11802","color":"rgb(128, 128, 0)"},{"pathId":"path11730","color":"rgb(198, 0, 0)"},{"pathId":"path11249","color":"rgb(198, 0, 0)"},{"pathId":"path11662","color":"rgb(198, 0, 0)"},{"pathId":"path11660","color":"rgb(128, 128, 0)"},{"pathId":"path11653","color":"rgb(128, 128, 0)"},{"pathId":"path11591","color":"rgb(100, 119, 9)"},{"pathId":"path11589","color":"rgb(128, 128, 0)"},{"pathId":"path11257","color":"rgb(100, 119, 9)"},{"pathId":"path11532","color":"rgb(100, 119, 9)"},{"pathId":"path11530","color":"rgb(100, 119, 9)"},{"pathId":"path11525","color":"rgb(100, 119, 9)"},{"pathId":"path11468","color":"rgb(128, 128, 0)"},{"pathId":"path11476","color":"rgb(128, 0, 0)"},{"pathId":"path11474","color":"rgb(128, 128, 0)"},{"pathId":"path11259","color":"rgb(128, 128, 0)"},{"pathId":"path11426","color":"rgb(128, 0, 0)"},{"pathId":"path11424","color":"rgb(128, 0, 0)"},{"pathId":"path11268","color":"rgb(128, 0, 0)"},{"pathId":"path11387","color":"rgb(128, 0, 0)"},{"pathId":"path11382","color":"rgb(128, 0, 0)"},{"pathId":"path11348","color":"rgb(100, 119, 9)"},{"pathId":"path11346","color":"rgb(100, 119, 9)"},{"pathId":"path11251","color":"rgb(100, 119, 9)"},{"pathId":"path11315","color":"rgb(100, 119, 9)"},{"pathId":"path11320","color":"rgb(100, 119, 9)"},{"pathId":"path11313","color":"rgb(100, 119, 9)"},{"pathId":"path11286","color":"rgb(100, 119, 9)"},{"pathId":"path11284","color":"rgb(100, 119, 9)"},{"pathId":"path11293","color":"rgb(100, 119, 9)"},{"pathId":"path11291","color":"rgb(100, 119, 9)"},{"pathId":"path11282","color":"rgb(100, 119, 9)"},{"pathId":"path11298","color":"rgb(100, 119, 9)"},{"pathId":"path11266","color":"rgb(128, 0, 0)"},{"pathId":"path11273","color":"rgb(100, 119, 9)"},{"pathId":"SK-KI","color":"rgb(198, 0, 0)"},{"pathId":"SK-NI","color":"rgb(128, 128, 0)"},{"pathId":"SK-BC","color":"rgb(128, 128, 0)"},{"pathId":"SK-BL","color":"rgb(128, 128, 0)"},{"pathId":"SK-TA","color":"rgb(128, 128, 0)"},{"pathId":"SK-TC","color":"rgb(128, 128, 0)"},{"pathId":"SK-ZI","color":"rgb(128, 128, 0)"},{"pathId":"SK-PV","color":"rgb(198, 0, 0)"},{"pathId":"IT-apulia","color":"rgb(74, 105, 22)"},{"pathId":"IT-molise","color":"rgb(74, 105, 22)"},{"pathId":"IT-abruzzo","color":"rgb(128, 128, 0)"},{"pathId":"IT-marche","color":"rgb(128, 128, 0)"},{"pathId":"IT-emilia-romagna","color":"rgb(78, 78, 78)"},{"pathId":"IT-lombardy","color":"rgb(78, 78, 78)"},{"pathId":"IT-lazio","color":"rgb(128, 128, 0)"},{"pathId":"IT-umbria","color":"rgb(128, 128, 0)"},{"pathId":"IT-veneto","color":"rgb(128, 128, 0)"},{"pathId":"IT-trentino-south-tyrol","color":"rgb(78, 78, 78)"},{"pathId":"IT-basilicata","color":"rgb(74, 105, 22)"},{"pathId":"IT-campania","color":"rgb(74, 105, 22)"},{"pathId":"IT-tuscany","color":"rgb(128, 128, 0)"},{"pathId":"IT-liguria","color":"rgb(78, 78, 78)"},{"pathId":"IT-piedmont","color":"rgb(78, 78, 78)"},{"pathId":"IT-calabria","color":"rgb(74, 105, 22)"},{"pathId":"IT-friuli-venezia-guilia","color":"rgb(78, 78, 78)"},{"pathId":"IT-aosta-valley","color":"rgb(78, 78, 78)"},{"pathId":"IT-sicily","color":"rgb(74, 105, 22)"},{"pathId":"IT-sardinia","color":"rgb(74, 105, 22)"},{"pathId":"path12845","color":"rgb(128, 64, 0)"},{"pathId":"path12810","color":"rgb(128, 64, 0)"},{"pathId":"path12824","color":"rgb(128, 64, 0)"},{"pathId":"path12822","color":"rgb(128, 64, 0)"},{"pathId":"path12820","color":"rgb(128, 64, 0)"},{"pathId":"path12818","color":"rgb(128, 64, 0)"},{"pathId":"path12815","color":"rgb(128, 64, 0)"},{"pathId":"path12790","color":"rgb(128, 64, 0)"},{"pathId":"path12799","color":"rgb(128, 64, 0)"},{"pathId":"path12797","color":"rgb(128, 64, 0)"},{"pathId":"path12795","color":"rgb(128, 64, 0)"},{"pathId":"path12783","color":"rgb(128, 64, 0)"},{"pathId":"path13084","color":"rgb(128, 0, 0)"},{"pathId":"path13082","color":"rgb(128, 0, 0)"},{"pathId":"path13080","color":"rgb(128, 0, 0)"},{"pathId":"path13078","color":"rgb(128, 0, 0)"},{"pathId":"path12963","color":"rgb(128, 0, 0)"},{"pathId":"path13026","color":"rgb(128, 0, 0)"},{"pathId":"path12975","color":"rgb(128, 0, 0)"},{"pathId":"path12967","color":"rgb(128, 0, 0)"},{"pathId":"path13000","color":"rgb(128, 0, 0)"},{"pathId":"path12997","color":"rgb(128, 0, 0)"},{"pathId":"path12995","color":"rgb(128, 0, 0)"},{"pathId":"path12993","color":"rgb(128, 0, 0)"},{"pathId":"path12973","color":"rgb(128, 0, 0)"},{"pathId":"path13051","color":"rgb(128, 0, 0)"},{"pathId":"path13049","color":"rgb(128, 0, 0)"},{"pathId":"path13047","color":"rgb(128, 0, 0)"},{"pathId":"path12956","color":"rgb(128, 0, 0)"},{"pathId":"path19532","color":"rgb(128, 128, 0)"},{"pathId":"path19626","color":"rgb(128, 128, 0)"},{"pathId":"path19400","color":"rgb(128, 128, 0)"},{"pathId":"HR-splitsko-dalmatinska","color":"rgb(128, 128, 0)"},{"pathId":"HR-dubrovacko-neretvanska","color":"rgb(128, 128, 0)"},{"pathId":"path19494","color":"rgb(128, 128, 0)"},{"pathId":"path19492","color":"rgb(128, 128, 0)"},{"pathId":"path19460","color":"rgb(128, 128, 0)"},{"pathId":"path19462","color":"rgb(128, 128, 0)"},{"pathId":"path19458","color":"rgb(128, 128, 0)"},{"pathId":"HR-zagreb","color":"rgb(128, 128, 0)"},{"pathId":"path19435","color":"rgb(128, 128, 0)"},{"pathId":"path19433","color":"rgb(128, 128, 0)"},{"pathId":"path19431","color":"rgb(128, 128, 0)"},{"pathId":"path19374","color":"rgb(128, 128, 0)"},{"pathId":"path19415","color":"rgb(128, 128, 0)"},{"pathId":"path19413","color":"rgb(128, 128, 0)"},{"pathId":"path19388","color":"rgb(128, 128, 0)"},{"pathId":"path19390","color":"rgb(128, 128, 0)"},{"pathId":"HR-primorsko-goranska","color":"rgb(128, 128, 0)"},{"pathId":"HR-istarska","color":"rgb(128, 128, 0)"},{"pathId":"path26326","color":"rgb(128, 64, 0)"},{"pathId":"path26502","color":"rgb(128, 64, 0)"},{"pathId":"path26460","color":"rgb(128, 64, 0)"},{"pathId":"path26465","color":"rgb(128, 64, 0)"},{"pathId":"path26011","color":"rgb(128, 64, 0)"},{"pathId":"GR-I","color":"rgb(128, 64, 0)"},{"pathId":"path26322","color":"rgb(128, 64, 0)"},{"pathId":"path25806","color":"rgb(128, 64, 0)"},{"pathId":"path26009","color":"rgb(128, 64, 0)"},{"pathId":"path26007","color":"rgb(128, 64, 0)"},{"pathId":"path25832","color":"rgb(128, 64, 0)"},{"pathId":"path25844","color":"rgb(128, 64, 0)"},{"pathId":"path25812","color":"rgb(128, 64, 0)"},{"pathId":"path25810","color":"rgb(128, 64, 0)"},{"pathId":"path26810","color":"rgb(128, 64, 0)"},{"pathId":"path26808","color":"rgb(128, 64, 0)"},{"pathId":"path26776","color":"rgb(128, 64, 0)"},{"pathId":"path26780","color":"rgb(128, 64, 0)"},{"pathId":"path26778","color":"rgb(128, 64, 0)"},{"pathId":"path26792","color":"rgb(128, 64, 0)"},{"pathId":"path26790","color":"rgb(128, 64, 0)"},{"pathId":"path26768","color":"rgb(128, 64, 0)"},{"pathId":"path27090","color":"rgb(128, 0, 0)"},{"pathId":"path27047","color":"rgb(128, 0, 0)"},{"pathId":"path27001","color":"rgb(128, 0, 0)"},{"pathId":"path26999","color":"rgb(128, 0, 0)"},{"pathId":"path26997","color":"rgb(128, 0, 0)"},{"pathId":"path26918","color":"rgb(128, 0, 0)"},{"pathId":"path26974","color":"rgb(128, 0, 0)"},{"pathId":"path26912","color":"rgb(128, 0, 0)"},{"pathId":"path26944","color":"rgb(128, 0, 0)"},{"pathId":"path26942","color":"rgb(128, 0, 0)"},{"pathId":"path26908","color":"rgb(128, 0, 0)"},{"pathId":"path26916","color":"rgb(128, 0, 0)"},{"pathId":"path26914","color":"rgb(128, 0, 0)"},{"pathId":"path26910","color":"rgb(128, 0, 0)"},{"pathId":"path26906","color":"rgb(128, 0, 0)"},{"pathId":"path27049","color":"rgb(128, 0, 0)"},{"pathId":"path27045","color":"rgb(128, 0, 0)"},{"pathId":"path27043","color":"rgb(128, 0, 0)"},{"pathId":"path27041","color":"rgb(128, 0, 0)"},{"pathId":"path26886","color":"rgb(128, 0, 0)"},{"pathId":"path27672","color":"rgb(128, 0, 0)"},{"pathId":"path27670","color":"rgb(128, 0, 0)"},{"pathId":"path27501","color":"rgb(128, 0, 0)"},{"pathId":"path27611","color":"rgb(128, 0, 0)"},{"pathId":"path27499","color":"rgb(128, 0, 0)"},{"pathId":"path27556","color":"rgb(128, 0, 0)"},{"pathId":"path27503","color":"rgb(128, 0, 0)"},{"pathId":"path27505","color":"rgb(128, 0, 0)"},{"pathId":"path27238","color":"rgb(128, 0, 0)"},{"pathId":"path27452","color":"rgb(128, 0, 0)"},{"pathId":"path27410","color":"rgb(128, 0, 0)"},{"pathId":"path27408","color":"rgb(128, 0, 0)"},{"pathId":"path27406","color":"rgb(128, 0, 0)"},{"pathId":"path27369","color":"rgb(128, 0, 0)"},{"pathId":"path27231","color":"rgb(128, 0, 0)"},{"pathId":"path27327","color":"rgb(128, 0, 0)"},{"pathId":"path27325","color":"rgb(128, 0, 0)"},{"pathId":"path27323","color":"rgb(128, 0, 0)"},{"pathId":"path27291","color":"rgb(128, 0, 0)"},{"pathId":"path27298","color":"rgb(128, 0, 0)"},{"pathId":"path27293","color":"rgb(128, 0, 0)"},{"pathId":"path27243","color":"rgb(128, 0, 0)"},{"pathId":"path27252","color":"rgb(128, 0, 0)"},{"pathId":"path27250","color":"rgb(128, 0, 0)"},{"pathId":"path27257","color":"rgb(128, 128, 0)"},{"pathId":"path27248","color":"rgb(128, 128, 0)"},{"pathId":"path27271","color":"rgb(128, 128, 0)"},{"pathId":"path27269","color":"rgb(128, 128, 0)"},{"pathId":"path27216","color":"rgb(128, 128, 0)"},{"pathId":"path15579","color":"rgb(128, 64, 0)"},{"pathId":"path15388","color":"rgb(128, 64, 0)"},{"pathId":"path15573","color":"rgb(128, 64, 0)"},{"pathId":"path15543","color":"rgb(128, 64, 0)"},{"pathId":"path15541","color":"rgb(128, 64, 0)"},{"pathId":"path15539","color":"rgb(128, 64, 0)"},{"pathId":"path27938","color":"rgb(128, 128, 0)"},{"pathId":"path27883","color":"rgb(128, 128, 0)"},{"pathId":"SL-coastal-karst","color":"rgb(128, 128, 0)"},{"pathId":"path27913","color":"rgb(128, 128, 0)"},{"pathId":"path27911","color":"rgb(128, 128, 0)"},{"pathId":"path27859","color":"rgb(128, 128, 0)"},{"pathId":"path27881","color":"rgb(128, 128, 0)"},{"pathId":"SL-central-slovenia","color":"rgb(128, 128, 0)"},{"pathId":"path27868","color":"rgb(128, 128, 0)"},{"pathId":"path27855","color":"rgb(128, 128, 0)"},{"pathId":"path27857","color":"rgb(128, 128, 0)"},{"pathId":"SL-upper-carniola","color":"rgb(128, 128, 0)"},{"pathId":"FR-H","color":"rgb(74, 105, 22)"},{"pathId":"FR-T","color":"rgb(21, 106, 72)"},{"pathId":"FR-V","color":"rgb(75, 101, 27)"},{"pathId":"FR-F","color":"rgb(21, 106, 72)"},{"pathId":"FR-I","color":"rgb(75, 101, 27)"},{"pathId":"FR-E","color":"rgb(21, 106, 72)"},{"pathId":"FR-R","color":"rgb(21, 106, 72)"},{"pathId":"FR-M","color":"rgb(12, 116, 111)"},{"pathId":"FR-P","color":"rgb(12, 116, 111)"},{"pathId":"FR-J","color":"rgb(12, 116, 111)"},{"pathId":"FR-S","color":"rgb(12, 116, 111)"},{"pathId":"FR-U","color":"rgb(75, 101, 27)"},{"pathId":"FR-K","color":"rgb(75, 101, 27)"},{"pathId":"path12094","color":"rgb(0, 128, 255)"},{"pathId":"path11991","color":"rgb(0, 128, 255)"},{"pathId":"US-NY","color":"rgb(0, 128, 255)"},{"pathId":"US-NJ","color":"rgb(0, 128, 255)"},{"pathId":"path11682","color":"rgb(0, 128, 255)"},{"pathId":"US-VA","color":"rgb(0, 128, 255)"},{"pathId":"path11152","color":"rgb(0, 128, 255)"},{"pathId":"path11147","color":"rgb(0, 128, 255)"},{"pathId":"path11074","color":"rgb(0, 128, 255)"},{"pathId":"path10996","color":"rgb(0, 128, 255)"},{"pathId":"US-MA-mainland","color":"rgb(0, 128, 255)"},{"pathId":"path10769","color":"rgb(0, 128, 255)"},{"pathId":"path10779","color":"rgb(0, 128, 255)"},{"pathId":"path10855","color":"rgb(0, 128, 255)"},{"pathId":"path10771","color":"rgb(0, 128, 255)"},{"pathId":"path36614","color":"rgb(0, 64, 128)"},{"pathId":"path15679","color":"rgb(0, 64, 128)"},{"pathId":"path15675","color":"rgb(0, 64, 128)"},{"pathId":"path15673","color":"rgb(0, 64, 128)"},{"pathId":"path15671","color":"rgb(0, 64, 128)"},{"pathId":"path15669","color":"rgb(0, 64, 128)"},{"pathId":"path15667","color":"rgb(0, 64, 128)"},{"pathId":"path15677","color":"rgb(0, 64, 128)"},{"pathId":"path4870","color":"rgb(0, 64, 128)"},{"pathId":"path15709","color":"rgb(0, 64, 128)"},{"pathId":"path15694","color":"rgb(0, 64, 128)"},{"pathId":"path15690","color":"rgb(0, 64, 128)"},{"pathId":"path15692","color":"rgb(0, 64, 128)"},{"pathId":"path15866","color":"rgb(0, 64, 128)"},{"pathId":"path15864","color":"rgb(0, 64, 128)"},{"pathId":"path15868","color":"rgb(0, 64, 128)"},{"pathId":"path15818","color":"rgb(0, 64, 128)"},{"pathId":"path15804","color":"rgb(0, 64, 128)"},{"pathId":"path15792","color":"rgb(0, 64, 128)"},{"pathId":"path15723","color":"rgb(0, 64, 128)"},{"pathId":"FR-U-1","color":"rgb(185, 185, 185)"}]');
+
+},{}]},["8HyUT"], null, "parcelRequire4556")
+
+//# sourceMappingURL=map-1619.a7046a25.js.map
