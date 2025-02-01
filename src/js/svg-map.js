@@ -146,7 +146,7 @@ const init = conf => {
   app.map.addEventListener('contextmenu', handleMapContextmenu)
   tools.menu.addEventListener('click', event => {
     const targetId = event.target.id
-    if (targetId === 'colorpicker') tools.colorPickMode.click()
+    if (targetId === 'colorpicker' && tools.colorPickMode.checked) tools.colorPickMode.click()
   })
   tools.colorPickMode.addEventListener('change', handleColorPickModeChange)
 
