@@ -80,6 +80,7 @@ const handleMapMousedown = event => {
   const currentCursor = app.map.style.cursor
   handleMapDrag = (() => {
     return (e) => {
+      if (e.movementY === 0 && e.movementX === 0) return
       app.canvas.style.pointerEvents = 'none'
       app.map.style.cursor = 'move'
       const x = position.x + (e.clientX - event.x)
