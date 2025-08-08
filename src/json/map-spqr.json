@@ -1013,7 +1013,7 @@
     },
     {
         "pathId": "CN-AH",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-XJ",
@@ -1061,15 +1061,15 @@
     },
     {
         "pathId": "CN-FJ-mainland",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-JX",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-HB",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-SN",
@@ -1077,11 +1077,11 @@
     },
     {
         "pathId": "CN-ZJ-mainland",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-SH-mainland",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-SH-chongming",
@@ -1089,7 +1089,7 @@
     },
     {
         "pathId": "CN-HA",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-SX",
@@ -1097,26 +1097,18 @@
     },
     {
         "pathId": "CN-JS-mainland",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-SD",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-HE-main",
-        "color": "rgb(149, 219, 4)"
+        "color": "#ffff00"
     },
     {
         "pathId": "CN-HE-exclave",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "CN-TJ",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "CN-BJ",
         "color": "rgb(149, 219, 4)"
     },
     {
@@ -1373,31 +1365,31 @@
     },
     {
         "pathId": "IN-TG",
-        "color": "rgb(149, 219, 4)"
+        "color": "#2d760a"
     },
     {
         "pathId": "IN-MH",
-        "color": "rgb(149, 219, 4)"
+        "color": "#13666c"
     },
     {
         "pathId": "IN-GJ",
-        "color": "rgb(149, 219, 4)"
+        "color": "#13666c"
     },
     {
         "pathId": "IN-MP",
-        "color": "rgb(149, 219, 4)"
+        "color": "#13666c"
     },
     {
         "pathId": "IN-CT",
-        "color": "rgb(149, 219, 4)"
+        "color": "#2d760a"
     },
     {
         "pathId": "IN-OR",
-        "color": "rgb(149, 219, 4)"
+        "color": "#2d760a"
     },
     {
         "pathId": "IN-JH",
-        "color": "rgb(149, 219, 4)"
+        "color": "#2d760a"
     },
     {
         "pathId": "IN-SK",
@@ -1409,7 +1401,7 @@
     },
     {
         "pathId": "IN-WB",
-        "color": "rgb(255, 255, 255)"
+        "color": "#3e6f11"
     },
     {
         "pathId": "IN-AS",
@@ -1436,24 +1428,20 @@
         "color": "rgb(255, 255, 255)"
     },
     {
-        "pathId": "IN-RJ",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
         "pathId": "IN-BR",
-        "color": "rgb(255, 255, 255)"
+        "color": "#3e6f11"
     },
     {
         "pathId": "IN-UT",
-        "color": "rgb(255, 255, 255)"
+        "color": "#0a761a"
     },
     {
         "pathId": "IN-HP",
-        "color": "rgb(255, 255, 255)"
+        "color": "#0a761a"
     },
     {
         "pathId": "IN-UP",
-        "color": "rgb(149, 219, 4)"
+        "color": "#13666c"
     },
     {
         "pathId": "IN-DL",
@@ -1461,11 +1449,11 @@
     },
     {
         "pathId": "IN-HR",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a761a"
     },
     {
         "pathId": "IN-PB",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a761a"
     },
     {
         "pathId": "IN-JK",
@@ -1536,22 +1524,6 @@
         "color": "rgb(149, 219, 4)"
     },
     {
-        "pathId": "path9640",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9635",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9630",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9560",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
         "pathId": "path9583",
         "color": "rgb(149, 219, 4)"
     },
@@ -1570,142 +1542,6 @@
     {
         "pathId": "path9581",
         "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path9886",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9901",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9906",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9916",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9891",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9896",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9762",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9780",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9772",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9785",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9880",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9875",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9870",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path9856",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9851",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9846",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9865",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9863",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9861",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9821",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9828",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9826",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9803",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9808",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9718",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9752",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9750",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9748",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9746",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9709",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path9833",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path4560",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path4562",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path4564",
-        "color": "rgb(128, 128, 0)"
     },
     {
         "pathId": "path10262",
@@ -1737,167 +1573,31 @@
     },
     {
         "pathId": "path10344",
-        "color": "rgb(149, 219, 4)"
+        "color": "#6b4014"
     },
     {
         "pathId": "path10349",
-        "color": "rgb(255, 255, 255)"
+        "color": "#157906"
     },
     {
         "pathId": "path10354",
-        "color": "rgb(255, 255, 255)"
+        "color": "#667a05"
     },
     {
         "pathId": "path10364",
-        "color": "rgb(255, 255, 255)"
+        "color": "#157906"
     },
     {
         "pathId": "path10374",
-        "color": "rgb(255, 255, 255)"
+        "color": "#157906"
     },
     {
         "pathId": "path10369",
-        "color": "rgb(255, 255, 255)"
+        "color": "#667a05"
     },
     {
         "pathId": "path10337",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10462",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10460",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10467",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10455",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10477",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10472",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10489",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10487",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10494",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10482",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10506",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10504",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10499",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10579",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10573",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10584",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10568",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10589",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10594",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10599",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10604",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10553",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10558",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10563",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10523",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10533",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10528",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10548",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10538",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10543",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10511",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10518",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10516",
-        "color": "rgb(255, 255, 255)"
-    },
-    {
-        "pathId": "path10448",
-        "color": "rgb(255, 255, 255)"
+        "color": "#667a05"
     },
     {
         "pathId": "path6191",
@@ -1913,27 +1613,27 @@
     },
     {
         "pathId": "path6205",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6211",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6217",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6237",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6231",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6225",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6293",
@@ -1941,19 +1641,15 @@
     },
     {
         "pathId": "path6319",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6312",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6347",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path6291",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6279",
@@ -1961,7 +1657,7 @@
     },
     {
         "pathId": "path6285",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6273",
@@ -1969,7 +1665,7 @@
     },
     {
         "pathId": "path6271",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6269",
@@ -1981,7 +1677,7 @@
     },
     {
         "pathId": "path6243",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6305",
@@ -1989,11 +1685,11 @@
     },
     {
         "pathId": "path6359",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path6373",
-        "color": "rgb(149, 219, 4)"
+        "color": "#0a7663"
     },
     {
         "pathId": "path23789",
@@ -2736,34 +2432,6 @@
         "color": "rgb(255, 255, 255)"
     },
     {
-        "pathId": "path33994",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path34015",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path34006",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path33990",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path34001",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path33999",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
-        "pathId": "path33944",
-        "color": "rgb(149, 219, 4)"
-    },
-    {
         "pathId": "path35480",
         "color": "rgb(149, 219, 4)"
     },
@@ -3125,90 +2793,6 @@
     },
     {
         "pathId": "path36636",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36838",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36836",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36799",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36843",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36826",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36805",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36823",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36790",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36802",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36831",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36783",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36986",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36996",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36991",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36984",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36967",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36979",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36977",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36972",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36946",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path36948",
         "color": "rgb(128, 128, 0)"
     },
     {
@@ -3809,166 +3393,6 @@
     },
     {
         "pathId": "path6577",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7605",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7612",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7646",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7641",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7657",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7655",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7653",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7651",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7617",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7624",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7629",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7636",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7634",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7622",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7610",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7600",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7591",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7593",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7806",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7804",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7801",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7799",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7797",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7794",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7825",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7823",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7821",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7819",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7815",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7813",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7900",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7850",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7848",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7845",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7883",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7843",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7867",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7841",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7811",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path7773",
         "color": "rgb(128, 128, 0)"
     },
     {
@@ -4684,78 +4108,6 @@
         "color": "rgb(128, 64, 64)"
     },
     {
-        "pathId": "path11627",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11588",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11590",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11467",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11544",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11513",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11515",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11472",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11412",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11410",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11408",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11422",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11403",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11444",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11442",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11437",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11477",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path11396",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
         "pathId": "path11908",
         "color": "rgb(128, 64, 64)"
     },
@@ -5013,23 +4365,23 @@
     },
     {
         "pathId": "path13102",
-        "color": "rgb(185, 185, 0)"
+        "color": "#241867"
     },
     {
         "pathId": "path13013",
-        "color": "rgb(185, 185, 0)"
+        "color": "#241867"
     },
     {
         "pathId": "path13079",
-        "color": "rgb(185, 185, 0)"
+        "color": "#241867"
     },
     {
         "pathId": "path13057",
-        "color": "rgb(185, 185, 0)"
+        "color": "#241867"
     },
     {
         "pathId": "path13059",
-        "color": "rgb(185, 185, 0)"
+        "color": "#241867"
     },
     {
         "pathId": "path13040",
@@ -5053,86 +4405,6 @@
     },
     {
         "pathId": "path12980",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13650",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13389",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13568",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13448",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13518",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13362",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13483",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13306",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13451",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13367",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13393",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13391",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13338",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13369",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13336",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13293",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13288",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13273",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13308",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path13313",
         "color": "rgb(185, 185, 0)"
     },
     {
@@ -8712,110 +7984,6 @@
         "color": "rgb(185, 185, 0)"
     },
     {
-        "pathId": "path9289",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9279",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9284",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9277",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9219",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9229",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9227",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9225",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9118",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9180",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9178",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9142",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9146",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9144",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8173",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9081",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9052",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9054",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9038",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8975",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8973",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8966",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8961",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8951",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8175",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9012",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
         "pathId": "path9179",
         "color": "rgb(185, 185, 0)"
     },
@@ -8869,11 +8037,11 @@
     },
     {
         "pathId": "path9083",
-        "color": "rgb(185, 185, 0)"
+        "color": "#1b6520"
     },
     {
         "pathId": "path9078",
-        "color": "rgb(185, 185, 0)"
+        "color": "#1b6520"
     },
     {
         "pathId": "path9072",
@@ -8890,442 +8058,6 @@
     {
         "pathId": "eh",
         "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "ma",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9656",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8872",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path22657",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path21869",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path15529",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path15525",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path14753",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9932",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9710",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path9706",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path9702",
-        "color": "rgb(185, 185, 0)"
-    },
-    {
-        "pathId": "path9773",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9771",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9726",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9728",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9684",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8724",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9646",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9553",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9614",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9612",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9556",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9585",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9546",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9497",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9526",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9524",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9522",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9500",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9502",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9510",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9508",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path8717",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10625",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10623",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10163",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10559",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10177",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10306",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10086",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10259",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10059",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10057",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10055",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9958",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10033",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9975",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9973",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9968",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9963",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9998",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10014",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9953",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10090",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10088",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10125",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10123",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10217",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10215",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path9946",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11068",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path12177",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11736",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path12082",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11140",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11990",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11657",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11901",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11817",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11815",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11066",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11734",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11655",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11659",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11064",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11584",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11058",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11517",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11060",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11441",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11455",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11326",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11381",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11379",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11324",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11228",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11275",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11103",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11226",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11182",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11180",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11062",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11138",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11056",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11100",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11054",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10946",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10927",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10904",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10884",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10894",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10889",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10879",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10925",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10919",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10989",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path11015",
-        "color": "rgb(128, 64, 64)"
-    },
-    {
-        "pathId": "path10872",
-        "color": "rgb(128, 64, 64)"
     },
     {
         "pathId": "path12949",
@@ -12245,11 +10977,11 @@
     },
     {
         "pathId": "GF-east",
-        "color": "rgb(128, 64, 64)"
+        "color": "#008000"
     },
     {
         "pathId": "GF-west",
-        "color": "rgb(128, 64, 64)"
+        "color": "#008000"
     },
     {
         "pathId": "FQ",
@@ -12828,34 +11560,6 @@
         "color": "rgb(128, 128, 0)"
     },
     {
-        "pathId": "path15866",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15864",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15868",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15818",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15804",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15792",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
-        "pathId": "path15723",
-        "color": "rgb(128, 128, 0)"
-    },
-    {
         "pathId": "path9729",
         "color": "rgb(160, 213, 2)"
     },
@@ -13030,5 +11734,1297 @@
     {
         "pathId": "FR-U-1",
         "color": "rgb(255, 255, 255)"
+    },
+    {
+        "pathId": "path11068",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path12177",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11736",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path12082",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11140",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11990",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11657",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11901",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11817",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11815",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11066",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11734",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11655",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11659",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11064",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11584",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11058",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11517",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11060",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11441",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11455",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11326",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11381",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11324",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11228",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11275",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11103",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11226",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11182",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11180",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11062",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11138",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11056",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11100",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11054",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10946",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10927",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10904",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10884",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10894",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10889",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10879",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10925",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10919",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10989",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path11015",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10872",
+        "color": "#804040"
+    },
+    {
+        "pathId": "ma",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9656",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8872",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path22657",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path21869",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path15529",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path15525",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path14753",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9932",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9710",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9706",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9702",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9773",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9771",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9726",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9728",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9684",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8724",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9646",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9553",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9614",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9612",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9556",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9585",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9546",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9497",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9526",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9524",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9522",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9500",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9502",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9510",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9508",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path8717",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9289",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9279",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9284",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9277",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9219",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9229",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9227",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9225",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9180",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9178",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9142",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9146",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9144",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path8173",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9081",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9052",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9054",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9038",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8975",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8973",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path8966",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path8961",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8951",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path8175",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9012",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10625",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10623",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10163",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10559",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10177",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10306",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10086",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10259",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path10059",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10057",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10055",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path9958",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10033",
+        "color": "#643e1c"
+    },
+    {
+        "pathId": "path9975",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path9973",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path9968",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path9963",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path9998",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9953",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10090",
+        "color": "#b9b900"
+    },
+    {
+        "pathId": "path10088",
+        "color": "#1b6520"
+    },
+    {
+        "pathId": "path10125",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10123",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10217",
+        "color": "#44156a"
+    },
+    {
+        "pathId": "path10215",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9946",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path10014",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path11379",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path9118",
+        "color": "#804040"
+    },
+    {
+        "pathId": "path7605",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7612",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7646",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7641",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7657",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7655",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7653",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7651",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7617",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7624",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7629",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7636",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7634",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7622",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7610",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7600",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7591",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7593",
+        "color": "#63750b"
+    },
+    {
+        "pathId": "path7806",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7804",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7801",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7799",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7797",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7794",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7825",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7823",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7821",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7819",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7815",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7813",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7900",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7850",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7848",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7845",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7883",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7843",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7867",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7841",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7811",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path7773",
+        "color": "#164869"
+    },
+    {
+        "pathId": "path9886",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9901",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9906",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9916",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9891",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9896",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9762",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9780",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9772",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9785",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9880",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9875",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9870",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9856",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9851",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9846",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9865",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9863",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9861",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9821",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9828",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9826",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9803",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9808",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9718",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9752",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9750",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9748",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9746",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9709",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path9833",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path4560",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path4562",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path4564",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11627",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11588",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11590",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11467",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11544",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11513",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11515",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11472",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11412",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11410",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11408",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11422",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11403",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11444",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11442",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11437",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11477",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path11396",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36986",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36996",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36991",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36984",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36967",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36979",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36977",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36972",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36946",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36948",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15866",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15864",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15868",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15818",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15804",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15792",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path15723",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36838",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36836",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36799",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36843",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36826",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36805",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36823",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36790",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36802",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36831",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path36783",
+        "color": "#73680d"
+    },
+    {
+        "pathId": "path13650",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13389",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13568",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13448",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13518",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13362",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13483",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13306",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13451",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13367",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13393",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13391",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13338",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13369",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13336",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13293",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13288",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13273",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13308",
+        "color": "#457010"
+    },
+    {
+        "pathId": "path13313",
+        "color": "#457010"
+    },
+    {
+        "pathId": "IN-RJ",
+        "color": "#13666c"
+    },
+    {
+        "pathId": "path9640",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path9635",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path9630",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path9560",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10462",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10460",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10467",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10455",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10477",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10472",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10489",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10487",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10494",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10482",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10506",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10504",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10499",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10579",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10573",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10584",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10568",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10589",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10594",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10599",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10604",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10553",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10558",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10563",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10523",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10533",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10528",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10548",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10538",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10543",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10511",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10518",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10516",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path10448",
+        "color": "#667a05"
+    },
+    {
+        "pathId": "path33994",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path34015",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path34006",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path33990",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path34001",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path33999",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path33944",
+        "color": "#3e6f11"
+    },
+    {
+        "pathId": "path6291",
+        "color": "#0a7663"
+    },
+    {
+        "pathId": "CN-BJ",
+        "color": "#ffff00"
     }
 ]
