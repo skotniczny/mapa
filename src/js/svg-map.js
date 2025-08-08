@@ -208,10 +208,25 @@ const colorMap = () => {
 
 const moveMap = (direction) => {
   const position = svgPositionGet(app.canvas)
-  if (direction === 'right') { svgPositionSet(app.canvas, { x: position.x - 50, y: position.y }) }
-  if (direction === 'left') { svgPositionSet(app.canvas, { x: position.x + 50, y: position.y }) }
-  if (direction === 'up') { svgPositionSet(app.canvas, { x: position.x, y: position.y + 50 }) }
-  if (direction === 'down') { svgPositionSet(app.canvas, { x: position.x, y: position.y - 50 }) }
+  const offset = 50
+  const pos = { x: position.x, y: position.y }
+  switch (direction) {
+    case 'right':
+      pos.x -= offset
+      break
+    case 'left':
+      pos.x += offset
+      break
+    case 'up':
+      pos.y += offset
+      break
+    case 'down':
+      pos.y -= offset
+      break
+    default:
+      break
+  }
+  svgPositionSet(app.canvas, pos)
 }
 
 const setMap = (data) => {
