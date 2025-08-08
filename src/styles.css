@@ -84,11 +84,13 @@ svg {
   left: 16px;
   z-index: 1;
   margin: 0;
-  padding: 0;
+  padding: 0.5rem;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
 }
 
 .modal {
@@ -175,6 +177,10 @@ svg {
   line-height: 1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 -1px 0px rgba(0, 0, 0, 0.02);
   cursor: default;
+}
+
+.picked:empty {
+  display: none;
 }
 
 .hide {
