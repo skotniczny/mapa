@@ -13,7 +13,7 @@ const pickFlag = event => {
   }
 }
 
-const sortedFlags = FLAGS.sort((a, b) => a.name.localeCompare(b.name))
+const sortedFlags = [...FLAGS].sort((a, b) => a.name.localeCompare(b.name))
 
 const modalContent = () => {
   const elements = []
