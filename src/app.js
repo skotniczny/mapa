@@ -13,7 +13,7 @@ svgMap.init({
 modalSearch.create(document.querySelector('.modal'))
 
 const handleKeyboard = event => {
-  if (event.target.tagName.toLowerCase() !== 'input') {
+  if (!event.target.matches('input')) {
     const key = event.key.toLowerCase()
     if (key === 'arrowright' || key === 'd') { svgMap.moveMap('right') }
     if (key === 'arrowleft' || key === 'a') { svgMap.moveMap('left') }
