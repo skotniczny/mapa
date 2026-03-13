@@ -23,34 +23,21 @@ const handleKeyboard = event => {
   }
 }
 
-const handlePresetChange = async event => {
-  let data = []
-  if (event.target.value === '') return
-  if (event.target.value === '0') {
-    data = await import('./json/map-zones.json')
-  }
-  if (event.target.value === '1') {
-    data = await import('./json/map-spqr.json')
-  }
-  if (event.target.value === '2') {
-    data = await import('./json/map-1444.json')
-  }
-  if (event.target.value === '3') {
-    data = await import('./json/map-1619.json')
-  }
-  if (event.target.value === '4') {
-    data = await import('./json/map-1806.json')
-  }
-  if (event.target.value === '5') {
-    data = await import('./json/map-1912.json')
-  }
-  if (event.target.value === '6') {
-    data = await import('./json/map-1939.json')
-  }
-  if (event.target.value === '7') {
-    data = await import('./json/map-2024.json')
-  }
+const dataLoaders = {
+  0: () => import('./json/map-zones.json'),
+  1: () => import('./json/map-spqr.json'),
+  2: () => import('./json/map-1444.json'),
+  3: () => import('./json/map-1619.json'),
+  4: () => import('./json/map-1806.json'),
+  5: () => import('./json/map-1912.json'),
+  6: () => import('./json/map-1939.json'),
+  7: () => import('./json/map-2024.json')
+}
 
+const handlePresetChange = async event => {
+  const loader = dataLoaders[event.target.value]
+  if (!loader) return
+  const data = await loader()
   document.activeElement.blur()
   svgMap.setMap(data)
 }
