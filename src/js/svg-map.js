@@ -79,6 +79,7 @@ const handleMapMousedown = event => {
   if (event.button !== 0) return
   const position = svgPositionGet(app.canvas)
   const currentCursor = app.map.style.cursor
+  app.map.style.cursor = 'move'
   handleMapDrag = (e) => {
     if (e.movementY === 0 && e.movementX === 0) return
     app.canvas.style.pointerEvents = 'none'
