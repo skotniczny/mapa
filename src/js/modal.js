@@ -9,6 +9,9 @@ function createModal (el, callback) {
   modalBody.appendChild(modalContent)
   const closeBtn = el.querySelector('.modal_close')
   closeBtn.addEventListener('click', () => closeModal(el))
+  el.addEventListener('click', (e) => {
+    if (e.target === el) closeModal(el)
+  })
 }
 
 function createModalWithSearch (el, callback, searchCallback) {
@@ -19,14 +22,20 @@ function createModalWithSearch (el, callback, searchCallback) {
   searchInput.classList.add('control', 'control-field', 'control-search')
   searchInput.addEventListener('input', searchCallback)
   el.querySelector('.modal_content').insertBefore(searchInput, el.querySelector('.modal_items'))
+  el.addEventListener('close', () => resetSearch(searchInput))
 }
 
 function openModal (el) {
-  el.classList.add('modal-active')
+  el.showModal()
 }
 
 function closeModal (el) {
-  el.classList.remove('modal-active')
+  el.close()
+}
+
+function resetSearch (searchInput) {
+  searchInput.value = ''
+  searchInput.dispatchEvent(new Event('input'))
 }
 
 export { createModal, createModalWithSearch, openModal, closeModal }

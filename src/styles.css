@@ -94,28 +94,26 @@ svg {
 }
 
 .modal {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
+  border: none;
+  width: 100%;
+  max-width: 90%;
+  height: 80vh;
+  margin: auto;
+  border-radius: 15px;
+  padding: 0;
+}
+
+.modal::backdrop {
   background: rgba(75, 75, 255, 0.5);
 }
 
-.modal-active {
-  display: flex;
-}
-
 .modal_body {
-  position: relative;
   background: #fff;
-  border-radius: 15px;
-  flex-grow: 1;
-  max-width: 90%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  text-align: center;
 }
 
 .modal_close {
@@ -129,11 +127,6 @@ svg {
 
 .modal_content {
   padding: 8px;
-  overflow: auto;
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  height: 80vh;
-  text-align: center;
 }
 
 .modal_items{
