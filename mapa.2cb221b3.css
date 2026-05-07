@@ -92,25 +92,26 @@ svg {
 }
 
 .modal {
-  z-index: 1;
-  background: #4b4bff80;
-  justify-content: center;
-  align-items: center;
-  display: none;
-  position: fixed;
-  inset: 0;
+  border: none;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 90%;
+  height: 80vh;
+  margin: auto;
+  padding: 0;
 }
 
-.modal-active {
-  display: flex;
+.modal::backdrop {
+  background: #4b4bff80;
 }
 
 .modal_body {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  text-align: center;
   background: #fff;
-  border-radius: 15px;
-  flex-grow: 1;
-  max-width: 90%;
-  position: relative;
+  height: 100%;
+  overflow: auto;
 }
 
 .modal_close {
@@ -123,12 +124,7 @@ svg {
 }
 
 .modal_content {
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  text-align: center;
-  height: 80vh;
   padding: 8px;
-  overflow: auto;
 }
 
 .modal_items {
@@ -177,4 +173,4 @@ svg {
 .picked:empty, .hide {
   display: none;
 }
-/*# sourceMappingURL=mapa.07b03d9e.css.map */
+/*# sourceMappingURL=mapa.2cb221b3.css.map */

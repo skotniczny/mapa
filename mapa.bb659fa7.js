@@ -83,6 +83,9 @@ function $e58a49189aca5ad3$export$b63bc83cbdd7b6d5(el, callback) {
     modalBody.appendChild(modalContent);
     const closeBtn = el.querySelector('.modal_close');
     closeBtn.addEventListener('click', ()=>$e58a49189aca5ad3$export$3f6fecd573f3fa48(el));
+    el.addEventListener('click', (e)=>{
+        if (e.target === el) $e58a49189aca5ad3$export$3f6fecd573f3fa48(el);
+    });
 }
 function $e58a49189aca5ad3$export$a860ff97c8a19f69(el, callback, searchCallback) {
     $e58a49189aca5ad3$export$b63bc83cbdd7b6d5(el, callback);
@@ -92,12 +95,17 @@ function $e58a49189aca5ad3$export$a860ff97c8a19f69(el, callback, searchCallback)
     searchInput.classList.add('control', 'control-field', 'control-search');
     searchInput.addEventListener('input', searchCallback);
     el.querySelector('.modal_content').insertBefore(searchInput, el.querySelector('.modal_items'));
+    el.addEventListener('close', ()=>$e58a49189aca5ad3$var$resetSearch(searchInput));
 }
 function $e58a49189aca5ad3$export$a7f6cffb6b8ba11c(el) {
-    el.classList.add('modal-active');
+    el.showModal();
 }
 function $e58a49189aca5ad3$export$3f6fecd573f3fa48(el) {
-    el.classList.remove('modal-active');
+    el.close();
+}
+function $e58a49189aca5ad3$var$resetSearch(searchInput) {
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
 }
 
 
@@ -1405,7 +1413,9 @@ const $c94cd653c1ae6b76$var$pickFlag = (event)=>{
         (0, $e58a49189aca5ad3$export$3f6fecd573f3fa48)($c94cd653c1ae6b76$var$modal);
     }
 };
-const $c94cd653c1ae6b76$var$sortedFlags = (0, $2b64515903e36a6a$export$fe5ecf0dd837dea2).sort((a, b)=>a.name.localeCompare(b.name));
+const $c94cd653c1ae6b76$var$sortedFlags = [
+    ...(0, $2b64515903e36a6a$export$fe5ecf0dd837dea2)
+].sort((a, b)=>a.name.localeCompare(b.name));
 const $c94cd653c1ae6b76$var$modalContent = ()=>{
     const elements = [];
     for (const item of $c94cd653c1ae6b76$var$sortedFlags){
@@ -1517,7 +1527,9 @@ function $7b5873fbd7a9e904$export$751816bfcb437aef(state) {
 
 class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
     #state = {};
-    #prevState = {};
+    #maxSnapshotHistory = 25;
+    #redoStack = [];
+    #undoStack = [];
     #localStorageKeyName;
     constructor(localStorageKeyName){
         this.#localStorageKeyName = localStorageKeyName;
@@ -1525,33 +1537,55 @@ class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
     get keys() {
         return Object.keys(this.#state);
     }
+    get canUndo() {
+        return this.#undoStack.length > 0;
+    }
+    get canRedo() {
+        return this.#redoStack.length > 0;
+    }
     get(id) {
         return this.#state[id];
     }
     set(items) {
         if (items.length <= 0) return;
-        this.#prevState = Object.assign({}, this.#state);
+        this.#saveSnapshot();
         for (const element of items)this.#state[element.pathId] = element.color;
     }
     remove(items) {
         if (items.length <= 0) return;
-        this.#prevState = Object.assign({}, this.#state);
+        this.#saveSnapshot();
         for (const id of items)delete this.#state[id];
     }
     reset() {
-        this.#prevState = this.#state;
+        this.#saveSnapshot();
         this.#state = {};
     }
     undo() {
-        const temp = this.#state;
-        this.#state = this.#prevState;
-        this.#prevState = temp;
+        if (this.#undoStack.length === 0) return;
+        this.#redoStack.push({
+            ...this.#state
+        });
+        this.#state = this.#undoStack.pop();
+    }
+    redo() {
+        if (this.#redoStack.length === 0) return;
+        this.#undoStack.push({
+            ...this.#state
+        });
+        this.#state = this.#redoStack.pop();
     }
     load() {
         this.#state = JSON.parse(window.localStorage.getItem(this.#localStorageKeyName)) || {};
     }
     save() {
         window.localStorage.setItem(this.#localStorageKeyName, JSON.stringify(this.#state));
+    }
+    #saveSnapshot() {
+        this.#undoStack.push({
+            ...this.#state
+        });
+        if (this.#undoStack.length > this.#maxSnapshotHistory) this.#undoStack.shift();
+        this.#redoStack.length = 0;
     }
 }
 
@@ -1633,10 +1667,11 @@ const $23483fd903922e0d$var$handleMapClick = (event)=>{
     $23483fd903922e0d$var$app.mapState.save();
 };
 let $23483fd903922e0d$var$handleMapDrag;
+let $23483fd903922e0d$var$handleMouseUp;
 const $23483fd903922e0d$var$endMove = (event, cursor)=>{
     if (event.button !== 0) return;
     window.removeEventListener('mousemove', $23483fd903922e0d$var$handleMapDrag);
-    window.removeEventListener('mouseup', $23483fd903922e0d$var$endMove);
+    window.removeEventListener('mouseup', $23483fd903922e0d$var$handleMouseUp);
     $23483fd903922e0d$var$app.canvas.style.pointerEvents = '';
     $23483fd903922e0d$var$app.map.style.cursor = cursor;
 };
@@ -1644,21 +1679,21 @@ const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
     if (event.button !== 0) return;
     const position = (0, $696041bd1b84be8f$export$31d524b4cdd8591b)($23483fd903922e0d$var$app.canvas);
     const currentCursor = $23483fd903922e0d$var$app.map.style.cursor;
-    $23483fd903922e0d$var$handleMapDrag = (()=>{
-        return (e)=>{
-            if (e.movementY === 0 && e.movementX === 0) return;
-            $23483fd903922e0d$var$app.canvas.style.pointerEvents = 'none';
-            $23483fd903922e0d$var$app.map.style.cursor = 'move';
-            const x = position.x + (e.clientX - event.x);
-            const y = position.y + (e.clientY - event.y);
-            (0, $696041bd1b84be8f$export$5506cdffa4707d37)($23483fd903922e0d$var$app.canvas, {
-                x: x,
-                y: y
-            });
-        };
-    })();
+    $23483fd903922e0d$var$app.map.style.cursor = 'move';
+    $23483fd903922e0d$var$handleMapDrag = (e)=>{
+        if (e.movementY === 0 && e.movementX === 0) return;
+        $23483fd903922e0d$var$app.canvas.style.pointerEvents = 'none';
+        $23483fd903922e0d$var$app.map.style.cursor = 'move';
+        const x = position.x + (e.clientX - event.x);
+        const y = position.y + (e.clientY - event.y);
+        (0, $696041bd1b84be8f$export$5506cdffa4707d37)($23483fd903922e0d$var$app.canvas, {
+            x: x,
+            y: y
+        });
+    };
+    $23483fd903922e0d$var$handleMouseUp = (event)=>$23483fd903922e0d$var$endMove(event, currentCursor);
     window.addEventListener('mousemove', $23483fd903922e0d$var$handleMapDrag);
-    window.addEventListener('mouseup', (event)=>$23483fd903922e0d$var$endMove(event, currentCursor));
+    window.addEventListener('mouseup', $23483fd903922e0d$var$handleMouseUp);
 };
 const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
     event.preventDefault();
@@ -1800,9 +1835,12 @@ const $23483fd903922e0d$var$setMap = (data)=>{
     (0, $7b5873fbd7a9e904$export$66eec673fb17698c)($23483fd903922e0d$var$app.mapState);
     $23483fd903922e0d$var$app.mapState.save();
 };
-const $23483fd903922e0d$var$undoRecent = ()=>{
+const $23483fd903922e0d$var$stepHistory = (direction)=>{
+    if (direction === 'prev' && !$23483fd903922e0d$var$app.mapState.canUndo) return;
+    if (direction === 'next' && !$23483fd903922e0d$var$app.mapState.canRedo) return;
     (0, $7b5873fbd7a9e904$export$751816bfcb437aef)($23483fd903922e0d$var$app.mapState);
-    $23483fd903922e0d$var$app.mapState.undo();
+    if (direction === 'prev') $23483fd903922e0d$var$app.mapState.undo();
+    if (direction === 'next') $23483fd903922e0d$var$app.mapState.redo();
     (0, $7b5873fbd7a9e904$export$66eec673fb17698c)($23483fd903922e0d$var$app.mapState);
     $23483fd903922e0d$var$app.mapState.save();
 };
@@ -1814,7 +1852,7 @@ const $23483fd903922e0d$var$svgMap = {
     colorMap: $23483fd903922e0d$var$colorMap,
     moveMap: $23483fd903922e0d$var$moveMap,
     setMap: $23483fd903922e0d$var$setMap,
-    undoRecent: $23483fd903922e0d$var$undoRecent
+    stepHistory: $23483fd903922e0d$var$stepHistory
 };
 var $23483fd903922e0d$export$2e2bcd8739ae039 = $23483fd903922e0d$var$svgMap;
 
@@ -1829,13 +1867,14 @@ const $56a0b18e519895ee$var$presets = document.querySelector('#presets');
 });
 (0, $c94cd653c1ae6b76$export$2e2bcd8739ae039).create(document.querySelector('.modal'));
 const $56a0b18e519895ee$var$handleKeyboard = (event)=>{
-    if (event.target.tagName.toLowerCase() !== 'input') {
+    if (!event.target.matches('input')) {
         const key = event.key.toLowerCase();
         if (key === 'arrowright' || key === 'd') (0, $23483fd903922e0d$export$2e2bcd8739ae039).moveMap('right');
         if (key === 'arrowleft' || key === 'a') (0, $23483fd903922e0d$export$2e2bcd8739ae039).moveMap('left');
         if (key === 'arrowup' || key === 'w') (0, $23483fd903922e0d$export$2e2bcd8739ae039).moveMap('up');
         if (key === 'arrowdown' || key === 's') (0, $23483fd903922e0d$export$2e2bcd8739ae039).moveMap('down');
-        if (key === 'z' && event.ctrlKey) (0, $23483fd903922e0d$export$2e2bcd8739ae039).undoRecent();
+        if (key === 'z' && event.ctrlKey) (0, $23483fd903922e0d$export$2e2bcd8739ae039).stepHistory('prev');
+        if (key === 'y' && event.ctrlKey) (0, $23483fd903922e0d$export$2e2bcd8739ae039).stepHistory('next');
     }
 };
 
@@ -1846,17 +1885,20 @@ const $56a0b18e519895ee$var$handleKeyboard = (event)=>{
 
 
 
+const $56a0b18e519895ee$var$dataLoaders = {
+    0: ()=>(parcelRequire("9SVRk")),
+    1: ()=>(parcelRequire("5za13")),
+    2: ()=>(parcelRequire("8ZbcJ")),
+    3: ()=>(parcelRequire("gnBwW")),
+    4: ()=>(parcelRequire("cJcpM")),
+    5: ()=>(parcelRequire("fogC1")),
+    6: ()=>(parcelRequire("dvd5O")),
+    7: ()=>(parcelRequire("dtF9z"))
+};
 const $56a0b18e519895ee$var$handlePresetChange = async (event)=>{
-    let data = [];
-    if (event.target.value === '') return;
-    if (event.target.value === '0') data = await (parcelRequire("9SVRk"));
-    if (event.target.value === '1') data = await (parcelRequire("5za13"));
-    if (event.target.value === '2') data = await (parcelRequire("8ZbcJ"));
-    if (event.target.value === '3') data = await (parcelRequire("gnBwW"));
-    if (event.target.value === '4') data = await (parcelRequire("cJcpM"));
-    if (event.target.value === '5') data = await (parcelRequire("fogC1"));
-    if (event.target.value === '6') data = await (parcelRequire("dvd5O"));
-    if (event.target.value === '7') data = await (parcelRequire("dtF9z"));
+    const loader = $56a0b18e519895ee$var$dataLoaders[event.target.value];
+    if (!loader) return;
+    const data = await loader();
     document.activeElement.blur();
     (0, $23483fd903922e0d$export$2e2bcd8739ae039).setMap(data);
 };
@@ -1885,4 +1927,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.9585ed89.js.map
+//# sourceMappingURL=mapa.bb659fa7.js.map
