@@ -19,7 +19,8 @@ const handleKeyboard = event => {
     if (key === 'arrowleft' || key === 'a') { svgMap.moveMap('left') }
     if (key === 'arrowup' || key === 'w') { svgMap.moveMap('up') }
     if (key === 'arrowdown' || key === 's') { svgMap.moveMap('down') }
-    if (key === 'z' && event.ctrlKey) { svgMap.undoRecent() }
+    if (key === 'z' && event.ctrlKey) { svgMap.stepHistory('prev') }
+    if (key === 'y' && event.ctrlKey) { svgMap.stepHistory('next') }
   }
 }
 

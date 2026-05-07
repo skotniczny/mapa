@@ -237,9 +237,12 @@ const setMap = (data) => {
   app.mapState.save()
 }
 
-const undoRecent = () => {
+const stepHistory = (direction) => {
+  if (direction === 'prev' && !app.mapState.canUndo) return
+  if (direction === 'next' && !app.mapState.canRedo) return
   clearElements(app.mapState)
-  app.mapState.undo()
+  if (direction === 'prev') app.mapState.undo()
+  if (direction === 'next') app.mapState.redo()
   fillElements(app.mapState)
   app.mapState.save()
 }
@@ -252,7 +255,7 @@ const svgMap = {
   colorMap,
   moveMap,
   setMap,
-  undoRecent
+  stepHistory
 }
 
 export default svgMap
