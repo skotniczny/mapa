@@ -1,15 +1,12 @@
-function rgb2hex (c) {
-  return '#' + c.match(/\d+/g).map(x => (+x).toString(16).padStart(2, 0)).join('')
+/* global CSS */
+function rgb2hex (rgb) {
+  return '#' + rgb.match(/\d+/g).map(x => (+x).toString(16).padStart(2, '0')).join('')
 }
 
 function fillElements (state, fill = true) {
   for (const item of state.keys) {
-    try {
-      const el = document.querySelector(`#${item}`)
-      if (el) el.style.fill = fill ? state.get(item) : ''
-    } catch (e) {
-      console.error('Błąd:', e.message)
-    }
+    const el = document.querySelector(`#${CSS.escape(item)}`)
+    if (el) el.style.fill = fill ? state.get(item) : ''
   }
 }
 
