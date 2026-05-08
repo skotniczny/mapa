@@ -46,11 +46,10 @@ const handlePresetChange = async event => {
 const pickCustomFlag = event => {
   const file = event.target.files[0]
   const container = document.querySelector('#pickedFlag')
-  container.innerHTML = ''
   const img = document.createElement('img')
   img.classList.add('flag_file')
   img.src = URL.createObjectURL(file)
-  container.appendChild(img)
+  container.replaceChildren(img)
 }
 
 document.addEventListener('keydown', handleKeyboard)
