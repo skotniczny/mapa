@@ -193,7 +193,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDE6\uD83C\uDDFF",
         description: "Flaga Azerbejd\u017Canu",
-        name: "Azerbejd\u017Cann"
+        name: "Azerbejd\u017Can"
     },
     {
         emoji: "\uD83C\uDDE7\uD83C\uDDE6",
@@ -283,7 +283,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDE7\uD83C\uDDFB",
         description: 'Flaga Wyspy Bouveta',
-        name: 'Wyspy Bouveta'
+        name: 'Wyspa Bouveta'
     },
     {
         emoji: "\uD83C\uDDE7\uD83C\uDDFC",
@@ -853,7 +853,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDF2\uD83C\uDDED",
         description: 'Flaga Wysp Marshalla',
-        name: 'Wysp Marshalla'
+        name: 'Wyspy Marshalla'
     },
     {
         emoji: "\uD83C\uDDF2\uD83C\uDDF0",
@@ -943,7 +943,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDF3\uD83C\uDDE8",
         description: 'Flaga Nowej Kaledonii',
-        name: 'Nowej Kaledonia'
+        name: 'Nowa Kaledonia'
     },
     {
         emoji: "\uD83C\uDDF3\uD83C\uDDEA",
@@ -1018,7 +1018,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDF5\uD83C\uDDEC",
         description: 'Flaga Papui-Nowej Gwinei',
-        name: 'Papua-Nowea Gwinea'
+        name: 'Papua-Nowa Gwinea'
     },
     {
         emoji: "\uD83C\uDDF5\uD83C\uDDED",
@@ -1133,7 +1133,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDF8\uD83C\uDDED",
         description: "Flaga Wyspy \u015Awi\u0119tej Heleny",
-        name: "Wyspy \u015Awi\u0119tej Heleny"
+        name: "Wyspa \u015Awi\u0119tej Heleny"
     },
     {
         emoji: "\uD83C\uDDF8\uD83C\uDDEE",
@@ -1263,7 +1263,7 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
     {
         emoji: "\uD83C\uDDF9\uD83C\uDDF4",
         description: 'Flaga Tonga',
-        name: 'Tongo'
+        name: 'Tonga'
     },
     {
         emoji: "\uD83C\uDDF9\uD83C\uDDF7",
@@ -1405,11 +1405,11 @@ const $2b64515903e36a6a$export$fe5ecf0dd837dea2 = [
 
 let $c94cd653c1ae6b76$var$modal = null;
 const $c94cd653c1ae6b76$var$pickFlag = (event)=>{
-    const target = event.target;
-    if (target.className === 'flag') {
+    const flag = event.target.closest('.flag');
+    if (flag) {
         const picked = document.querySelector('#pickedFlag');
-        picked.textContent = event.target.firstChild.textContent;
-        picked.title = event.target.title;
+        picked.textContent = flag.firstChild.textContent;
+        picked.title = flag.title;
         (0, $e58a49189aca5ad3$export$3f6fecd573f3fa48)($c94cd653c1ae6b76$var$modal);
     }
 };
@@ -1440,8 +1440,8 @@ const $c94cd653c1ae6b76$var$handleSearch = (event)=>{
     const modalItems = $c94cd653c1ae6b76$var$modal.querySelectorAll('.modal_items .flag');
     modalItems.forEach((item)=>{
         const itemText = item.querySelector('.flag_description').textContent.toLowerCase();
-        if (itemText.includes(searchValue)) item.style.display = 'flex';
-        else item.style.display = 'none';
+        if (itemText.includes(searchValue)) item.classList.remove('hide');
+        else item.classList.add('hide');
     });
 };
 const $c94cd653c1ae6b76$var$create = (el)=>{
@@ -1509,15 +1509,13 @@ function $696041bd1b84be8f$var$ensureTransform(svgEl, transform, svg) {
 }
 
 
-function $7b5873fbd7a9e904$export$883528fb0afa7177(c) {
-    return '#' + c.match(/\d+/g).map((x)=>(+x).toString(16).padStart(2, 0)).join('');
+/* global CSS */ function $7b5873fbd7a9e904$export$883528fb0afa7177(rgb) {
+    return '#' + rgb.match(/\d+/g).map((x)=>(+x).toString(16).padStart(2, '0')).join('');
 }
 function $7b5873fbd7a9e904$export$66eec673fb17698c(state, fill = true) {
-    for (const item of state.keys)try {
-        const el = document.querySelector(`#${item}`);
+    for (const item of state.keys){
+        const el = document.querySelector(`#${CSS.escape(item)}`);
         if (el) el.style.fill = fill ? state.get(item) : '';
-    } catch (e) {
-        console.error("B\u0142\u0105d:", e.message);
     }
 }
 function $7b5873fbd7a9e904$export$751816bfcb437aef(state) {
@@ -1670,8 +1668,8 @@ let $23483fd903922e0d$var$handleMapDrag;
 let $23483fd903922e0d$var$handleMouseUp;
 const $23483fd903922e0d$var$endMove = (event, cursor)=>{
     if (event.button !== 0) return;
-    window.removeEventListener('mousemove', $23483fd903922e0d$var$handleMapDrag);
-    window.removeEventListener('mouseup', $23483fd903922e0d$var$handleMouseUp);
+    window.removeEventListener('pointermove', $23483fd903922e0d$var$handleMapDrag);
+    window.removeEventListener('pointerup', $23483fd903922e0d$var$handleMouseUp);
     $23483fd903922e0d$var$app.canvas.style.pointerEvents = '';
     $23483fd903922e0d$var$app.map.style.cursor = cursor;
 };
@@ -1692,8 +1690,8 @@ const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
         });
     };
     $23483fd903922e0d$var$handleMouseUp = (event)=>$23483fd903922e0d$var$endMove(event, currentCursor);
-    window.addEventListener('mousemove', $23483fd903922e0d$var$handleMapDrag);
-    window.addEventListener('mouseup', $23483fd903922e0d$var$handleMouseUp);
+    window.addEventListener('pointermove', $23483fd903922e0d$var$handleMapDrag);
+    window.addEventListener('pointerup', $23483fd903922e0d$var$handleMouseUp);
 };
 const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
     event.preventDefault();
@@ -1741,7 +1739,7 @@ const $23483fd903922e0d$var$init = (conf)=>{
     $23483fd903922e0d$var$config.scale = conf.scale || $23483fd903922e0d$var$config.scale;
     $23483fd903922e0d$var$config.palette = conf.palette || $23483fd903922e0d$var$config.palette;
     $23483fd903922e0d$var$app.map.addEventListener('wheel', $23483fd903922e0d$var$handleMouseWheel);
-    $23483fd903922e0d$var$app.map.addEventListener('mousedown', $23483fd903922e0d$var$handleMapMousedown);
+    $23483fd903922e0d$var$app.map.addEventListener('pointerdown', $23483fd903922e0d$var$handleMapMousedown);
     $23483fd903922e0d$var$app.map.addEventListener('click', $23483fd903922e0d$var$handleMapClick);
     $23483fd903922e0d$var$app.map.addEventListener('contextmenu', $23483fd903922e0d$var$handleMapContextmenu);
     $23483fd903922e0d$var$tools.menu.addEventListener('click', (event)=>{
@@ -1905,11 +1903,10 @@ const $56a0b18e519895ee$var$handlePresetChange = async (event)=>{
 const $56a0b18e519895ee$var$pickCustomFlag = (event)=>{
     const file = event.target.files[0];
     const container = document.querySelector('#pickedFlag');
-    container.innerHTML = '';
     const img = document.createElement('img');
     img.classList.add('flag_file');
     img.src = URL.createObjectURL(file);
-    container.appendChild(img);
+    container.replaceChildren(img);
 };
 document.addEventListener('keydown', $56a0b18e519895ee$var$handleKeyboard);
 $56a0b18e519895ee$var$filePicker.addEventListener('change', $56a0b18e519895ee$var$pickCustomFlag);
@@ -1927,4 +1924,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.bb659fa7.js.map
+//# sourceMappingURL=mapa.9f72ef38.js.map
