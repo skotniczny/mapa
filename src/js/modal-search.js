@@ -4,11 +4,11 @@ import { FLAGS } from './data.js'
 let modal = null
 
 const pickFlag = event => {
-  const target = event.target
-  if (target.className === 'flag') {
+  const flag = event.target.closest('.flag')
+  if (flag) {
     const picked = document.querySelector('#pickedFlag')
-    picked.textContent = event.target.firstChild.textContent
-    picked.title = event.target.title
+    picked.textContent = flag.firstChild.textContent
+    picked.title = flag.title
     closeModal(modal)
   }
 }
@@ -41,9 +41,9 @@ const handleSearch = event => {
   modalItems.forEach(item => {
     const itemText = item.querySelector('.flag_description').textContent.toLowerCase()
     if (itemText.includes(searchValue)) {
-      item.style.display = 'flex'
+      item.classList.remove('hide')
     } else {
-      item.style.display = 'none'
+      item.classList.add('hide')
     }
   })
 }

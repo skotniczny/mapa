@@ -145,7 +145,6 @@ svg {
 }
 
 .flag_emoji {
-  pointer-events: none;
   font-size: 56px;
   line-height: 1;
 }
@@ -156,7 +155,6 @@ svg {
 }
 
 .flag_description {
-  pointer-events: none;
   font-size: 10px;
   text-transform: uppercase;
   white-space: nowrap;
