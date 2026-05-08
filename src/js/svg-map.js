@@ -69,8 +69,8 @@ let handleMouseUp
 
 const endMove = (event, cursor) => {
   if (event.button !== 0) return
-  window.removeEventListener('mousemove', handleMapDrag)
-  window.removeEventListener('mouseup', handleMouseUp)
+  window.removeEventListener('pointermove', handleMapDrag)
+  window.removeEventListener('pointerup', handleMouseUp)
   app.canvas.style.pointerEvents = ''
   app.map.style.cursor = cursor
 }
@@ -90,8 +90,8 @@ const handleMapMousedown = event => {
   }
   handleMouseUp = event => endMove(event, currentCursor)
 
-  window.addEventListener('mousemove', handleMapDrag)
-  window.addEventListener('mouseup', handleMouseUp)
+  window.addEventListener('pointermove', handleMapDrag)
+  window.addEventListener('pointerup', handleMouseUp)
 }
 
 const handleMapContextmenu = event => {
@@ -143,7 +143,7 @@ const init = conf => {
   config.palette = conf.palette || config.palette
 
   app.map.addEventListener('wheel', handleMouseWheel)
-  app.map.addEventListener('mousedown', handleMapMousedown)
+  app.map.addEventListener('pointerdown', handleMapMousedown)
   app.map.addEventListener('click', handleMapClick)
   app.map.addEventListener('contextmenu', handleMapContextmenu)
   tools.menu.addEventListener('click', event => {
