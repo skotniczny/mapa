@@ -1664,24 +1664,15 @@ const $23483fd903922e0d$var$handleMapClick = (event)=>{
     }
     $23483fd903922e0d$var$app.mapState.save();
 };
-let $23483fd903922e0d$var$handleMapDrag;
-let $23483fd903922e0d$var$handleMouseUp;
-const $23483fd903922e0d$var$endMove = (event, cursor)=>{
-    if (event.button !== 0) return;
-    window.removeEventListener('pointermove', $23483fd903922e0d$var$handleMapDrag);
-    window.removeEventListener('pointerup', $23483fd903922e0d$var$handleMouseUp);
-    $23483fd903922e0d$var$app.canvas.style.pointerEvents = '';
-    $23483fd903922e0d$var$app.map.style.cursor = cursor;
-};
 const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
     if (event.button !== 0) return;
     const position = (0, $696041bd1b84be8f$export$31d524b4cdd8591b)($23483fd903922e0d$var$app.canvas);
     const currentCursor = $23483fd903922e0d$var$app.map.style.cursor;
     $23483fd903922e0d$var$app.map.style.cursor = 'move';
-    $23483fd903922e0d$var$handleMapDrag = (e)=>{
+    $23483fd903922e0d$var$app.map.setPointerCapture(event.pointerId);
+    const handleMapDrag = (e)=>{
         if (e.movementY === 0 && e.movementX === 0) return;
         $23483fd903922e0d$var$app.canvas.style.pointerEvents = 'none';
-        $23483fd903922e0d$var$app.map.style.cursor = 'move';
         const x = position.x + (e.clientX - event.x);
         const y = position.y + (e.clientY - event.y);
         (0, $696041bd1b84be8f$export$5506cdffa4707d37)($23483fd903922e0d$var$app.canvas, {
@@ -1689,9 +1680,15 @@ const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
             y: y
         });
     };
-    $23483fd903922e0d$var$handleMouseUp = (event)=>$23483fd903922e0d$var$endMove(event, currentCursor);
-    window.addEventListener('pointermove', $23483fd903922e0d$var$handleMapDrag);
-    window.addEventListener('pointerup', $23483fd903922e0d$var$handleMouseUp);
+    $23483fd903922e0d$var$app.map.addEventListener('pointermove', handleMapDrag);
+    $23483fd903922e0d$var$app.map.addEventListener('pointerup', (e)=>{
+        $23483fd903922e0d$var$app.map.releasePointerCapture(e.pointerId);
+        $23483fd903922e0d$var$app.map.removeEventListener('pointermove', handleMapDrag);
+        $23483fd903922e0d$var$app.canvas.style.pointerEvents = '';
+        $23483fd903922e0d$var$app.map.style.cursor = currentCursor;
+    }, {
+        once: true
+    });
 };
 const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
     event.preventDefault();
@@ -1924,4 +1921,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.9f72ef38.js.map
+//# sourceMappingURL=mapa.dc2d0e75.js.map
