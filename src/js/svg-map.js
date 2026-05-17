@@ -64,34 +64,26 @@ const handleMapClick = event => {
   app.mapState.save()
 }
 
-let handleMapDrag
-let handleMouseUp
-
-const endMove = (event, cursor) => {
-  if (event.button !== 0) return
-  window.removeEventListener('pointermove', handleMapDrag)
-  window.removeEventListener('pointerup', handleMouseUp)
-  app.canvas.style.pointerEvents = ''
-  app.map.style.cursor = cursor
-}
-
 const handleMapMousedown = event => {
   if (event.button !== 0) return
   const position = svgPositionGet(app.canvas)
   const currentCursor = app.map.style.cursor
   app.map.style.cursor = 'move'
-  handleMapDrag = (e) => {
+  app.map.setPointerCapture(event.pointerId)
+  const handleMapDrag = (e) => {
     if (e.movementY === 0 && e.movementX === 0) return
     app.canvas.style.pointerEvents = 'none'
-    app.map.style.cursor = 'move'
     const x = position.x + (e.clientX - event.x)
     const y = position.y + (e.clientY - event.y)
     svgPositionSet(app.canvas, { x, y })
   }
-  handleMouseUp = event => endMove(event, currentCursor)
-
-  window.addEventListener('pointermove', handleMapDrag)
-  window.addEventListener('pointerup', handleMouseUp)
+  app.map.addEventListener('pointermove', handleMapDrag)
+  app.map.addEventListener('pointerup', (e) => {
+    app.map.releasePointerCapture(e.pointerId)
+    app.map.removeEventListener('pointermove', handleMapDrag)
+    app.canvas.style.pointerEvents = ''
+    app.map.style.cursor = currentCursor
+  }, { once: true })
 }
 
 const handleMapContextmenu = event => {
