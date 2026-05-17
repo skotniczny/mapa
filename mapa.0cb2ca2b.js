@@ -1666,12 +1666,14 @@ const $23483fd903922e0d$var$handleMapClick = (event)=>{
 };
 const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
     if (event.button !== 0) return;
+    let moved = false;
     const position = (0, $696041bd1b84be8f$export$31d524b4cdd8591b)($23483fd903922e0d$var$app.canvas);
     const currentCursor = $23483fd903922e0d$var$app.map.style.cursor;
     $23483fd903922e0d$var$app.map.style.cursor = 'move';
     $23483fd903922e0d$var$app.map.setPointerCapture(event.pointerId);
     const handleMapDrag = (e)=>{
         if (e.movementY === 0 && e.movementX === 0) return;
+        moved = true;
         $23483fd903922e0d$var$app.canvas.style.pointerEvents = 'none';
         const x = position.x + (e.clientX - event.x);
         const y = position.y + (e.clientY - event.y);
@@ -1686,6 +1688,7 @@ const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
         $23483fd903922e0d$var$app.map.removeEventListener('pointermove', handleMapDrag);
         $23483fd903922e0d$var$app.canvas.style.pointerEvents = '';
         $23483fd903922e0d$var$app.map.style.cursor = currentCursor;
+        if (!moved) $23483fd903922e0d$var$handleMapClick(event);
     }, {
         once: true
     });
@@ -1737,7 +1740,6 @@ const $23483fd903922e0d$var$init = (conf)=>{
     $23483fd903922e0d$var$config.palette = conf.palette || $23483fd903922e0d$var$config.palette;
     $23483fd903922e0d$var$app.map.addEventListener('wheel', $23483fd903922e0d$var$handleMouseWheel);
     $23483fd903922e0d$var$app.map.addEventListener('pointerdown', $23483fd903922e0d$var$handleMapMousedown);
-    $23483fd903922e0d$var$app.map.addEventListener('click', $23483fd903922e0d$var$handleMapClick);
     $23483fd903922e0d$var$app.map.addEventListener('contextmenu', $23483fd903922e0d$var$handleMapContextmenu);
     $23483fd903922e0d$var$tools.menu.addEventListener('click', (event)=>{
         const targetId = event.target.id;
@@ -1921,4 +1923,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.dc2d0e75.js.map
+//# sourceMappingURL=mapa.0cb2ca2b.js.map
