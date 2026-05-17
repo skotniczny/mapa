@@ -66,12 +66,14 @@ const handleMapClick = event => {
 
 const handleMapMousedown = event => {
   if (event.button !== 0) return
+  let moved = false
   const position = svgPositionGet(app.canvas)
   const currentCursor = app.map.style.cursor
   app.map.style.cursor = 'move'
   app.map.setPointerCapture(event.pointerId)
   const handleMapDrag = (e) => {
     if (e.movementY === 0 && e.movementX === 0) return
+    moved = true
     app.canvas.style.pointerEvents = 'none'
     const x = position.x + (e.clientX - event.x)
     const y = position.y + (e.clientY - event.y)
@@ -83,6 +85,7 @@ const handleMapMousedown = event => {
     app.map.removeEventListener('pointermove', handleMapDrag)
     app.canvas.style.pointerEvents = ''
     app.map.style.cursor = currentCursor
+    if (!moved) handleMapClick(event)
   }, { once: true })
 }
 
@@ -136,7 +139,6 @@ const init = conf => {
 
   app.map.addEventListener('wheel', handleMouseWheel)
   app.map.addEventListener('pointerdown', handleMapMousedown)
-  app.map.addEventListener('click', handleMapClick)
   app.map.addEventListener('contextmenu', handleMapContextmenu)
   tools.menu.addEventListener('click', event => {
     const targetId = event.target.id
