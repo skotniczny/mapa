@@ -1672,14 +1672,14 @@ const $23483fd903922e0d$var$handleMapMousedown = (event)=>{
     $23483fd903922e0d$var$app.map.style.cursor = 'move';
     $23483fd903922e0d$var$app.map.setPointerCapture(event.pointerId);
     const handleMapDrag = (e)=>{
-        if (e.movementY === 0 && e.movementX === 0) return;
+        const dx = e.clientX - event.clientX;
+        const dy = e.clientY - event.clientY;
+        if (!moved && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
         moved = true;
         $23483fd903922e0d$var$app.canvas.style.pointerEvents = 'none';
-        const x = position.x + (e.clientX - event.x);
-        const y = position.y + (e.clientY - event.y);
         (0, $696041bd1b84be8f$export$5506cdffa4707d37)($23483fd903922e0d$var$app.canvas, {
-            x: x,
-            y: y
+            x: position.x + dx,
+            y: position.y + dy
         });
     };
     $23483fd903922e0d$var$app.map.addEventListener('pointermove', handleMapDrag);
@@ -1923,4 +1923,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.0cb2ca2b.js.map
+//# sourceMappingURL=mapa.f887449b.js.map
