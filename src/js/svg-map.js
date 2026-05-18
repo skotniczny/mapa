@@ -72,12 +72,12 @@ const handleMapMousedown = event => {
   app.map.style.cursor = 'move'
   app.map.setPointerCapture(event.pointerId)
   const handleMapDrag = (e) => {
-    if (e.movementY === 0 && e.movementX === 0) return
+    const dx = e.clientX - event.clientX
+    const dy = e.clientY - event.clientY
+    if (!moved && (Math.abs(dx) < 3 && Math.abs(dy) < 3)) return
     moved = true
     app.canvas.style.pointerEvents = 'none'
-    const x = position.x + (e.clientX - event.x)
-    const y = position.y + (e.clientY - event.y)
-    svgPositionSet(app.canvas, { x, y })
+    svgPositionSet(app.canvas, { x: position.x + dx, y: position.y + dy })
   }
   app.map.addEventListener('pointermove', handleMapDrag)
   app.map.addEventListener('pointerup', (e) => {
