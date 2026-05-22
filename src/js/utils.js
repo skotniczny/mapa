@@ -1,6 +1,8 @@
 /* global CSS */
 function rgb2hex (rgb) {
-  return '#' + rgb.match(/\d+/g).map(x => (+x).toString(16).padStart(2, '0')).join('')
+  const match = rgb?.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\)/)
+  if (!match) return
+  return '#' + match.slice(1).map(x => (Number(x)).toString(16).padStart(2, '0')).join('')
 }
 
 function fillElements (state, fill = true) {
