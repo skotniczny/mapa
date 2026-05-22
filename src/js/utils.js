@@ -5,6 +5,7 @@ function rgb2hex (rgb) {
 
 function fillElements (state, fill = true) {
   for (const item of state.keys) {
+    if (!item) continue
     const el = document.querySelector(`#${CSS.escape(item)}`)
     if (el) el.style.fill = fill ? state.get(item) : ''
   }
