@@ -5,8 +5,6 @@ import { MapState } from './map-state.js'
 const app = {
   map: null,
   canvas: null,
-  colorPicker: null,
-  colorPickMode: null,
   mapState: null
 }
 
