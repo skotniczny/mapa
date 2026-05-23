@@ -37,6 +37,10 @@ svg {
   border-radius: 1rem;
 }
 
+.control[type="checkbox"]:checked + .control-btn {
+  box-shadow: inset 0 2px 4px #0003;
+}
+
 .control-btn:hover, .control[type="checkbox"]:checked + .control-btn {
   background-color: #f9fafb;
 }
@@ -172,4 +176,4 @@ svg {
 .picked:empty, .hide {
   display: none;
 }
-/*# sourceMappingURL=mapa.ca1e7539.css.map */
+/*# sourceMappingURL=mapa.f58eacaf.css.map */

@@ -1509,18 +1509,74 @@ function $696041bd1b84be8f$var$ensureTransform(svgEl, transform, svg) {
 }
 
 
-/* global CSS */ function $7b5873fbd7a9e904$export$883528fb0afa7177(rgb) {
-    return '#' + rgb.match(/\d+/g).map((x)=>(+x).toString(16).padStart(2, '0')).join('');
+/* global CSS */ 
+function $09671b11e5fd9b2b$export$2748120a496adc8e(el) {
+    if (el.dataset.stripeFor) return document.getElementById(el.dataset.stripeFor);
+    return el;
+}
+function $09671b11e5fd9b2b$export$f70dd08bad809824(el, color) {
+    const original = $09671b11e5fd9b2b$export$2748120a496adc8e(el);
+    const existing = original.nextElementSibling;
+    if (existing && existing.dataset.stripeFor === original.id) existing.remove();
+    if (original.style.fill && (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(original.style.fill) === color) return;
+    const patternId = $09671b11e5fd9b2b$var$getOrCreatePattern(color);
+    const clone = original.cloneNode(false);
+    clone.removeAttribute('id');
+    clone.dataset.stripeFor = original.id;
+    clone.dataset.stripeColor = color;
+    clone.setAttribute('style', `fill: url(#${patternId})`);
+    original.insertAdjacentElement('afterend', clone);
+}
+function $09671b11e5fd9b2b$var$getOrCreatePattern(color) {
+    const patternId = `stripes_${color.replace('#', '')}`;
+    if (document.getElementById(patternId)) return patternId;
+    const defs = document.getElementById('defs4915');
+    const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+    pattern.setAttribute('id', patternId);
+    pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+    pattern.setAttribute('width', '20');
+    pattern.setAttribute('height', '20');
+    pattern.setAttribute('patternTransform', 'rotate(45)');
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', '0');
+    line.setAttribute('y1', '0');
+    line.setAttribute('x2', '0');
+    line.setAttribute('y2', '20');
+    line.setAttribute('style', `stroke: ${color}; stroke-width: 20px;`);
+    pattern.appendChild(line);
+    defs.appendChild(pattern);
+    return patternId;
+}
+
+
+function $7b5873fbd7a9e904$export$883528fb0afa7177(rgb) {
+    const match = rgb?.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\)/);
+    if (!match) return;
+    return '#' + match.slice(1).map((x)=>Number(x).toString(16).padStart(2, '0')).join('');
 }
 function $7b5873fbd7a9e904$export$66eec673fb17698c(state, fill = true) {
     for (const item of state.keys){
+        if (!item) continue;
         const el = document.querySelector(`#${CSS.escape(item)}`);
-        if (el) el.style.fill = fill ? state.get(item) : '';
+        if (!el) continue;
+        const value = state.get(item);
+        const [color, stripeColor] = Array.isArray(value) ? value : [
+            value,
+            null
+        ];
+        if (fill) {
+            el.style.fill = color ?? '';
+            if (stripeColor) (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(el, stripeColor);
+        } else {
+            el.style.fill = '';
+            if (el.nextElementSibling?.dataset.stripeFor === item) el.nextElementSibling.remove();
+        }
     }
 }
 function $7b5873fbd7a9e904$export$751816bfcb437aef(state) {
     $7b5873fbd7a9e904$export$66eec673fb17698c(state, false);
 }
+
 
 
 class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
@@ -1547,7 +1603,10 @@ class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
     set(items) {
         if (items.length <= 0) return;
         this.#saveSnapshot();
-        for (const element of items)this.#state[element.pathId] = element.color;
+        for (const { pathId: pathId, color: color, stripeColor: stripeColor } of items)this.#state[pathId] = stripeColor ? [
+            color,
+            stripeColor
+        ] : color;
     }
     remove(items) {
         if (items.length <= 0) return;
@@ -1591,8 +1650,6 @@ class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
 const $23483fd903922e0d$var$app = {
     map: null,
     canvas: null,
-    colorPicker: null,
-    colorPickMode: null,
     mapState: null
 };
 const $23483fd903922e0d$var$tools = {
@@ -1643,15 +1700,60 @@ const $23483fd903922e0d$var$handleMouseWheel = (event)=>{
 };
 const $23483fd903922e0d$var$handleMapClick = (event)=>{
     const target = event.target;
-    const color = $23483fd903922e0d$var$tools.colorPicker.value;
     if ($23483fd903922e0d$var$isInvalidElement(target)) return;
-    if ($23483fd903922e0d$var$tools.colorPickMode.checked && target.tagName === 'path') {
-        $23483fd903922e0d$var$tools.colorPicker.value = (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill);
+    const color = $23483fd903922e0d$var$tools.colorPicker.value;
+    const isStripeClone = !!target.dataset.stripeColor;
+    const isColorPickMode = $23483fd903922e0d$var$tools.colorPickMode.checked;
+    const isStripesMode = $23483fd903922e0d$var$tools.stripesMode.checked;
+    if (isColorPickMode && target.tagName === 'path') {
+        $23483fd903922e0d$var$tools.colorPicker.value = isStripeClone ? target.dataset.stripeColor : (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill);
         $23483fd903922e0d$var$tools.colorPickMode.click();
-    } else if (target.style.fill && (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill) === color) {
+        return;
+    }
+    if (isStripeClone) {
+        const og = (0, $09671b11e5fd9b2b$export$2748120a496adc8e)(target);
+        if (!isStripesMode) {
+            target.remove();
+            og.style.fill = color;
+            $23483fd903922e0d$var$app.mapState.set([
+                {
+                    pathId: og.id,
+                    color: color
+                }
+            ]);
+        } else if ((0, $7b5873fbd7a9e904$export$883528fb0afa7177)(og.style.fill) === color || target.dataset.stripeColor === color) {
+            target.remove();
+            og.style.fill ? $23483fd903922e0d$var$app.mapState.set([
+                {
+                    pathId: og.id,
+                    color: og.style.fill
+                }
+            ]) : $23483fd903922e0d$var$app.mapState.remove([
+                og.id
+            ]);
+        } else {
+            (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(target, color);
+            $23483fd903922e0d$var$app.mapState.set([
+                {
+                    pathId: og.id,
+                    color: og.style.fill,
+                    stripeColor: color
+                }
+            ]);
+        }
+    } else if ((0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill) === color) {
         target.style.fill = '';
         $23483fd903922e0d$var$app.mapState.remove([
             target.id
+        ]);
+    } else if (isStripesMode) {
+        (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(target, color);
+        $23483fd903922e0d$var$app.mapState.set([
+            {
+                pathId: target.id,
+                color: target.style.fill,
+                stripeColor: color
+            }
         ]);
     } else {
         target.style.fill = color;
@@ -1734,6 +1836,7 @@ const $23483fd903922e0d$var$init = (conf)=>{
     $23483fd903922e0d$var$tools.menu = conf.elToolsMenu;
     $23483fd903922e0d$var$tools.colorPicker = conf.elToolsMenu.querySelector('#colorpicker');
     $23483fd903922e0d$var$tools.colorPickMode = conf.elToolsMenu.querySelector('#colorpickerMode');
+    $23483fd903922e0d$var$tools.stripesMode = conf.elToolsMenu.querySelector('#stripesMode');
     $23483fd903922e0d$var$config.minZoom = conf.minZoom || $23483fd903922e0d$var$config.minZoom;
     $23483fd903922e0d$var$config.maxZoom = conf.maxZoom || $23483fd903922e0d$var$config.maxZoom;
     $23483fd903922e0d$var$config.scale = conf.scale || $23483fd903922e0d$var$config.scale;
@@ -1923,4 +2026,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.f887449b.js.map
+//# sourceMappingURL=mapa.299099a6.js.map
