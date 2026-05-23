@@ -1804,6 +1804,10 @@ const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
         const paths = [];
         for (const item of siblings){
             item.style.fill = '';
+            if (item.dataset.stripeColor) {
+                item.remove();
+                continue;
+            }
             paths.push(item.id);
         }
         $23483fd903922e0d$var$app.mapState.remove(paths);
@@ -1812,6 +1816,10 @@ const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
         const paths = [];
         for (const item of siblings){
             item.style.fill = color;
+            if (item.dataset.stripeColor) {
+                item.remove();
+                continue;
+            }
             paths.push({
                 pathId: item.id,
                 color: color
@@ -2026,4 +2034,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.299099a6.js.map
+//# sourceMappingURL=mapa.c5f4112d.js.map
