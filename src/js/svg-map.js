@@ -1,5 +1,6 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './svg-utils.js'
 import { rgb2hex, fillElements, clearElements } from './utils.js'
+import { addStripe, getOriginal, removeStripe } from './stripes.js'
 import { MapState } from './map-state.js'
 
 const app = {
@@ -47,17 +48,42 @@ const handleMouseWheel = event => {
 
 const handleMapClick = event => {
   const target = event.target
-  const color = tools.colorPicker.value
   if (isInvalidElement(target)) return
-  if (tools.colorPickMode.checked && target.tagName === 'path') {
-    tools.colorPicker.value = rgb2hex(target.style.fill)
+  const color = tools.colorPicker.value
+  const isStripeClone = !!target.dataset.stripeColor
+  const isColorPickMode = tools.colorPickMode.checked
+  const isStripesMode = tools.stripesMode.checked
+
+  if (isColorPickMode && target.tagName === 'path') {
+    tools.colorPicker.value = isStripeClone ? target.dataset.stripeColor : rgb2hex(target.style.fill)
     tools.colorPickMode.click()
-  } else if (target.style.fill && rgb2hex(target.style.fill) === color) {
+    return
+  }
+
+  if (isStripeClone) {
+    const og = getOriginal(target)
+    if (!isStripesMode) {
+      target.remove()
+      og.style.fill = color
+      app.mapState.set([{ pathId: og.id, color }])
+    } else if (rgb2hex(og.style.fill) === color || target.dataset.stripeColor === color) {
+      target.remove()
+      og.style.fill ? app.mapState.set([{ pathId: og.id, color: og.style.fill }]) : app.mapState.remove([og.id])
+    } else {
+      addStripe(target, color)
+      app.mapState.set([{ pathId: og.id, color: og.style.fill, stripeColor: color }])
+    }
+  } else if (rgb2hex(target.style.fill) === color) {
     target.style.fill = ''
     app.mapState.remove([target.id])
   } else {
-    target.style.fill = color
-    app.mapState.set([{ pathId: target.id, color }])
+    if (isStripesMode) {
+      addStripe(target, color)
+      app.mapState.set([{ pathId: target.id, color: target.style.fill, stripeColor: color }])
+    } else {
+      target.style.fill = color
+      app.mapState.set([{ pathId: target.id, color }])
+    }
   }
   app.mapState.save()
 }
@@ -92,12 +118,15 @@ const handleMapContextmenu = event => {
   const target = event.target
   if (isInvalidElement(target) || tools.colorPickMode.checked) return
 
+  const original = getOriginal(target)
   const siblings = Array.from(target.parentNode.childNodes)
-    .filter(element => !isInvalidElement(element) && !element.classList.contains('landxx'))
-  if (target.style.fill) {
+    .filter(el => !isInvalidElement(el) && !el.classList.contains('landxx') && !el.dataset.stripeFor)
+
+  if (original.style.fill) {
     const paths = []
     for (const item of siblings) {
       item.style.fill = ''
+      removeStripe(item)
       paths.push(item.id)
     }
     app.mapState.remove(paths)
@@ -106,6 +135,7 @@ const handleMapContextmenu = event => {
     const paths = []
     for (const item of siblings) {
       item.style.fill = color
+      removeStripe(item)
       paths.push({ pathId: item.id, color })
     }
     app.mapState.set(paths)
@@ -130,6 +160,7 @@ const init = conf => {
   tools.menu = conf.elToolsMenu
   tools.colorPicker = conf.elToolsMenu.querySelector('#colorpicker')
   tools.colorPickMode = conf.elToolsMenu.querySelector('#colorpickerMode')
+  tools.stripesMode = conf.elToolsMenu.querySelector('#stripesMode')
   config.minZoom = conf.minZoom || config.minZoom
   config.maxZoom = conf.maxZoom || config.maxZoom
   config.scale = conf.scale || config.scale

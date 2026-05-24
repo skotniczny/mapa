@@ -1,4 +1,6 @@
 /* global CSS */
+import { addStripe, removeStripe } from './stripes'
+
 function rgb2hex (rgb) {
   const match = rgb?.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\)/)
   if (!match) return
@@ -9,7 +11,16 @@ function fillElements (state, fill = true) {
   for (const item of state.keys) {
     if (!item) continue
     const el = document.querySelector(`#${CSS.escape(item)}`)
-    if (el) el.style.fill = fill ? state.get(item) : ''
+    if (!el) continue
+    const value = state.get(item)
+    const [color, stripeColor] = Array.isArray(value) ? value : [value, null]
+    if (fill) {
+      el.style.fill = color ?? ''
+      if (stripeColor) addStripe(el, stripeColor)
+    } else {
+      el.style.fill = ''
+      removeStripe(el)
+    }
   }
 }
 

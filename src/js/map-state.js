@@ -28,8 +28,8 @@ class MapState {
   set (items) {
     if (items.length <= 0) return
     this.#saveSnapshot()
-    for (const element of items) {
-      this.#state[element.pathId] = element.color
+    for (const { pathId, color, stripeColor } of items) {
+      this.#state[pathId] = stripeColor ? [color, stripeColor] : color
     }
   }
 
