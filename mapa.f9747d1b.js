@@ -67,8 +67,8 @@ module.exports = import("dxGrs").then(()=>parcelRequire('7niBi'));
 
 });
 
-parcelRegister("dtF9z", function(module, exports) {
-module.exports = import("3VtzB").then(()=>parcelRequire('ktCwZ'));
+parcelRegister("gw9lm", function(module, exports) {
+module.exports = import("46MU4").then(()=>parcelRequire('1U3Uv'));
 
 });
 
@@ -1514,7 +1514,7 @@ function $09671b11e5fd9b2b$export$2748120a496adc8e(el) {
     if (el.dataset.stripeFor) return document.getElementById(el.dataset.stripeFor);
     return el;
 }
-function $09671b11e5fd9b2b$export$f70dd08bad809824(el, color) {
+function $09671b11e5fd9b2b$export$490b36de5521dfa6(el, color) {
     const original = $09671b11e5fd9b2b$export$2748120a496adc8e(el);
     const existing = original.nextElementSibling;
     if (existing && existing.dataset.stripeFor === original.id) existing.remove();
@@ -1527,6 +1527,9 @@ function $09671b11e5fd9b2b$export$f70dd08bad809824(el, color) {
     clone.setAttribute('style', `fill: url(#${patternId})`);
     original.insertAdjacentElement('afterend', clone);
 }
+function $09671b11e5fd9b2b$export$c2e765a549b2cf24(el) {
+    if (el.nextElementSibling?.dataset.stripeFor === el.id) el.nextElementSibling.remove();
+}
 function $09671b11e5fd9b2b$var$getOrCreatePattern(color) {
     const patternId = `stripes_${color.replace('#', '')}`;
     if (document.getElementById(patternId)) return patternId;
@@ -1538,11 +1541,12 @@ function $09671b11e5fd9b2b$var$getOrCreatePattern(color) {
     pattern.setAttribute('height', '20');
     pattern.setAttribute('patternTransform', 'rotate(45)');
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('x1', '0');
+    line.setAttribute('x1', '10');
     line.setAttribute('y1', '0');
-    line.setAttribute('x2', '0');
+    line.setAttribute('x2', '10');
     line.setAttribute('y2', '20');
-    line.setAttribute('style', `stroke: ${color}; stroke-width: 20px;`);
+    line.style.stroke = color;
+    line.style.strokeWidth = '10px';
     pattern.appendChild(line);
     defs.appendChild(pattern);
     return patternId;
@@ -1566,10 +1570,10 @@ function $7b5873fbd7a9e904$export$66eec673fb17698c(state, fill = true) {
         ];
         if (fill) {
             el.style.fill = color ?? '';
-            if (stripeColor) (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(el, stripeColor);
+            if (stripeColor) (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(el, stripeColor);
         } else {
             el.style.fill = '';
-            if (el.nextElementSibling?.dataset.stripeFor === item) el.nextElementSibling.remove();
+            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(el);
         }
     }
 }
@@ -1732,7 +1736,7 @@ const $23483fd903922e0d$var$handleMapClick = (event)=>{
                 og.id
             ]);
         } else {
-            (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(target, color);
+            (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(target, color);
             $23483fd903922e0d$var$app.mapState.set([
                 {
                     pathId: og.id,
@@ -1747,7 +1751,7 @@ const $23483fd903922e0d$var$handleMapClick = (event)=>{
             target.id
         ]);
     } else if (isStripesMode) {
-        (0, $09671b11e5fd9b2b$export$f70dd08bad809824)(target, color);
+        (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(target, color);
         $23483fd903922e0d$var$app.mapState.set([
             {
                 pathId: target.id,
@@ -1799,15 +1803,13 @@ const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
     event.preventDefault();
     const target = event.target;
     if ($23483fd903922e0d$var$isInvalidElement(target) || $23483fd903922e0d$var$tools.colorPickMode.checked) return;
-    const siblings = Array.from(target.parentNode.childNodes).filter((element)=>!$23483fd903922e0d$var$isInvalidElement(element) && !element.classList.contains('landxx'));
-    if (target.style.fill) {
+    const original = (0, $09671b11e5fd9b2b$export$2748120a496adc8e)(target);
+    const siblings = Array.from(target.parentNode.childNodes).filter((el)=>!$23483fd903922e0d$var$isInvalidElement(el) && !el.classList.contains('landxx') && !el.dataset.stripeFor);
+    if (original.style.fill) {
         const paths = [];
         for (const item of siblings){
             item.style.fill = '';
-            if (item.dataset.stripeColor) {
-                item.remove();
-                continue;
-            }
+            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(item);
             paths.push(item.id);
         }
         $23483fd903922e0d$var$app.mapState.remove(paths);
@@ -1816,10 +1818,7 @@ const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
         const paths = [];
         for (const item of siblings){
             item.style.fill = color;
-            if (item.dataset.stripeColor) {
-                item.remove();
-                continue;
-            }
+            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(item);
             paths.push({
                 pathId: item.id,
                 color: color
@@ -2001,7 +2000,7 @@ const $56a0b18e519895ee$var$dataLoaders = {
     4: ()=>(parcelRequire("cJcpM")),
     5: ()=>(parcelRequire("fogC1")),
     6: ()=>(parcelRequire("dvd5O")),
-    7: ()=>(parcelRequire("dtF9z"))
+    7: ()=>(parcelRequire("gw9lm"))
 };
 const $56a0b18e519895ee$var$handlePresetChange = async (event)=>{
     const loader = $56a0b18e519895ee$var$dataLoaders[event.target.value];
@@ -2034,4 +2033,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.c5f4112d.js.map
+//# sourceMappingURL=mapa.f9747d1b.js.map
