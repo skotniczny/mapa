@@ -44,12 +44,12 @@ function getOrCreatePattern (color) {
   pattern.setAttribute('patternTransform', 'rotate(45)')
 
   const line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-  line.setAttribute('x1', '0')
+  line.setAttribute('x1', '10')
   line.setAttribute('y1', '0')
-  line.setAttribute('x2', '0')
+  line.setAttribute('x2', '10')
   line.setAttribute('y2', '20')
   line.style.stroke = color
-  line.strokeWidth = '20px'
+  line.style.strokeWidth = '10px'
 
   pattern.appendChild(line)
   defs.appendChild(pattern)
