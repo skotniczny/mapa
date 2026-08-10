@@ -32,7 +32,7 @@ const dataLoaders = {
   4: () => import('./json/map-1806.json'),
   5: () => import('./json/map-1912.json'),
   6: () => import('./json/map-1939.json'),
-  7: () => import('./json/map-2024.json')
+  7: () => import('./json/map-current.json')
 }
 
 const handlePresetChange = async event => {
