@@ -8,7 +8,6 @@ body {
 }
 
 body {
-  background: #fbfbfd;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
 }
@@ -16,6 +15,40 @@ body {
 svg {
   display: block;
   touch-action: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 300;
+}
+
+.settings-panel {
+  position: fixed;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  width: 300px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 350ms ease;
+}
+
+:where(.settings-panel) legend {
+  background-color: #000;
+  color: #fff;
+  padding: 3px 6px;
+}
+
+.settings-panel_show {
+  transform: translateX(0);
+  visibility: visible;
 }
 
 .control {
@@ -30,12 +63,10 @@ svg {
   padding: 0.15rem 0.5rem;
 }
 
-.control-btn-alt {
-  border-radius: 1rem;
-  border-color: transparent;
-  box-shadow: none;
-  background-color: rgb(226, 226, 226);
-  color: #999;
+.control-radio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .control[type=checkbox]:checked + .control-btn {
@@ -47,14 +78,27 @@ svg {
   background-color: #f9fafb;
 }
 
+.control-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  border-color: transparent;
+  border-radius: 1rem;
+  background-color: rgb(226, 226, 226);
+  color: #999;
+  font-size: 16px;
+}
+
+.control-close:hover {
+  color: #000;
+}
+
 .control-btn-check {
   position: absolute;
   clip: rect(0,0,0,0);
   pointer-events: none;
-}
-
-.control-btn-alt:hover {
-  color: #000;
 }
 
 .control-field {
@@ -119,15 +163,6 @@ svg {
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   text-align: center;
-}
-
-.modal_close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 16px;
-  width: 25px;
-  height: 25px;
 }
 
 .modal_content {

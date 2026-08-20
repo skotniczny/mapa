@@ -1,5 +1,6 @@
 import modalSearch from './js/modal-search.js'
 import svgMap from './js/svg-map.js'
+import settings from './js/settings.js'
 
 const btnsMenu = document.querySelector('.menu-v')
 const filePicker = document.querySelector('#filePicker')
@@ -11,6 +12,12 @@ svgMap.init({
   localStorageKey: 'mapState'
 })
 modalSearch.create(document.querySelector('.modal'))
+settings.create(document.querySelector('#settingsPanel'), {
+  onChange: (name, value) => {
+    if (name === 'map-theme') svgMap.setTheme(value)
+    if (name === 'map-bg') svgMap.setBg(value)
+  }
+})
 
 const handleKeyboard = event => {
   if (!event.target.matches('input')) {
@@ -65,4 +72,5 @@ btnsMenu.addEventListener('click', event => {
   }
   if (targetId === 'colorBtn') svgMap.colorMap()
   if (targetId === 'saveBtn') svgMap.saveToJsonFile()
+  if (targetId === 'settingsBtn') settings.toggle()
 })

@@ -179,6 +179,14 @@ const init = conf => {
   handleColorPickModeChange()
 }
 
+const setTheme = value => {
+  app.map.dataset.mapTheme = value
+}
+
+const setBg = value => {
+  app.map.dataset.mapBg = value
+}
+
 const saveToSvgFile = () => {
   /* global XMLSerializer */
   const source = new XMLSerializer().serializeToString(app.map)
@@ -272,6 +280,8 @@ const stepHistory = (direction) => {
 
 const svgMap = {
   init,
+  setTheme,
+  setBg,
   saveToSvgFile,
   saveToJsonFile,
   resetMap,
