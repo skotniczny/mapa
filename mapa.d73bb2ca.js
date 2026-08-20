@@ -1859,6 +1859,12 @@ const $23483fd903922e0d$var$init = (conf)=>{
     $23483fd903922e0d$var$readState();
     $23483fd903922e0d$var$handleColorPickModeChange();
 };
+const $23483fd903922e0d$var$setTheme = (value)=>{
+    $23483fd903922e0d$var$app.map.dataset.mapTheme = value;
+};
+const $23483fd903922e0d$var$setBg = (value)=>{
+    $23483fd903922e0d$var$app.map.dataset.mapBg = value;
+};
 const $23483fd903922e0d$var$saveToSvgFile = ()=>{
     /* global XMLSerializer */ const source = new XMLSerializer().serializeToString($23483fd903922e0d$var$app.map);
     // convert svg source to URI data scheme.
@@ -1953,6 +1959,8 @@ const $23483fd903922e0d$var$stepHistory = (direction)=>{
 };
 const $23483fd903922e0d$var$svgMap = {
     init: $23483fd903922e0d$var$init,
+    setTheme: $23483fd903922e0d$var$setTheme,
+    setBg: $23483fd903922e0d$var$setBg,
     saveToSvgFile: $23483fd903922e0d$var$saveToSvgFile,
     saveToJsonFile: $23483fd903922e0d$var$saveToJsonFile,
     resetMap: $23483fd903922e0d$var$resetMap,
@@ -1964,6 +1972,63 @@ const $23483fd903922e0d$var$svgMap = {
 var $23483fd903922e0d$export$2e2bcd8739ae039 = $23483fd903922e0d$var$svgMap;
 
 
+const $cc2a27c5cf7938c0$var$storageKey = 'mapSettings';
+const $cc2a27c5cf7938c0$var$state = {
+    'map-theme': 'default',
+    'map-bg': 'light'
+};
+let $cc2a27c5cf7938c0$var$panel = null;
+let $cc2a27c5cf7938c0$var$handleChange = null;
+const $cc2a27c5cf7938c0$var$close = ()=>{
+    $cc2a27c5cf7938c0$var$panel.classList.remove('settings-panel_show');
+};
+const $cc2a27c5cf7938c0$var$toggle = ()=>{
+    $cc2a27c5cf7938c0$var$panel.classList.toggle('settings-panel_show');
+};
+const $cc2a27c5cf7938c0$var$save = ()=>{
+    window.localStorage.setItem($cc2a27c5cf7938c0$var$storageKey, JSON.stringify($cc2a27c5cf7938c0$var$state));
+};
+const $cc2a27c5cf7938c0$var$restore = ()=>{
+    const stored = JSON.parse(window.localStorage.getItem($cc2a27c5cf7938c0$var$storageKey)) || {};
+    for (const name of Object.keys($cc2a27c5cf7938c0$var$state)){
+        const value = stored[name];
+        const input = value && $cc2a27c5cf7938c0$var$panel.querySelector(`input[name="${name}"][value="${value}"]`);
+        if (!input) continue;
+        input.checked = true;
+        $cc2a27c5cf7938c0$var$state[name] = value;
+    }
+};
+const $cc2a27c5cf7938c0$var$handlePanelClick = (event)=>{
+    if (event.target.id === 'settingsClose') $cc2a27c5cf7938c0$var$close();
+};
+const $cc2a27c5cf7938c0$var$handlePanelChange = (event)=>{
+    const { name: name, value: value } = event.target;
+    if (!(name in $cc2a27c5cf7938c0$var$state)) return;
+    $cc2a27c5cf7938c0$var$state[name] = value;
+    $cc2a27c5cf7938c0$var$save();
+    $cc2a27c5cf7938c0$var$handleChange(name, value);
+};
+const $cc2a27c5cf7938c0$var$handleKeydown = (event)=>{
+    if (event.key !== 'Escape') return;
+    if (document.querySelector('dialog[open]')) return;
+    $cc2a27c5cf7938c0$var$close();
+};
+const $cc2a27c5cf7938c0$var$create = (el, conf)=>{
+    $cc2a27c5cf7938c0$var$panel = el;
+    $cc2a27c5cf7938c0$var$handleChange = conf.onChange;
+    $cc2a27c5cf7938c0$var$panel.addEventListener('click', $cc2a27c5cf7938c0$var$handlePanelClick);
+    $cc2a27c5cf7938c0$var$panel.addEventListener('change', $cc2a27c5cf7938c0$var$handlePanelChange);
+    document.addEventListener('keydown', $cc2a27c5cf7938c0$var$handleKeydown);
+    $cc2a27c5cf7938c0$var$restore();
+    for (const [name, value] of Object.entries($cc2a27c5cf7938c0$var$state))$cc2a27c5cf7938c0$var$handleChange(name, value);
+};
+const $cc2a27c5cf7938c0$var$settings = {
+    create: $cc2a27c5cf7938c0$var$create,
+    toggle: $cc2a27c5cf7938c0$var$toggle
+};
+var $cc2a27c5cf7938c0$export$2e2bcd8739ae039 = $cc2a27c5cf7938c0$var$settings;
+
+
 const $56a0b18e519895ee$var$btnsMenu = document.querySelector('.menu-v');
 const $56a0b18e519895ee$var$filePicker = document.querySelector('#filePicker');
 const $56a0b18e519895ee$var$presets = document.querySelector('#presets');
@@ -1973,6 +2038,12 @@ const $56a0b18e519895ee$var$presets = document.querySelector('#presets');
     localStorageKey: 'mapState'
 });
 (0, $c94cd653c1ae6b76$export$2e2bcd8739ae039).create(document.querySelector('.modal'));
+(0, $cc2a27c5cf7938c0$export$2e2bcd8739ae039).create(document.querySelector('#settingsPanel'), {
+    onChange: (name, value)=>{
+        if (name === 'map-theme') (0, $23483fd903922e0d$export$2e2bcd8739ae039).setTheme(value);
+        if (name === 'map-bg') (0, $23483fd903922e0d$export$2e2bcd8739ae039).setBg(value);
+    }
+});
 const $56a0b18e519895ee$var$handleKeyboard = (event)=>{
     if (!event.target.matches('input')) {
         const key = event.key.toLowerCase();
@@ -2030,7 +2101,8 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
     }
     if (targetId === 'colorBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).colorMap();
     if (targetId === 'saveBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToJsonFile();
+    if (targetId === 'settingsBtn') (0, $cc2a27c5cf7938c0$export$2e2bcd8739ae039).toggle();
 });
 
 
-//# sourceMappingURL=mapa.f9747d1b.js.map
+//# sourceMappingURL=mapa.d73bb2ca.js.map
