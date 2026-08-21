@@ -1865,30 +1865,32 @@ const $23483fd903922e0d$var$setTheme = (value)=>{
 const $23483fd903922e0d$var$setBg = (value)=>{
     $23483fd903922e0d$var$app.map.dataset.mapBg = value;
 };
-const $23483fd903922e0d$var$saveToSvgFile = ()=>{
-    /* global XMLSerializer */ const source = new XMLSerializer().serializeToString($23483fd903922e0d$var$app.map);
-    // convert svg source to URI data scheme.
-    const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<?xml version="1.0" standalone="no"?>\r\n${source}`);
-    const downloadLink = document.createElement('a');
-    downloadLink.href = url;
-    downloadLink.download = 'map.svg';
-    downloadLink.click();
+const $23483fd903922e0d$var$toFileName = (name, ext)=>{
+    const clean = name?.trim().replace(/[\\/:*?"<>|]/g, '').slice(0, 30);
+    const fileName = clean || 'map';
+    return `${fileName}.${ext}`;
 };
-const $23483fd903922e0d$var$saveToJsonFile = ()=>{
+const $23483fd903922e0d$var$downloadFile = (data, fileName)=>{
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(new Blob([
+        data
+    ]));
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 0);
+};
+const $23483fd903922e0d$var$saveToSvgFile = (name)=>{
+    /* global XMLSerializer */ const source = new XMLSerializer().serializeToString($23483fd903922e0d$var$app.map);
+    $23483fd903922e0d$var$downloadFile(`<?xml version="1.0" standalone="no"?>\r\n${source}`, $23483fd903922e0d$var$toFileName(name, 'svg'));
+};
+const $23483fd903922e0d$var$saveToJsonFile = (name)=>{
     const content = [];
     for (const item of $23483fd903922e0d$var$app.mapState.keys)content.push({
         pathId: item,
         color: $23483fd903922e0d$var$app.mapState.get(item)
     });
-    const a = document.createElement('a');
-    const file = new Blob([
-        JSON.stringify(content)
-    ], {
-        type: 'application/json'
-    });
-    a.href = URL.createObjectURL(file);
-    a.download = 'map.json';
-    a.click();
+    $23483fd903922e0d$var$downloadFile(JSON.stringify(content), $23483fd903922e0d$var$toFileName(name, 'json'));
 };
 const $23483fd903922e0d$var$resetMap = ()=>{
     (0, $7b5873fbd7a9e904$export$751816bfcb437aef)($23483fd903922e0d$var$app.mapState);
@@ -1977,13 +1979,23 @@ const $cc2a27c5cf7938c0$var$state = {
     'map-theme': 'default',
     'map-bg': 'light'
 };
+const $cc2a27c5cf7938c0$var$showClass = 'settings-panel_show';
 let $cc2a27c5cf7938c0$var$panel = null;
 let $cc2a27c5cf7938c0$var$handleChange = null;
+let $cc2a27c5cf7938c0$var$lastFocused = null;
+const $cc2a27c5cf7938c0$var$open = ()=>{
+    $cc2a27c5cf7938c0$var$lastFocused = document.activeElement;
+    $cc2a27c5cf7938c0$var$panel.classList.add($cc2a27c5cf7938c0$var$showClass);
+    $cc2a27c5cf7938c0$var$panel.focus();
+};
 const $cc2a27c5cf7938c0$var$close = ()=>{
-    $cc2a27c5cf7938c0$var$panel.classList.remove('settings-panel_show');
+    const hadFocus = $cc2a27c5cf7938c0$var$panel.contains(document.activeElement);
+    $cc2a27c5cf7938c0$var$panel.classList.remove($cc2a27c5cf7938c0$var$showClass);
+    if (hadFocus && $cc2a27c5cf7938c0$var$lastFocused) $cc2a27c5cf7938c0$var$lastFocused.focus();
 };
 const $cc2a27c5cf7938c0$var$toggle = ()=>{
-    $cc2a27c5cf7938c0$var$panel.classList.toggle('settings-panel_show');
+    if ($cc2a27c5cf7938c0$var$panel.classList.contains($cc2a27c5cf7938c0$var$showClass)) $cc2a27c5cf7938c0$var$close();
+    else $cc2a27c5cf7938c0$var$open();
 };
 const $cc2a27c5cf7938c0$var$save = ()=>{
     window.localStorage.setItem($cc2a27c5cf7938c0$var$storageKey, JSON.stringify($cc2a27c5cf7938c0$var$state));
@@ -2009,8 +2021,7 @@ const $cc2a27c5cf7938c0$var$handlePanelChange = (event)=>{
     $cc2a27c5cf7938c0$var$handleChange(name, value);
 };
 const $cc2a27c5cf7938c0$var$handleKeydown = (event)=>{
-    if (event.key !== 'Escape') return;
-    if (document.querySelector('dialog[open]')) return;
+    if (event.key !== 'Escape' || !$cc2a27c5cf7938c0$var$panel.classList.contains($cc2a27c5cf7938c0$var$showClass) || document.querySelector('dialog[open]')) return;
     $cc2a27c5cf7938c0$var$close();
 };
 const $cc2a27c5cf7938c0$var$create = (el, conf)=>{
@@ -2032,6 +2043,8 @@ var $cc2a27c5cf7938c0$export$2e2bcd8739ae039 = $cc2a27c5cf7938c0$var$settings;
 const $56a0b18e519895ee$var$btnsMenu = document.querySelector('.menu-v');
 const $56a0b18e519895ee$var$filePicker = document.querySelector('#filePicker');
 const $56a0b18e519895ee$var$presets = document.querySelector('#presets');
+const $56a0b18e519895ee$var$pickedFlag = document.querySelector('#pickedFlag');
+const $56a0b18e519895ee$var$mapName = document.querySelector('#mapName');
 (0, $23483fd903922e0d$export$2e2bcd8739ae039).init({
     el: document.querySelector('svg'),
     elToolsMenu: document.querySelector('.menu-tools'),
@@ -2082,11 +2095,24 @@ const $56a0b18e519895ee$var$handlePresetChange = async (event)=>{
 };
 const $56a0b18e519895ee$var$pickCustomFlag = (event)=>{
     const file = event.target.files[0];
-    const container = document.querySelector('#pickedFlag');
+    $56a0b18e519895ee$var$filePicker.value = '';
     const img = document.createElement('img');
+    const revoke = ()=>URL.revokeObjectURL(img.src);
+    img.alt = file.name;
     img.classList.add('flag_file');
+    img.addEventListener('load', revoke, {
+        once: true
+    });
+    img.addEventListener('error', ()=>{
+        revoke();
+        $56a0b18e519895ee$var$pickedFlag.replaceChildren();
+        $56a0b18e519895ee$var$pickedFlag.title = '';
+    }, {
+        once: true
+    });
     img.src = URL.createObjectURL(file);
-    container.replaceChildren(img);
+    $56a0b18e519895ee$var$pickedFlag.replaceChildren(img);
+    $56a0b18e519895ee$var$pickedFlag.title = file.name;
 };
 document.addEventListener('keydown', $56a0b18e519895ee$var$handleKeyboard);
 $56a0b18e519895ee$var$filePicker.addEventListener('change', $56a0b18e519895ee$var$pickCustomFlag);
@@ -2094,15 +2120,15 @@ $56a0b18e519895ee$var$presets.addEventListener('change', $56a0b18e519895ee$var$h
 $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
     const targetId = event.target.id;
     if (targetId === 'menuBtn') (0, $c94cd653c1ae6b76$export$2e2bcd8739ae039).open();
-    if (targetId === 'downloadBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToSvgFile();
+    if (targetId === 'downloadBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToSvgFile($56a0b18e519895ee$var$mapName.value);
     if (targetId === 'resetBtn') {
         (0, $23483fd903922e0d$export$2e2bcd8739ae039).resetMap();
         $56a0b18e519895ee$var$presets.value = '';
     }
     if (targetId === 'colorBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).colorMap();
-    if (targetId === 'saveBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToJsonFile();
+    if (targetId === 'saveBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToJsonFile($56a0b18e519895ee$var$mapName.value);
     if (targetId === 'settingsBtn') (0, $cc2a27c5cf7938c0$export$2e2bcd8739ae039).toggle();
 });
 
 
-//# sourceMappingURL=mapa.d73bb2ca.js.map
+//# sourceMappingURL=mapa.0f3bd895.js.map

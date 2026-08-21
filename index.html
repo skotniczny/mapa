@@ -3,14 +3,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mapa Świata</title>
   <link rel="shortcut icon" href="favicon.ad60e439.ico">
-  <link rel="stylesheet" href="mapa.015b7b5f.css">
-  <script type="module" src="mapa.d73bb2ca.js"></script>
+  <link rel="stylesheet" href="mapa.c4f0ffd7.css">
+  <script type="module" src="mapa.0f3bd895.js"></script>
 </head>
 
 <body>
-  <div id="settingsPanel" class="settings-panel">
+  <div id="settingsPanel" class="settings-panel" tabindex="-1" aria-labelledby="settingsTitle">
     <button id="settingsClose" class="control-close" type="button" title="Zamknij">×</button>
-    <h1>Ustawienia</h1>
+    <h1 id="settingsTitle">Ustawienia</h1>
     <fieldset>
       <legend>Kolor tła</legend>
       <div id="mapBg" class="control-radio-list">
@@ -77,7 +77,7 @@
         <option value="7">Współczesność</option>
       </select>
     </li>
-    <li><input type="text" class="control control-field"></li>
+    <li><input id="mapName" type="text" class="control control-field" placeholder="Nazwa mapy" aria-label="Nazwa mapy"></li>
     <li><input type="text" class="control control-field"></li>
     <li id="pickedFlag" class="picked"></li>
   </menu>

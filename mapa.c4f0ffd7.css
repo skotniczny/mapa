@@ -27,7 +27,7 @@ h1, h2, h3 {
   width: 300px;
   padding-left: .5rem;
   padding-right: .5rem;
-  transition: transform .35s, visibility .35s;
+  transition: transform .35s;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -95,6 +95,11 @@ h1, h2, h3 {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
   position: absolute;
+}
+
+.control-btn-check:focus-visible + .control-btn {
+  outline-offset: -3px;
+  outline: auto;
 }
 
 .control-field {
@@ -209,4 +214,4 @@ h1, h2, h3 {
 .picked:empty, .hide {
   display: none;
 }
-/*# sourceMappingURL=mapa.015b7b5f.css.map */
+/*# sourceMappingURL=mapa.c4f0ffd7.css.map */
