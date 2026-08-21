@@ -6,6 +6,7 @@ const btnsMenu = document.querySelector('.menu-v')
 const filePicker = document.querySelector('#filePicker')
 const presets = document.querySelector('#presets')
 const pickedFlag = document.querySelector('#pickedFlag')
+const mapName = document.querySelector('#mapName')
 
 svgMap.init({
   el: document.querySelector('svg'),
@@ -75,12 +76,12 @@ presets.addEventListener('change', handlePresetChange)
 btnsMenu.addEventListener('click', event => {
   const targetId = event.target.id
   if (targetId === 'menuBtn') modalSearch.open()
-  if (targetId === 'downloadBtn') svgMap.saveToSvgFile()
+  if (targetId === 'downloadBtn') svgMap.saveToSvgFile(mapName.value)
   if (targetId === 'resetBtn') {
     svgMap.resetMap()
     presets.value = ''
   }
   if (targetId === 'colorBtn') svgMap.colorMap()
-  if (targetId === 'saveBtn') svgMap.saveToJsonFile()
+  if (targetId === 'saveBtn') svgMap.saveToJsonFile(mapName.value)
   if (targetId === 'settingsBtn') settings.toggle()
 })

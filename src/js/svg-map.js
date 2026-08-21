@@ -187,27 +187,33 @@ const setBg = value => {
   app.map.dataset.mapBg = value
 }
 
-const saveToSvgFile = () => {
-  /* global XMLSerializer */
-  const source = new XMLSerializer().serializeToString(app.map)
-  // convert svg source to URI data scheme.
-  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<?xml version="1.0" standalone="no"?>\r\n${source}`)
-  const downloadLink = document.createElement('a')
-  downloadLink.href = url
-  downloadLink.download = 'map.svg'
-  downloadLink.click()
+const toFileName = (name, ext) => {
+  const clean = name?.trim().replace(/[\\/:*?"<>|]/g, '').slice(0, 30)
+  const fileName = clean || 'map'
+  return `${fileName}.${ext}`
 }
 
-const saveToJsonFile = () => {
+const downloadFile = (data, fileName) => {
+  const link = document.createElement('a')
+  const url = URL.createObjectURL(new Blob([data]))
+  link.href = url
+  link.download = fileName
+  link.click()
+  setTimeout(() => URL.revokeObjectURL(url), 0)
+}
+
+const saveToSvgFile = (name) => {
+  /* global XMLSerializer */
+  const source = new XMLSerializer().serializeToString(app.map)
+  downloadFile(`<?xml version="1.0" standalone="no"?>\r\n${source}`, toFileName(name, 'svg'))
+}
+
+const saveToJsonFile = (name) => {
   const content = []
   for (const item of app.mapState.keys) {
     content.push({ pathId: item, color: app.mapState.get(item) })
   }
-  const a = document.createElement('a')
-  const file = new Blob([JSON.stringify(content)], { type: 'application/json' })
-  a.href = URL.createObjectURL(file)
-  a.download = 'map.json'
-  a.click()
+  downloadFile(JSON.stringify(content), toFileName(name, 'json'))
 }
 
 const resetMap = () => {
