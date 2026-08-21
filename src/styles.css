@@ -101,6 +101,11 @@ h3 {
   pointer-events: none;
 }
 
+.control-btn-check:focus-visible + .control-btn {
+  outline: auto;
+  outline-offset: -3px;
+}
+
 .control-field {
   padding: 0.25rem 0.5rem;
   min-width: 14rem;
