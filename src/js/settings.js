@@ -3,16 +3,27 @@ const state = {
   'map-theme': 'default',
   'map-bg': 'light'
 }
+const showClass = 'settings-panel_show'
 
 let panel = null
 let handleChange = null
+let lastFocused = null
+
+const open = () => {
+  lastFocused = document.activeElement
+  panel.classList.add(showClass)
+  panel.focus()
+}
 
 const close = () => {
-  panel.classList.remove('settings-panel_show')
+  const hadFocus = panel.contains(document.activeElement)
+  panel.classList.remove(showClass)
+  if (hadFocus && lastFocused) lastFocused.focus()
 }
 
 const toggle = () => {
-  panel.classList.toggle('settings-panel_show')
+  if (panel.classList.contains(showClass)) close()
+  else open()
 }
 
 const save = () => {
@@ -43,8 +54,7 @@ const handlePanelChange = event => {
 }
 
 const handleKeydown = event => {
-  if (event.key !== 'Escape') return
-  if (document.querySelector('dialog[open]')) return
+  if (event.key !== 'Escape' || !panel.classList.contains(showClass) || document.querySelector('dialog[open]')) return
   close()
 }
 
