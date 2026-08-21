@@ -5,6 +5,7 @@ import settings from './js/settings.js'
 const btnsMenu = document.querySelector('.menu-v')
 const filePicker = document.querySelector('#filePicker')
 const presets = document.querySelector('#presets')
+const pickedFlag = document.querySelector('#pickedFlag')
 
 svgMap.init({
   el: document.querySelector('svg'),
@@ -52,11 +53,20 @@ const handlePresetChange = async event => {
 
 const pickCustomFlag = event => {
   const file = event.target.files[0]
-  const container = document.querySelector('#pickedFlag')
+  filePicker.value = ''
   const img = document.createElement('img')
+  const revoke = () => URL.revokeObjectURL(img.src)
+  img.alt = file.name
   img.classList.add('flag_file')
+  img.addEventListener('load', revoke, { once: true })
+  img.addEventListener('error', () => {
+    revoke()
+    pickedFlag.replaceChildren()
+    pickedFlag.title = ''
+  }, { once: true })
   img.src = URL.createObjectURL(file)
-  container.replaceChildren(img)
+  pickedFlag.replaceChildren(img)
+  pickedFlag.title = file.name
 }
 
 document.addEventListener('keydown', handleKeyboard)
