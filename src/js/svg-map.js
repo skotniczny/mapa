@@ -46,19 +46,24 @@ const handleMouseWheel = event => {
   config.scale = nextScale
 }
 
+const pickColorFromMap = target => {
+  const color = target.dataset.stripeColor || rgb2hex(target.style.fill)
+  if (!color) return
+  tools.colorPicker.value = color
+  tools.colorPickMode.click()
+}
+
 const handleMapClick = event => {
   const target = event.target
   if (isInvalidElement(target)) return
-  const color = tools.colorPicker.value
-  const isStripeClone = !!target.dataset.stripeColor
-  const isColorPickMode = tools.colorPickMode.checked
-  const isStripesMode = tools.stripesMode.checked
-
-  if (isColorPickMode && target.tagName === 'path') {
-    tools.colorPicker.value = isStripeClone ? target.dataset.stripeColor : rgb2hex(target.style.fill)
-    tools.colorPickMode.click()
+  if (tools.colorPickMode.checked) {
+    pickColorFromMap(target)
     return
   }
+
+  const color = tools.colorPicker.value
+  const isStripeClone = !!target.dataset.stripeColor
+  const isStripesMode = tools.stripesMode.checked
 
   if (isStripeClone) {
     const og = getOriginal(target)
