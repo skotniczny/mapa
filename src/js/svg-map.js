@@ -61,34 +61,32 @@ const handleMapClick = event => {
     return
   }
 
-  const color = tools.colorPicker.value
-  const isStripeClone = !!target.dataset.stripeColor
+  const pickedColor = tools.colorPicker.value
   const isStripesMode = tools.stripesMode.checked
+  const path = getOriginal(target)
+  const currentStripe = target.dataset.stripeColor || null
+  const hasPickedColor = rgb2hex(path.style.fill) === pickedColor || currentStripe === pickedColor
+  const isErasing = currentStripe ? isStripesMode && hasPickedColor : hasPickedColor
 
-  if (isStripeClone) {
-    const og = getOriginal(target)
-    if (!isStripesMode) {
-      target.remove()
-      og.style.fill = color
-      app.mapState.set([{ pathId: og.id, color }])
-    } else if (rgb2hex(og.style.fill) === color || target.dataset.stripeColor === color) {
-      target.remove()
-      og.style.fill ? app.mapState.set([{ pathId: og.id, color: og.style.fill }]) : app.mapState.remove([og.id])
+  if (isErasing) {
+    if (currentStripe) {
+      removeStripe(path)
+      if (path.style.fill) {
+        app.mapState.set([{ pathId: path.id, color: path.style.fill }])
+      } else {
+        app.mapState.remove([path.id])
+      }
     } else {
-      addStripe(target, color)
-      app.mapState.set([{ pathId: og.id, color: og.style.fill, stripeColor: color }])
+      path.style.fill = ''
+      app.mapState.remove([path.id])
     }
-  } else if (rgb2hex(target.style.fill) === color) {
-    target.style.fill = ''
-    app.mapState.remove([target.id])
+  } else if (isStripesMode) {
+    addStripe(path, pickedColor)
+    app.mapState.set([{ pathId: path.id, color: path.style.fill, stripeColor: pickedColor }])
   } else {
-    if (isStripesMode) {
-      addStripe(target, color)
-      app.mapState.set([{ pathId: target.id, color: target.style.fill, stripeColor: color }])
-    } else {
-      target.style.fill = color
-      app.mapState.set([{ pathId: target.id, color }])
-    }
+    if (currentStripe) removeStripe(path)
+    path.style.fill = pickedColor
+    app.mapState.set([{ pathId: path.id, color: pickedColor }])
   }
   app.mapState.save()
 }
