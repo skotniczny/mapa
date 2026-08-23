@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "World Map",
   "source": "src/index.html",
+  "type": "module",
   "scripts": {
     "start": "parcel",
-    "prebuild": "rm -r dist",
+    "prebuild": "rm -rf dist",
     "build": "parcel build --public-url=\".\" --no-optimize",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "test": "standard \"src/**/*.js\"",
-    "fix": "standard \"src/**/*.js\" --fix"
+    "test": "node --test",
+    "lint": "standard \"src/**/*.js\" \"test/**/*.js\"",
+    "lint:fix": "standard \"src/**/*.js\" \"test/**/*.js\" --fix",
+    "check": "npm test && npm run lint"
   },
   "repository": {
     "type": "git",
