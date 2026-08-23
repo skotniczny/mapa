@@ -21,7 +21,7 @@ export function addStripe (el, color) {
   clone.removeAttribute('id')
   clone.dataset.stripeFor = original.id
   clone.dataset.stripeColor = color
-  clone.setAttribute('style', `fill: url(#${patternId})`)
+  clone.style.fill = `url(#${patternId})`
   original.insertAdjacentElement('afterend', clone)
 }
 
