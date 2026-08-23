@@ -1509,7 +1509,14 @@ function $696041bd1b84be8f$var$ensureTransform(svgEl, transform, svg) {
 }
 
 
-/* global CSS */ 
+function $7b5873fbd7a9e904$export$883528fb0afa7177(rgb) {
+    const match = rgb?.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\)/);
+    if (!match) return;
+    return '#' + match.slice(1).map((x)=>Number(x).toString(16).padStart(2, '0')).join('');
+}
+
+
+
 function $09671b11e5fd9b2b$export$2748120a496adc8e(el) {
     if (el.dataset.stripeFor) return document.getElementById(el.dataset.stripeFor);
     return el;
@@ -1524,7 +1531,7 @@ function $09671b11e5fd9b2b$export$490b36de5521dfa6(el, color) {
     clone.removeAttribute('id');
     clone.dataset.stripeFor = original.id;
     clone.dataset.stripeColor = color;
-    clone.setAttribute('style', `fill: url(#${patternId})`);
+    clone.style.fill = `url(#${patternId})`;
     original.insertAdjacentElement('afterend', clone);
 }
 function $09671b11e5fd9b2b$export$c2e765a549b2cf24(el) {
@@ -1551,36 +1558,6 @@ function $09671b11e5fd9b2b$var$getOrCreatePattern(color) {
     defs.appendChild(pattern);
     return patternId;
 }
-
-
-function $7b5873fbd7a9e904$export$883528fb0afa7177(rgb) {
-    const match = rgb?.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\)/);
-    if (!match) return;
-    return '#' + match.slice(1).map((x)=>Number(x).toString(16).padStart(2, '0')).join('');
-}
-function $7b5873fbd7a9e904$export$66eec673fb17698c(state, fill = true) {
-    for (const item of state.keys){
-        if (!item) continue;
-        const el = document.querySelector(`#${CSS.escape(item)}`);
-        if (!el) continue;
-        const value = state.get(item);
-        const [color, stripeColor] = Array.isArray(value) ? value : [
-            value,
-            null
-        ];
-        if (fill) {
-            el.style.fill = color ?? '';
-            if (stripeColor) (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(el, stripeColor);
-        } else {
-            el.style.fill = '';
-            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(el);
-        }
-    }
-}
-function $7b5873fbd7a9e904$export$751816bfcb437aef(state) {
-    $7b5873fbd7a9e904$export$66eec673fb17698c(state, false);
-}
-
 
 
 class $9d0b9414ff526d4c$export$11a6af20c28b5410 {
@@ -1702,69 +1679,59 @@ const $23483fd903922e0d$var$handleMouseWheel = (event)=>{
     (0, $696041bd1b84be8f$export$22a28e658597b9b4)($23483fd903922e0d$var$app.canvas, fixedPoint, $23483fd903922e0d$var$config.scale, nextScale);
     $23483fd903922e0d$var$config.scale = nextScale;
 };
+const $23483fd903922e0d$var$pickColorFromMap = (target)=>{
+    const color = target.dataset.stripeColor || (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill);
+    if (!color) return;
+    $23483fd903922e0d$var$tools.colorPicker.value = color;
+    $23483fd903922e0d$var$tools.colorPickMode.click();
+};
 const $23483fd903922e0d$var$handleMapClick = (event)=>{
     const target = event.target;
     if ($23483fd903922e0d$var$isInvalidElement(target)) return;
-    const color = $23483fd903922e0d$var$tools.colorPicker.value;
-    const isStripeClone = !!target.dataset.stripeColor;
-    const isColorPickMode = $23483fd903922e0d$var$tools.colorPickMode.checked;
-    const isStripesMode = $23483fd903922e0d$var$tools.stripesMode.checked;
-    if (isColorPickMode && target.tagName === 'path') {
-        $23483fd903922e0d$var$tools.colorPicker.value = isStripeClone ? target.dataset.stripeColor : (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill);
-        $23483fd903922e0d$var$tools.colorPickMode.click();
+    if ($23483fd903922e0d$var$tools.colorPickMode.checked) {
+        $23483fd903922e0d$var$pickColorFromMap(target);
         return;
     }
-    if (isStripeClone) {
-        const og = (0, $09671b11e5fd9b2b$export$2748120a496adc8e)(target);
-        if (!isStripesMode) {
-            target.remove();
-            og.style.fill = color;
-            $23483fd903922e0d$var$app.mapState.set([
+    const pickedColor = $23483fd903922e0d$var$tools.colorPicker.value;
+    const isStripesMode = $23483fd903922e0d$var$tools.stripesMode.checked;
+    const path = (0, $09671b11e5fd9b2b$export$2748120a496adc8e)(target);
+    const currentStripe = target.dataset.stripeColor || null;
+    const hasPickedColor = (0, $7b5873fbd7a9e904$export$883528fb0afa7177)(path.style.fill) === pickedColor || currentStripe === pickedColor;
+    const isErasing = currentStripe ? isStripesMode && hasPickedColor : hasPickedColor;
+    if (isErasing) {
+        if (currentStripe) {
+            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(path);
+            if (path.style.fill) $23483fd903922e0d$var$app.mapState.set([
                 {
-                    pathId: og.id,
-                    color: color
+                    pathId: path.id,
+                    color: path.style.fill
                 }
             ]);
-        } else if ((0, $7b5873fbd7a9e904$export$883528fb0afa7177)(og.style.fill) === color || target.dataset.stripeColor === color) {
-            target.remove();
-            og.style.fill ? $23483fd903922e0d$var$app.mapState.set([
-                {
-                    pathId: og.id,
-                    color: og.style.fill
-                }
-            ]) : $23483fd903922e0d$var$app.mapState.remove([
-                og.id
+            else $23483fd903922e0d$var$app.mapState.remove([
+                path.id
             ]);
         } else {
-            (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(target, color);
-            $23483fd903922e0d$var$app.mapState.set([
-                {
-                    pathId: og.id,
-                    color: og.style.fill,
-                    stripeColor: color
-                }
+            path.style.fill = '';
+            $23483fd903922e0d$var$app.mapState.remove([
+                path.id
             ]);
         }
-    } else if ((0, $7b5873fbd7a9e904$export$883528fb0afa7177)(target.style.fill) === color) {
-        target.style.fill = '';
-        $23483fd903922e0d$var$app.mapState.remove([
-            target.id
-        ]);
     } else if (isStripesMode) {
-        (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(target, color);
+        (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(path, pickedColor);
         $23483fd903922e0d$var$app.mapState.set([
             {
-                pathId: target.id,
-                color: target.style.fill,
-                stripeColor: color
+                pathId: path.id,
+                color: path.style.fill,
+                stripeColor: pickedColor
             }
         ]);
     } else {
-        target.style.fill = color;
+        if (currentStripe) (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(path);
+        path.style.fill = pickedColor;
         $23483fd903922e0d$var$app.mapState.set([
             {
-                pathId: target.id,
-                color: color
+                pathId: path.id,
+                color: pickedColor
             }
         ]);
     }
@@ -1828,9 +1795,31 @@ const $23483fd903922e0d$var$handleMapContextmenu = (event)=>{
     }
     $23483fd903922e0d$var$app.mapState.save();
 };
+const $23483fd903922e0d$var$fillElements = (state, fill = true)=>{
+    for (const item of state.keys){
+        if (!item) continue;
+        /* global CSS */ const el = document.querySelector(`#${CSS.escape(item)}`);
+        if (!el) continue;
+        const value = state.get(item);
+        const [color, stripeColor] = Array.isArray(value) ? value : [
+            value,
+            null
+        ];
+        if (fill) {
+            el.style.fill = color ?? '';
+            if (stripeColor) (0, $09671b11e5fd9b2b$export$490b36de5521dfa6)(el, stripeColor);
+        } else {
+            el.style.fill = '';
+            (0, $09671b11e5fd9b2b$export$c2e765a549b2cf24)(el);
+        }
+    }
+};
+const $23483fd903922e0d$var$clearElements = (state)=>{
+    $23483fd903922e0d$var$fillElements(state, false);
+};
 const $23483fd903922e0d$var$readState = ()=>{
     $23483fd903922e0d$var$app.mapState.load();
-    (0, $7b5873fbd7a9e904$export$66eec673fb17698c)($23483fd903922e0d$var$app.mapState);
+    $23483fd903922e0d$var$fillElements($23483fd903922e0d$var$app.mapState);
 };
 const $23483fd903922e0d$var$handleColorPickModeChange = ()=>{
     $23483fd903922e0d$var$app.map.style.cursor = $23483fd903922e0d$var$tools.colorPickMode.checked ? 'crosshair' : 'auto';
@@ -1893,7 +1882,7 @@ const $23483fd903922e0d$var$saveToJsonFile = (name)=>{
     $23483fd903922e0d$var$downloadFile(JSON.stringify(content), $23483fd903922e0d$var$toFileName(name, 'json'));
 };
 const $23483fd903922e0d$var$resetMap = ()=>{
-    (0, $7b5873fbd7a9e904$export$751816bfcb437aef)($23483fd903922e0d$var$app.mapState);
+    $23483fd903922e0d$var$clearElements($23483fd903922e0d$var$app.mapState);
     $23483fd903922e0d$var$app.mapState.reset();
     $23483fd903922e0d$var$app.mapState.save();
 };
@@ -1947,16 +1936,16 @@ const $23483fd903922e0d$var$moveMap = (direction)=>{
 const $23483fd903922e0d$var$setMap = (data)=>{
     $23483fd903922e0d$var$resetMap();
     $23483fd903922e0d$var$app.mapState.set(data);
-    (0, $7b5873fbd7a9e904$export$66eec673fb17698c)($23483fd903922e0d$var$app.mapState);
+    $23483fd903922e0d$var$fillElements($23483fd903922e0d$var$app.mapState);
     $23483fd903922e0d$var$app.mapState.save();
 };
 const $23483fd903922e0d$var$stepHistory = (direction)=>{
     if (direction === 'prev' && !$23483fd903922e0d$var$app.mapState.canUndo) return;
     if (direction === 'next' && !$23483fd903922e0d$var$app.mapState.canRedo) return;
-    (0, $7b5873fbd7a9e904$export$751816bfcb437aef)($23483fd903922e0d$var$app.mapState);
+    $23483fd903922e0d$var$clearElements($23483fd903922e0d$var$app.mapState);
     if (direction === 'prev') $23483fd903922e0d$var$app.mapState.undo();
     if (direction === 'next') $23483fd903922e0d$var$app.mapState.redo();
-    (0, $7b5873fbd7a9e904$export$66eec673fb17698c)($23483fd903922e0d$var$app.mapState);
+    $23483fd903922e0d$var$fillElements($23483fd903922e0d$var$app.mapState);
     $23483fd903922e0d$var$app.mapState.save();
 };
 const $23483fd903922e0d$var$svgMap = {
@@ -2131,4 +2120,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.0f3bd895.js.map
+//# sourceMappingURL=mapa.30af3f4a.js.map
