@@ -1,5 +1,5 @@
 import { svgPositionGet, svgPositionSet, svgScale } from './svg-utils.js'
-import { rgb2hex, fillElements, clearElements } from './utils.js'
+import { rgb2hex } from './utils.js'
 import { addStripe, getOriginal, removeStripe } from './stripes.js'
 import { MapState } from './map-state.js'
 
@@ -144,6 +144,28 @@ const handleMapContextmenu = event => {
     app.mapState.set(paths)
   }
   app.mapState.save()
+}
+
+const fillElements = (state, fill = true) => {
+  for (const item of state.keys) {
+    if (!item) continue
+    /* global CSS */
+    const el = document.querySelector(`#${CSS.escape(item)}`)
+    if (!el) continue
+    const value = state.get(item)
+    const [color, stripeColor] = Array.isArray(value) ? value : [value, null]
+    if (fill) {
+      el.style.fill = color ?? ''
+      if (stripeColor) addStripe(el, stripeColor)
+    } else {
+      el.style.fill = ''
+      removeStripe(el)
+    }
+  }
+}
+
+const clearElements = (state) => {
+  fillElements(state, false)
 }
 
 const readState = () => {
