@@ -1,6 +1,10 @@
 import modalSearch from './js/modal-search.js'
 import svgMap from './js/svg-map.js'
 import settings from './js/settings.js'
+import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
+import flagFont from 'url:country-flag-emoji-polyfill/dist/TwemojiCountryFlags.woff2'
+
+polyfillCountryFlagEmojis('Twemoji Country Flags', flagFont)
 
 const btnsMenu = document.querySelector('.menu-v')
 const filePicker = document.querySelector('#filePicker')

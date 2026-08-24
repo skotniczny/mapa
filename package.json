@@ -30,5 +30,8 @@
     "gh-pages": "^6.3.0",
     "parcel": "^2.15.4",
     "standard": "^17.1.2"
+  },
+  "dependencies": {
+    "country-flag-emoji-polyfill": "^0.1.10"
   }
 }
