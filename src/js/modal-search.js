@@ -18,19 +18,19 @@ const sortedFlags = [...FLAGS].sort((a, b) => a.name.localeCompare(b.name))
 const modalContent = () => {
   const elements = []
   for (const item of sortedFlags) {
-    const a = document.createElement('a')
-    a.className = 'flag'
-    a.title = item.description
-    a.tabIndex = 1
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = 'flag'
+    btn.title = item.description
     const flag = document.createElement('span')
     flag.textContent = item.emoji
     flag.className = 'flag_emoji'
     const desc = document.createElement('span')
     desc.textContent = item.name
     desc.className = 'flag_description'
-    a.appendChild(flag)
-    a.appendChild(desc)
-    elements.push(a)
+    btn.appendChild(flag)
+    btn.appendChild(desc)
+    elements.push(btn)
   }
   return elements
 }

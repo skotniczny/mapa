@@ -187,6 +187,10 @@ h3 {
   flex-grow: 1;
   flex-basis: 100px;
   cursor: pointer;
+  font: inherit;
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 .flag_emoji {
