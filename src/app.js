@@ -74,7 +74,9 @@ document.addEventListener('keydown', handleKeyboard)
 filePicker.addEventListener('change', pickCustomFlag)
 presets.addEventListener('change', handlePresetChange)
 btnsMenu.addEventListener('click', event => {
-  const targetId = event.target.id
+  const btn = event.target.closest('.control-btn')
+  if (!btn) return
+  const targetId = btn.id
   if (targetId === 'menuBtn') modalSearch.open()
   if (targetId === 'downloadBtn') svgMap.saveToSvgFile(mapName.value)
   if (targetId === 'resetBtn') {
