@@ -1,4 +1,8 @@
 
+function $parcel$interopDefault(a) {
+  return a && a.__esModule ? a.default : a;
+}
+
       var $parcel$global = globalThis;
     
 var $parcel$modules = {};
@@ -1419,19 +1423,19 @@ const $c94cd653c1ae6b76$var$sortedFlags = [
 const $c94cd653c1ae6b76$var$modalContent = ()=>{
     const elements = [];
     for (const item of $c94cd653c1ae6b76$var$sortedFlags){
-        const a = document.createElement('a');
-        a.className = 'flag';
-        a.title = item.description;
-        a.tabIndex = 1;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'flag';
+        btn.title = item.description;
         const flag = document.createElement('span');
         flag.textContent = item.emoji;
         flag.className = 'flag_emoji';
         const desc = document.createElement('span');
         desc.textContent = item.name;
         desc.className = 'flag_description';
-        a.appendChild(flag);
-        a.appendChild(desc);
-        elements.push(a);
+        btn.appendChild(flag);
+        btn.appendChild(desc);
+        elements.push(btn);
     }
     return elements;
 };
@@ -2029,6 +2033,45 @@ const $cc2a27c5cf7938c0$var$settings = {
 var $cc2a27c5cf7938c0$export$2e2bcd8739ae039 = $cc2a27c5cf7938c0$var$settings;
 
 
+var $55e428e588e6d38b$export$ac94f3461155c74b;
+"use strict";
+const $55e428e588e6d38b$var$s = '"Twemoji Mozilla","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","EmojiOne Color","Android Emoji",sans-serif';
+function $55e428e588e6d38b$var$r() {
+    const o = document.createElement("canvas");
+    o.width = o.height = 1;
+    const t = o.getContext("2d", {
+        willReadFrequently: !0
+    });
+    return t.textBaseline = "top", t.font = `100px ${$55e428e588e6d38b$var$s}`, t.scale(.01, .01), t;
+}
+function $55e428e588e6d38b$var$i(o, t, e) {
+    return o.clearRect(0, 0, 100, 100), o.fillStyle = e, o.fillText(t, 0, 0), o.getImageData(0, 0, 1, 1).data.join(",");
+}
+function $55e428e588e6d38b$var$supportsEmoji(o) {
+    const t = $55e428e588e6d38b$var$r(), e = $55e428e588e6d38b$var$i(t, o, "#fff"), n = $55e428e588e6d38b$var$i(t, o, "#000");
+    return n === e && !n.startsWith("0,0,0,");
+}
+function $55e428e588e6d38b$var$polyfillCountryFlagEmojis(o = "Twemoji Country Flags", t = "https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1/dist/TwemojiCountryFlags.woff2") {
+    if (typeof window < "u" && $55e428e588e6d38b$var$supportsEmoji("\uD83D\uDE0A") && !$55e428e588e6d38b$var$supportsEmoji("\uD83C\uDDE8\uD83C\uDDED")) {
+        const e = document.createElement("style");
+        return e.textContent = `@font-face {
+      font-family: "${o}";
+      unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067,
+        U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+      src: url('${t}') format('woff2');
+      font-display: swap;
+    }`, document.head.appendChild(e), !0;
+    }
+    return !1;
+}
+$55e428e588e6d38b$export$ac94f3461155c74b = $55e428e588e6d38b$var$polyfillCountryFlagEmojis;
+
+
+var $76e5775e457a4df6$exports = {};
+$76e5775e457a4df6$exports = import.meta.resolve("gmjFJ");
+
+
+(0, $55e428e588e6d38b$export$ac94f3461155c74b)('Twemoji Country Flags', (0, (/*@__PURE__*/$parcel$interopDefault($76e5775e457a4df6$exports))));
 const $56a0b18e519895ee$var$btnsMenu = document.querySelector('.menu-v');
 const $56a0b18e519895ee$var$filePicker = document.querySelector('#filePicker');
 const $56a0b18e519895ee$var$presets = document.querySelector('#presets');
@@ -2107,7 +2150,9 @@ document.addEventListener('keydown', $56a0b18e519895ee$var$handleKeyboard);
 $56a0b18e519895ee$var$filePicker.addEventListener('change', $56a0b18e519895ee$var$pickCustomFlag);
 $56a0b18e519895ee$var$presets.addEventListener('change', $56a0b18e519895ee$var$handlePresetChange);
 $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
-    const targetId = event.target.id;
+    const btn = event.target.closest('.control-btn');
+    if (!btn) return;
+    const targetId = btn.id;
     if (targetId === 'menuBtn') (0, $c94cd653c1ae6b76$export$2e2bcd8739ae039).open();
     if (targetId === 'downloadBtn') (0, $23483fd903922e0d$export$2e2bcd8739ae039).saveToSvgFile($56a0b18e519895ee$var$mapName.value);
     if (targetId === 'resetBtn') {
@@ -2120,4 +2165,4 @@ $56a0b18e519895ee$var$btnsMenu.addEventListener('click', (event)=>{
 });
 
 
-//# sourceMappingURL=mapa.30af3f4a.js.map
+//# sourceMappingURL=mapa.c443b1a9.js.map

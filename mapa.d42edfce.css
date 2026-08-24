@@ -8,7 +8,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Twemoji Country Flags, Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
 }
 
 svg {
@@ -179,9 +179,13 @@ h1, h2, h3 {
 .flag {
   text-align: center;
   cursor: pointer;
+  font: inherit;
+  background: none;
+  border: none;
   flex-direction: column;
   flex-grow: 1;
   flex-basis: 100px;
+  padding: 0;
   display: flex;
 }
 
@@ -214,4 +218,16 @@ h1, h2, h3 {
 .picked:empty, .hide {
   display: none;
 }
-/*# sourceMappingURL=mapa.c4f0ffd7.css.map */
+
+.visually-hidden {
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  overflow: hidden;
+}
+/*# sourceMappingURL=mapa.d42edfce.css.map */
