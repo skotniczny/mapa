@@ -33,5 +33,6 @@
   },
   "dependencies": {
     "country-flag-emoji-polyfill": "^0.1.10"
-  }
+  },
+  "browserslist": ["defaults"]
 }
