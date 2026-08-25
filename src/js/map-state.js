@@ -26,7 +26,7 @@ class MapState {
   }
 
   set (items) {
-    if (items.length <= 0) return
+    if (!Array.isArray(items) || items.length <= 0) return
     this.#saveSnapshot()
     for (const { pathId, color, stripeColor } of items) {
       this.#state[pathId] = stripeColor ? [color, stripeColor] : color
@@ -34,7 +34,7 @@ class MapState {
   }
 
   remove (items) {
-    if (items.length <= 0) return
+    if (!Array.isArray(items) || items.length <= 0) return
     this.#saveSnapshot()
     for (const id of items) {
       delete this.#state[id]

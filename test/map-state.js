@@ -59,6 +59,12 @@ describe('set', () => {
     mapState.set([{ pathId: 'path3', color: '#222222' }])
     assert.equal(mapState.get('path3'), '#222222')
   })
+
+  it('tylko ścieżki w tablicach są dodawane', () => {
+    const mapState = new MapState()
+    mapState.set({ pathId: 'path1', color: '#123456' })
+    assert.deepEqual(mapState.keys, [])
+  })
 })
 
 describe('remove', () => {
@@ -150,6 +156,14 @@ describe('zapis do historii', () => {
     mapState.set([])
     mapState.remove([])
     assert.equal(mapState.canUndo, false)
+  })
+
+  it('argument inny niż tablica nie tworzy wpisu', () => {
+    const mapState = oneChange()
+    mapState.remove('path1')
+    assert.deepEqual(mapState.keys, ['path1', 'path2', 'path3'])
+    mapState.undo()
+    assert.deepEqual(mapState.keys, [])
   })
 
   it('pomija nieistniejące ścieżki, a usunięcie pozostałych da się cofnąć', () => {
